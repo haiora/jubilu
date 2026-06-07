@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "title": "Jubilee — Serving the Holy Land and Jerusalem",
+    "description": "Jubilee is a Christian association devoted to Israel and Jerusalem. Discover our mission, our wines from the Holy Land and our handwritten parchments from Jerusalem."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "mission": "Mission & Impact",
+    "shop": "Shop",
+    "wines": "Our wines",
+    "parchments": "Parchments",
+    "testimonials": "Testimonials",
+    "news": "News",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "cart": "Cart",
+    "account": "My account"
+  },
+  "common": {
+    "discover": "Discover the mission",
+    "shopNow": "Visit the shop",
+    "discoverParchments": "Discover the parchments",
+    "learnMore": "Learn more",
+    "readMore": "Read more",
+    "addToCart": "Add to cart",
+    "viewProduct": "View product",
+    "from": "From",
+    "languageLabel": "Language",
+    "menu": "Menu",
+    "close": "Close",
+    "notFoundTitle": "Page not found",
+    "notFoundText": "The page you are looking for doesn't exist or has been moved.",
+    "backHome": "Back to home",
+    "cookieText": "We use cookies to improve your experience and measure our audience.",
+    "cookieAccept": "Accept",
+    "cookieDecline": "Decline"
+  },
+  "home": {
+    "hero": {
+      "badge": "An association serving the Holy Land",
+      "title": "In the heart of Jerusalem, a mission across generations",
+      "subtitle": "Jubilee unites Christians and friends of Israel around one calling: to honor the Holy Land, support Jerusalem and pass on a living spiritual heritage.",
+      "ctaPrimary": "Discover our mission",
+      "ctaSecondary": "Visit the shop"
+    },
+    "intro": {
+      "title": "Who is Jubilee",
+      "text": "Jubilee is a non-profit association rooted in faith and turned toward Jerusalem. We build a bridge between peoples, support projects in the Holy Land, and offer meaningful products — from wines of Israel to handwritten parchments from Jerusalem — whose every purchase sustains our mission.",
+      "verse": "\"Pray for the peace of Jerusalem: may those who love you be secure.\" — Psalm 122:6"
+    },
+    "mission": {
+      "title": "Our mission",
+      "text": "To preserve, honor and pass on the spiritual heritage of the Holy Land, by supporting concrete projects in Jerusalem and its surroundings.",
+      "cta": "Discover our projects"
+    },
+    "jerusalem": {
+      "title": "Jerusalem at the center",
+      "text": "Where biblical history comes alive. Every action of Jubilee is turned toward the Holy City, its people and the promise of restoration.",
+      "verse": "\"Beautiful in elevation, the joy of the whole earth, is Mount Zion.\" — Psalm 48:2"
+    },
+    "wines": {
+      "title": "Wines of the Holy Land",
+      "text": "White, red and rosé wines from the land of Israel. A tasting that connects your table to the Promised Land.",
+      "cta": "Discover our wines"
+    },
+    "parchments": {
+      "title": "Parchments of Jerusalem",
+      "text": "Personalized parchments, handwritten in Jerusalem. A chosen text, carefully calligraphed: a heritage to pass on.",
+      "cta": "Personalize a parchment"
+    },
+    "impact": {
+      "title": "Our impact",
+      "stats": {
+        "projects": "Projects supported in the Holy Land",
+        "supporters": "Supporters around the world",
+        "countries": "Countries reached by the mission",
+        "years": "Years of commitment"
+      }
+    },
+    "testimonials": {
+      "title": "They support Jubilee",
+      "text": "Voices from around the world, united by one hope."
+    },
+    "partners": {
+      "title": "Supporters & partners",
+      "text": "Alongside communities and friends of Israel who share our vision."
+    },
+    "news": {
+      "title": "Latest news",
+      "cta": "All news"
+    },
+    "finalCta": {
+      "title": "Join the mission of Jubilee",
+      "text": "Every gesture matters. Support Jerusalem, discover our products, be part of the story.",
+      "ctaPrimary": "Discover the mission",
+      "ctaSecondary": "Discover the parchments"
+    }
+  },
+  "pages": {
+    "about": {
+      "badge": "About Jubilee",
+      "title": "The origins of Jubilee",
+      "subtitle": "A mission rooted in faith, turned toward Jerusalem and the gift of passing on.",
+      "paragraphs": [
+        "Jubilee is a non-profit association devoted to the Holy Land. Our commitment is rooted in the promises of Scripture and in the love of Jerusalem, a city at the heart of history and hope.",
+        "We are a bridge between peoples and between Christian communities and friends of Israel, united by one conviction: to honor the spiritual heritage of the Promised Land and to support Jerusalem in tangible ways.",
+        "Our work brings together the presentation of the mission, support for projects in the Holy Land, and meaningful products — wines of Israel and handwritten parchments from Jerusalem — whose every purchase extends our commitment.",
+        "Through our work, we seek to strengthen the bonds between communities, to pass on a living heritage, and to make known the beauty and depth of the Holy Land."
+      ],
+      "verse": "\"I will give to you and to your descendants after you the land of your sojournings, all the land of Canaan, for an everlasting possession.\" — Genesis 17:8",
+      "valuesTitle": "Our values",
+      "values": [
+        { "title": "Faith", "text": "A mission rooted in Scripture and hope." },
+        { "title": "Authenticity", "text": "Handcrafted products and a sincere commitment." },
+        { "title": "Passing on", "text": "Connecting generations to the heritage of Jerusalem." }
+      ]
+    },
+    "mission": {
+      "badge": "Mission & Impact",
+      "title": "Our mission in the Holy Land",
+      "subtitle": "To preserve, honor and pass on the spiritual heritage of Jerusalem and its surroundings.",
+      "intro": "Jubilee supports concrete projects in the heart of the Holy Land. Each initiative aims to protect a sacred heritage and to serve those who live there.",
+      "projects": [
+        {
+          "title": "The Old City of Jerusalem",
+          "text": "Supporting the preservation of the sacred heart of the Old City, where biblical history comes alive, to honor and protect its heritage."
+        },
+        {
+          "title": "Jerusalem surroundings",
+          "text": "Supporting the preservation of the ancient lands and biblical sites surrounding the Holy City."
+        },
+        {
+          "title": "The baptismal site of Qasr al-Yahud",
+          "text": "Preserving and enhancing the revered baptismal site on the Jordan River, a major pilgrimage destination, by improving its preservation and accessibility."
+        }
+      ],
+      "verse": "\"Beautiful in elevation, the joy of the whole earth, is Mount Zion.\" — Psalm 48:2"
+    },
+    "contact": {
+      "badge": "Contact",
+      "title": "Write to us",
+      "subtitle": "A question about the mission, the shop or a parchment? Our team will reply.",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Your message",
+      "send": "Send",
+      "infoTitle": "Contact details",
+      "infoText": "We will get back to you as soon as possible.",
+      "error": "An error occurred. Please try again."
+    },
+    "faq": {
+      "badge": "FAQ",
+      "title": "Frequently asked questions",
+      "subtitle": "Everything you need to know about Jubilee, our products and shipping.",
+      "items": [
+        { "q": "Who is Jubilee?", "a": "Jubilee is a non-profit Christian association devoted to the Holy Land and Jerusalem, supporting projects and offering meaningful products." },
+        { "q": "Where do your wines come from?", "a": "Our white, red and rosé wines come from the land of Israel and are selected for their quality." },
+        { "q": "How does parchment personalization work?", "a": "You choose the desired text; it is then handwritten in Jerusalem and shipped with production tracking." },
+        { "q": "Do you ship internationally?", "a": "Yes. Shipping times and costs depend on the destination country and are shown at checkout." },
+        { "q": "How does my purchase support the mission?", "a": "Every purchase contributes to funding Jubilee's projects in the Holy Land." }
+      ]
+    },
+    "testimonials": {
+      "badge": "Testimonials",
+      "title": "They support Jubilee",
+      "subtitle": "Voices from around the world, united by one hope."
+    },
+    "news": {
+      "badge": "News",
+      "title": "News & reflections",
+      "subtitle": "Updates on the mission, perspectives on the Holy Land and the gift of passing on.",
+      "readMore": "Read the article"
+    },
+    "shop": {
+      "badge": "Shop",
+      "title": "The Jubilee shop",
+      "subtitle": "Meaningful products: wines of Israel and handwritten parchments from Jerusalem.",
+      "comingSoon": "Our online catalogue is coming very soon. Every purchase supports Jubilee's mission."
+    },
+    "legal": {
+      "mentionsTitle": "Legal notice",
+      "privacyTitle": "Privacy policy",
+      "termsTitle": "Terms of sale",
+      "cookiesTitle": "Cookie policy",
+      "mentions": {
+        "title1": "1. Site Publisher",
+        "text1": "The Jubilee website is published by the Jubilee Association, a non-profit association based in Paris, France. Publishing Director: Jubilee Management Team.",
+        "title2": "2. Hosting",
+        "text2": "This website is hosted by Cloudflare Inc. (101 Townsend St, San Francisco, CA 94107, USA) and deployed via Cloudflare Pages.",
+        "title3": "3. Intellectual Property",
+        "text3": "All content present on the site (texts, images, designs, logos) is protected by copyright. Any unauthorized reproduction or distribution is prohibited.",
+        "title4": "4. Contact",
+        "text4": "For any inquiries, you can write to us via the contact form on the site or directly at contact@jubilee-israel.org."
+      },
+      "privacy": {
+        "title1": "1. Data Collection",
+        "text1": "We collect personal information only when you provide it voluntarily (account creation, ordering products, or subscribing to our newsletter). This data includes your name, email address, shipping address, and phone number.",
+        "title2": "2. Data Usage",
+        "text2": "Your personal data is used exclusively to manage and deliver your orders, respond to your inquiries via the contact form, and send you our newsletters if you have consented.",
+        "title3": "3. Sharing and Security",
+        "text3": "We do not sell or rent your personal data to third parties. Your payment information is processed in a fully secure manner by our payment provider Stripe. We use secure protocols to protect all data transmissions.",
+        "title4": "4. Your Rights",
+        "text4": "In accordance with the GDPR, you have the right to access, modify, rectify, and delete data concerning you. To exercise this right, please contact our team by email."
+      },
+      "terms": {
+        "title1": "1. Object and Scope",
+        "text1": "These general terms of sale (CGV) govern all sales of products (wines from the Holy Land, personalized parchments) concluded on the Jubilee Association website.",
+        "title2": "2. Orders and Prices",
+        "text2": "The prices of our products are indicated in Euros (EUR), all taxes included, excluding shipping costs. The Association reserves the right to modify its prices at any time. The order is validated after full payment.",
+        "title3": "3. Delivery and Withdrawal",
+        "text3": "We ship domestically and internationally. Delivery times are provided for information purposes. For non-personalized products (wines), you have a 14-day right of withdrawal. Hand-calligraphed parchments being personalized, they cannot be returned or refunded.",
+        "title4": "4. Sale of Alcohol",
+        "text4": "The sale of wine is strictly reserved for adults of legal age in their country of residence. By validating your order containing wine, you certify that you have reached the required legal age."
+      },
+      "cookies": {
+        "title1": "1. What is a Cookie?",
+        "text1": "A cookie is a small text file stored on your computer or mobile device when you visit a website. It allows the site to remember your actions and preferences over a given period.",
+        "title2": "2. Cookies Used",
+        "text2": "We use cookies that are strictly necessary to ensure the functioning of the shop (managing your cart, maintaining your login session) and statistical cookies to measure our site's audience.",
+        "title3": "3. Managing Your Preferences",
+        "text3": "You can configure your browser to refuse the storage of cookies or to be warned when they are sent. Please note that disabling necessary cookies may alter the functioning of the online shop.",
+        "title4": "4. Consent",
+        "text4": "By browsing our site and accepting our information banner, you consent to the use of cookies in accordance with this policy."
+      }
+    }
+  },
+  "account": {
+    "title": "My account",
+    "subtitle": "Track your orders and manage your information.",
+    "signInTitle": "Access my space",
+    "emailLabel": "Your email address",
+    "signIn": "Access",
+    "welcome": "Welcome",
+    "myOrders": "My orders",
+    "noOrders": "No orders linked to this email.",
+    "profile": "My information",
+    "logout": "Sign out",
+    "demoNote": "Demo: enter a customer email (e.g. marie.lefevre@example.com) to see order history."
+  },
+  "cart": {
+    "title": "Your cart",
+    "empty": "Your cart is empty.",
+    "emptyCta": "Discover the shop",
+    "product": "Product",
+    "quantity": "Quantity",
+    "price": "Price",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "remove": "Remove",
+    "checkout": "Checkout",
+    "continue": "Continue shopping",
+    "addedToCart": "Added to cart",
+    "customTextLabel": "Text to be handwritten",
+    "customTextPlaceholder": "Enter the verse, blessing or name to inscribe…",
+    "customTextRequired": "Please enter the text to be handwritten.",
+    "count": "{count, plural, =0 {Empty cart} one {# item} other {# items}}"
+  },
+  "checkout": {
+    "title": "Complete your order",
+    "contact": "Your details",
+    "shipping": "Shipping address",
+    "address": "Address",
+    "city": "City",
+    "zip": "Postal code",
+    "country": "Country",
+    "phone": "Phone",
+    "payment": "Payment",
+    "placeOrder": "Pay and order",
+    "summary": "Summary",
+    "ageNotice": "Wine sales are restricted to adults. By ordering, you certify that you meet the legal age in your country.",
+    "stripeNote": "Secure payment by Stripe (to be enabled).",
+    "success": "Thank you! Your order has been recorded.",
+    "successText": "A confirmation email will be sent to you. For parchments, you will follow each step of production from Jerusalem.",
+    "backToShop": "Back to the shop"
+  },
+  "footer": {
+    "tagline": "Serving the Holy Land, Jerusalem and the gift of passing on.",
+    "explore": "Explore",
+    "shop": "Shop",
+    "info": "Information",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy",
+    "terms": "Terms of sale",
+    "cookies": "Cookies",
+    "newsletterTitle": "Get our news",
+    "newsletterText": "Mission, projects and new arrivals — straight to your inbox.",
+    "newsletterPlaceholder": "Your email address",
+    "newsletterButton": "Subscribe",
+    "verse": "\"Pray for the peace of Jerusalem.\" — Psalm 122:6",
+    "rights": "All rights reserved."
+  },
+  "admin": {
+    "language": "Language",
+    "nav": { "dashboard": "Dashboard", "orders": "Orders", "products": "Products", "stock": "Stock", "crm": "CRM / Contacts", "campaigns": "Email campaigns", "settings": "Settings" },
+    "common": { "logout": "Sign out", "viewSite": "View site", "administration": "Administration", "new": "New", "import": "Import CSV", "export": "Export CSV", "all": "All", "units": "units", "active": "Active" },
+    "login": { "subtitle": "Administration area", "email": "Email", "password": "Password", "signIn": "Sign in", "demo": "Demo", "error": "Invalid credentials." },
+    "dashboard": { "title": "Dashboard", "subtitle": "Overview of Jubilee's activity.", "revenue": "Revenue", "revenueHint": "Paid orders", "orders": "Orders", "avgCartHint": "Average cart {v}", "contacts": "Contacts", "newContactsHint": "{n} new in 2026", "openRate": "Open rate", "emailsSentHint": "{n} emails sent", "byStatus": "Orders by status", "campaignPerf": "Campaign performance", "recentOrders": "Latest orders", "colNumber": "No.", "colCustomer": "Customer", "colStatus": "Status", "colTotal": "Total" },
+    "orders": { "title": "Orders", "subtitle": "{n} orders — from preparation to delivery." },
+    "status": { "pending": "Pending", "paid": "Paid", "prepared": "Prepared", "shipped": "Shipped", "delivered": "Delivered", "cancelled": "Cancelled" },
+    "products": { "title": "Products", "subtitle": "{n} products — wines & parchments.", "new": "New product", "colProduct": "Product", "colCategory": "Category", "colPrice": "Price", "colStock": "Stock", "colStatus": "Status" },
+    "stock": { "title": "Stock", "subtitle": "Stock levels and restock alerts.", "alert": "{n} product(s) below the alert threshold ({s} units): consider restocking." },
+    "crm": { "title": "CRM / Contacts", "subtitle": "{n} contacts — customers, leads and donors.", "colContact": "Contact", "colCountry": "Country", "colStatus": "Status", "colTags": "Tags", "colConsent": "Consent", "colTotal": "Total spent" },
+    "contactStatus": { "client": "customer", "lead": "lead", "donateur": "donor" },
+    "contact": { "back": "Back to contacts", "clientSince": "Customer since {d} · Source: {s}", "sendEmail": "Send an email", "details": "Contact details", "tags": "Tags", "add": "+ Add", "ordersCount": "Orders", "totalSpent": "Total spent", "history": "Order history", "noOrders": "No orders yet.", "notes": "Internal notes", "noNotes": "No notes.", "addNote": "Add a note…" },
+    "campaigns": { "title": "Email campaigns", "subtitle": "Sent via Resend — content written by the team.", "new": "New campaign", "sent": "Sent", "scheduled": "Scheduled", "draft": "Draft", "mSent": "Sent", "mDelivered": "Delivered", "mOpened": "Opens", "mClicked": "Clicks", "mUnsub": "Unsub.", "scheduledFor": "Scheduled for {d}", "draftHint": "Draft — to complete and schedule." },
+    "settings": { "title": "Settings", "subtitle": "Integrations, roles and activity log.", "integrations": "Integrations", "configured": "Configured", "toConfigure": "To configure (key missing)", "rolesPerms": "Roles & permissions", "colRole": "Role", "audit": "Audit log" },
+    "roles": { "super_admin": "Super administrator", "admin": "Administrator", "shop": "Shop management", "crm": "CRM management", "content": "Content management", "marketing": "Marketing management", "support": "Support" },
+    "perms": { "dashboard": "Dashboard", "orders": "Orders", "stock": "Stock", "products": "Products", "crm": "CRM", "clients": "Customers", "campaigns": "Campaigns", "settings": "Settings" }
+  }
+}

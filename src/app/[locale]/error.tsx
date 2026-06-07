@@ -1,0 +1,38 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+import { AlertTriangle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  const t = useTranslations('common');
+
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return (
+    <div className="flex min-h-[60vh] flex-col items-center justify-center p-4 text-center">
+      <AlertTriangle className="h-16 w-16 text-red-500 mb-6" />
+      <h2 className="text-3xl font-semibold mb-4">Une erreur inattendue est survenue</h2>
+      <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+        Nous sommes désolés, une erreur technique a empêché l&apos;affichage de cette page.
+      </p>
+      <div className="flex gap-4">
+        <Button onClick={() => reset()} variant="gold">
+          Réessayer
+        </Button>
+        <Button onClick={() => window.location.href = '/'} variant="outline">
+          {t('backHome')}
+        </Button>
+      </div>
+    </div>
+  );
+}

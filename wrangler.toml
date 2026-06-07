@@ -1,0 +1,18 @@
+# Configuration Cloudflare Pages + Workers pour Jubilé.
+name = "jubilee-platform"
+compatibility_date = "2024-07-29"
+compatibility_flags = ["nodejs_compat"]
+
+# Sortie de build Next.js via @cloudflare/next-on-pages
+pages_build_output_dir = ".vercel/output/static"
+
+# Base de données Cloudflare D1 (créer avec : npx wrangler d1 create jubilee-db)
+[[d1_databases]]
+binding = "DB"
+database_name = "jubilee-db"
+database_id = "REMPLACER_PAR_VOTRE_DATABASE_ID"
+
+# Stockage R2 pour les médias produits / parchemins
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "jubilee-media"

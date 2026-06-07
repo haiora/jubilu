@@ -1,0 +1,85 @@
+'use client';
+
+import { useLocale, useTranslations } from 'next-intl';
+import { Trash2, ScrollText, Wine, ArrowRight } from 'lucide-react';
+import { Link } from '@/i18n/navigation';
+import { useCart } from '@/components/shop/cart-context';
+import { Button } from '@/components/ui/button';
+import { getProduct, formatPrice } from '@/lib/catalog';
+import type { Locale } from '@/i18n/routing';
+
+export default function CartPage() {
+  const locale = useLocale() as Locale;
+  const t = useTranslations('cart');
+  const { items, setQty, remove } = useCart();
+
+  const lines = items
+    .map((item, index) => ({ item, index, product: getProduct(item.slug) }))
+    .filter((l) => l.product);
+
+  const total = lines.reduce((sum, l) => sum + (l.product!.price * l.item.qty), 0);
+
+  return (
+    <section className="container py-12">
+      <h1 className="text-3xl font-semibold md:text-4xl">{t('title')}</h1>
+
+      {lines.length === 0 ? (
+        <div className="mt-10 flex flex-col items-center rounded-2xl border border-border bg-card p-12 text-center">
+          <p className="text-lg text-muted-foreground">{t('empty')}</p>
+          <Button asChild variant="gold" className="mt-6">
+            <Link href="/boutique">{t('emptyCta')}</Link>
+          </Button>
+        </div>
+      ) : (
+        <div className="mt-8 grid gap-8 lg:grid-cols-3">
+          <div className="space-y-4 lg:col-span-2">
+            {lines.map(({ item, index, product }) => {
+              const tr = product!.translations[locale];
+              const Icon = product!.icon === 'scroll' ? ScrollText : Wine;
+              return (
+                <div key={index} className="flex gap-4 rounded-2xl border border-border bg-card p-4">
+                  <div className={`flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${product!.gradient}`}>
+                    <Icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold">{tr.name}</h3>
+                      <button onClick={() => remove(index)} aria-label={t('remove')} className="text-muted-foreground hover:text-red-600">
+                        <Trash2 className="h-4 w-4" />
+                      </button>
+                    </div>
+                    {item.customText && (
+                      <p className="mt-1 text-sm italic text-muted-foreground">“{item.customText}”</p>
+                    )}
+                    <div className="mt-auto flex items-center justify-between pt-2">
+                      <div className="flex items-center rounded-full border border-input">
+                        <button onClick={() => setQty(index, item.qty - 1)} className="h-9 w-9" aria-label="-">−</button>
+                        <span className="w-8 text-center text-sm">{item.qty}</span>
+                        <button onClick={() => setQty(index, item.qty + 1)} className="h-9 w-9" aria-label="+">+</button>
+                      </div>
+                      <span className="font-semibold text-primary">{formatPrice(product!.price * item.qty, locale)}</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          <aside className="h-fit rounded-2xl border border-border bg-card p-6">
+            <h2 className="text-lg font-semibold">{t('total')}</h2>
+            <div className="mt-4 flex items-center justify-between border-t border-border pt-4 text-lg font-semibold">
+              <span>{t('total')}</span>
+              <span className="text-primary">{formatPrice(total, locale)}</span>
+            </div>
+            <Button asChild variant="gold" size="lg" className="mt-6 w-full">
+              <Link href="/commande">{t('checkout')} <ArrowRight className="h-4 w-4 rtl:rotate-180" /></Link>
+            </Button>
+            <Button asChild variant="ghost" className="mt-2 w-full">
+              <Link href="/boutique">{t('continue')}</Link>
+            </Button>
+          </aside>
+        </div>
+      )}
+    </section>
+  );
+}

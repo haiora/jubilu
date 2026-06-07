@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "title": "Jubileo — Al servicio de Tierra Santa y Jerusalén",
+    "description": "Jubileo es una asociación cristiana dedicada a Israel y Jerusalén. Descubra nuestra misión, nuestros vinos de Tierra Santa y nuestros pergaminos manuscritos de Jerusalén."
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Quiénes somos",
+    "mission": "Misión e impacto",
+    "shop": "Tienda",
+    "wines": "Nuestros vinos",
+    "parchments": "Pergaminos",
+    "testimonials": "Testimonios",
+    "news": "Noticias",
+    "contact": "Contacto",
+    "faq": "Preguntas frecuentes",
+    "cart": "Carrito",
+    "account": "Mi cuenta"
+  },
+  "common": {
+    "discover": "Descubrir la misión",
+    "shopNow": "Visitar la tienda",
+    "discoverParchments": "Descubrir los pergaminos",
+    "learnMore": "Saber más",
+    "readMore": "Leer más",
+    "addToCart": "Añadir al carrito",
+    "viewProduct": "Ver producto",
+    "from": "Desde",
+    "languageLabel": "Idioma",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "notFoundTitle": "Página no encontrada",
+    "notFoundText": "La página que busca no existe o ha sido movida.",
+    "backHome": "Volver al inicio",
+    "cookieText": "Usamos cookies para mejorar su experiencia y medir nuestra audiencia.",
+    "cookieAccept": "Aceptar",
+    "cookieDecline": "Rechazar"
+  },
+  "home": {
+    "hero": {
+      "badge": "Una asociación al servicio de Tierra Santa",
+      "title": "En el corazón de Jerusalén, una misión que cruza generaciones",
+      "subtitle": "Jubileo une a cristianos y amigos de Israel en torno a una misma vocación: honrar Tierra Santa, apoyar a Jerusalén y transmitir una herencia espiritual viva.",
+      "ctaPrimary": "Descubrir nuestra misión",
+      "ctaSecondary": "Visitar la tienda"
+    },
+    "intro": {
+      "title": "Quién es Jubileo",
+      "text": "Jubileo es una asociación sin ánimo de lucro arraigada en la fe y orientada hacia Jerusalén. Construimos un puente entre los pueblos, apoyamos proyectos en Tierra Santa y ofrecemos productos con sentido —desde vinos de Israel hasta pergaminos manuscritos de Jerusalén— cuya compra sostiene nuestra misión.",
+      "verse": "«Pedid por la paz de Jerusalén: que vivan seguros los que te aman.» — Salmo 122:6"
+    },
+    "mission": {
+      "title": "Nuestra misión",
+      "text": "Preservar, honrar y transmitir la herencia espiritual de Tierra Santa, apoyando proyectos concretos en Jerusalén y sus alrededores.",
+      "cta": "Descubrir nuestros proyectos"
+    },
+    "jerusalem": {
+      "title": "Jerusalén en el centro",
+      "text": "Donde la historia bíblica cobra vida. Cada acción de Jubileo está orientada hacia la Ciudad Santa, su pueblo y la promesa de restauración.",
+      "verse": "«Hermosa por su elevación, el gozo de toda la tierra, es el monte Sión.» — Salmo 48:2"
+    },
+    "wines": {
+      "title": "Vinos de Tierra Santa",
+      "text": "Vinos blancos, tintos y rosados de la tierra de Israel. Una degustación que conecta su mesa con la Tierra Prometida.",
+      "cta": "Descubrir nuestros vinos"
+    },
+    "parchments": {
+      "title": "Pergaminos de Jerusalén",
+      "text": "Pergaminos personalizados, escritos a mano desde Jerusalén. Un texto elegido, caligrafiado con cuidado: una herencia para transmitir.",
+      "cta": "Personalizar un pergamino"
+    },
+    "impact": {
+      "title": "Nuestro impacto",
+      "stats": {
+        "projects": "Proyectos apoyados en Tierra Santa",
+        "supporters": "Apoyos en todo el mundo",
+        "countries": "Países alcanzados por la misión",
+        "years": "Años de compromiso"
+      }
+    },
+    "testimonials": {
+      "title": "Apoyan a Jubileo",
+      "text": "Voces de todo el mundo, unidas por una misma esperanza."
+    },
+    "partners": {
+      "title": "Apoyos y socios",
+      "text": "Junto a comunidades y amigos de Israel que comparten nuestra visión."
+    },
+    "news": {
+      "title": "Últimas noticias",
+      "cta": "Todas las noticias"
+    },
+    "finalCta": {
+      "title": "Únase a la misión de Jubileo",
+      "text": "Cada gesto cuenta. Apoye a Jerusalén, descubra nuestros productos, forme parte de la historia.",
+      "ctaPrimary": "Descubrir la misión",
+      "ctaSecondary": "Descubrir los pergaminos"
+    }
+  },
+  "pages": {
+    "about": {
+      "badge": "Sobre Jubileo",
+      "title": "Los orígenes de Jubileo",
+      "subtitle": "Una misión arraigada en la fe, orientada hacia Jerusalén y la transmisión.",
+      "paragraphs": [
+        "Jubileo es una asociación sin ánimo de lucro dedicada a Tierra Santa. Nuestro compromiso se arraiga en las promesas de las Escrituras y en el amor por Jerusalén, ciudad en el corazón de la historia y la esperanza.",
+        "Somos un puente entre los pueblos y entre las comunidades cristianas y amigos de Israel, unidos por una misma convicción: honrar la herencia espiritual de la Tierra Prometida y apoyar a Jerusalén de forma concreta.",
+        "Nuestra labor une la presentación de la misión, el apoyo a proyectos en Tierra Santa y la oferta de productos con sentido —vinos de Israel y pergaminos manuscritos de Jerusalén— cuya compra prolonga nuestro compromiso.",
+        "A través de nuestro trabajo buscamos fortalecer los lazos entre las comunidades, transmitir una herencia viva y dar a conocer la belleza y la profundidad de Tierra Santa."
+      ],
+      "verse": "«Te daré a ti y a tu descendencia después de ti la tierra de tus peregrinaciones, toda la tierra de Canaán, en posesión perpetua.» — Génesis 17:8",
+      "valuesTitle": "Nuestros valores",
+      "values": [
+        { "title": "Fe", "text": "Una misión arraigada en las Escrituras y la esperanza." },
+        { "title": "Autenticidad", "text": "Productos artesanales y un compromiso sincero." },
+        { "title": "Transmisión", "text": "Conectar las generaciones con la herencia de Jerusalén." }
+      ]
+    },
+    "mission": {
+      "badge": "Misión e impacto",
+      "title": "Nuestra misión en Tierra Santa",
+      "subtitle": "Preservar, honrar y transmitir la herencia espiritual de Jerusalén y sus alrededores.",
+      "intro": "Jubileo apoya proyectos concretos en el corazón de Tierra Santa. Cada iniciativa busca proteger un patrimonio sagrado y servir a quienes allí viven.",
+      "projects": [
+        {
+          "title": "La Ciudad Vieja de Jerusalén",
+          "text": "Apoyar la preservación del corazón sagrado de la Ciudad Vieja, donde la historia bíblica cobra vida, para honrar y proteger su herencia."
+        },
+        {
+          "title": "Alrededores de Jerusalén",
+          "text": "Apoyar la preservación de las tierras antiguas y los sitios bíblicos que rodean la Ciudad Santa."
+        },
+        {
+          "title": "El sitio bautismal de Qasr al-Yahud",
+          "text": "Preservar y poner en valor el venerado sitio del bautismo en el río Jordán, importante destino de peregrinación, mejorando su preservación y accesibilidad."
+        }
+      ],
+      "verse": "«Hermosa por su elevación, el gozo de toda la tierra, es el monte Sión.» — Salmo 48:2"
+    },
+    "contact": {
+      "badge": "Contacto",
+      "title": "Escríbanos",
+      "subtitle": "¿Una pregunta sobre la misión, la tienda o un pergamino? Nuestro equipo le responde.",
+      "firstName": "Nombre",
+      "lastName": "Apellidos",
+      "email": "Correo",
+      "subject": "Asunto",
+      "message": "Su mensaje",
+      "send": "Enviar",
+      "infoTitle": "Datos de contacto",
+      "infoText": "Le responderemos lo antes posible.",
+      "error": "Ocurrió un error. Por favor inténtelo de nuevo."
+    },
+    "faq": {
+      "badge": "Preguntas frecuentes",
+      "title": "Preguntas frecuentes",
+      "subtitle": "Todo lo que necesita saber sobre Jubileo, nuestros productos y envíos.",
+      "items": [
+        { "q": "¿Quién es Jubileo?", "a": "Jubileo es una asociación cristiana sin ánimo de lucro dedicada a Tierra Santa y Jerusalén, que apoya proyectos y ofrece productos con sentido." },
+        { "q": "¿De dónde provienen sus vinos?", "a": "Nuestros vinos blancos, tintos y rosados provienen de la tierra de Israel y se seleccionan por su calidad." },
+        { "q": "¿Cómo funciona la personalización de un pergamino?", "a": "Usted elige el texto deseado; luego se caligrafía a mano en Jerusalén y se envía con seguimiento de producción." },
+        { "q": "¿Realizan envíos internacionales?", "a": "Sí. Los plazos y costes de envío dependen del país de destino y se indican al finalizar la compra." },
+        { "q": "¿Cómo apoya mi compra la misión?", "a": "Cada compra contribuye a financiar los proyectos de Jubileo en Tierra Santa." }
+      ]
+    },
+    "testimonials": {
+      "badge": "Testimonios",
+      "title": "Apoyan a Jubileo",
+      "subtitle": "Voces de todo el mundo, unidas por una misma esperanza."
+    },
+    "news": {
+      "badge": "Noticias",
+      "title": "Noticias y reflexiones",
+      "subtitle": "Novedades de la misión y miradas sobre Tierra Santa y la transmisión.",
+      "readMore": "Leer el artículo"
+    },
+    "shop": {
+      "badge": "Tienda",
+      "title": "La tienda Jubileo",
+      "subtitle": "Productos con sentido: vinos de Israel y pergaminos manuscritos de Jerusalén.",
+      "comingSoon": "Nuestro catálogo en línea llega muy pronto. Cada compra apoya la misión de Jubileo."
+    },
+    "legal": {
+      "mentionsTitle": "Aviso legal",
+      "privacyTitle": "Política de privacidad",
+      "termsTitle": "Condiciones de venta",
+      "cookiesTitle": "Política de cookies",
+      "mentions": {
+        "title1": "1. Editor del Sitio",
+        "text1": "El sitio web de Jubileo es publicado por la Asociación Jubileo, una asociación sin ánimo de lucro con sede en París, Francia. Director de publicación: Equipo de Dirección de Jubileo.",
+        "title2": "2. Alojamiento",
+        "text2": "Este sitio web está alojado por Cloudflare Inc. (101 Townsend St, San Francisco, CA 94107, EE. UU.) y se implementa a través de Cloudflare Pages.",
+        "title3": "3. Propiedad Intelectual",
+        "text3": "Todo el contenido presente en el sitio (textos, imágenes, diseños, logotipos) está protegido por derechos de autor. Queda prohibida cualquier reproducción o distribución no autorizada.",
+        "title4": "4. Contacto",
+        "text4": "Para cualquier consulta, puede escribirnos a través del formulario de contacto del sitio o directamente a contact@jubilee-israel.org."
+      },
+      "privacy": {
+        "title1": "1. Recopilación de Datos",
+        "text1": "Recopilamos información personal únicamente cuando nos la proporciona voluntariamente (creación de cuenta, realización de pedidos o suscripción a nuestro boletín). Estos datos incluyen su nombre, dirección de correo electrónico, dirección de envío y número de teléfono.",
+        "title2": "2. Uso de los Datos",
+        "text2": "Sus datos personales se utilizan exclusivamente para gestionar y entregar sus pedidos, responder a sus consultas a través del formulario de contacto y enviarle nuestros boletines informativos si ha dado su consentimiento.",
+        "title3": "3. Compartir y Seguridad",
+        "text3": "No vendemos ni alquilamos sus datos personales a terceros. Su información de pago es procesada de forma totalmente segura por nuestro proveedor de pagos Stripe. Utilizamos protocolos seguros para proteger todas las transmisiones de datos.",
+        "title4": "4. Sus Derechos",
+        "text4": "De acuerdo con el RGPD, tiene derecho a acceder, modificar, rectificar y eliminar los datos que le conciernen. Para ejercer este derecho, póngase en contacto con nuestro equipo por correo electrónico."
+      },
+      "terms": {
+        "title1": "1. Objeto y Ámbito de Aplicación",
+        "text1": "Estas condiciones generales de venta (CGV) rigen todas las ventas de productos (vinos de Tierra Santa, pergaminos personalizados) celebradas en el sitio web de la Asociación Jubileo.",
+        "title2": "2. Pedidos y Precios",
+        "text2": "Los precios de nuestros productos se indican en Euros (EUR), con todos los impuestos incluidos, excluyendo los gastos de envío. La Asociación se reserva el derecho de modificar sus precios en cualquier momento. El pedido se valida después del pago completo.",
+        "title3": "3. Entrega y Retirada",
+        "text3": "Realizamos envíos nacionales e internacionales. Los plazos de entrega se facilitan a título informativo. Para productos no personalizados (vinos), dispone de un derecho de desistimiento de 14 días. Al ser personalizados los pergaminos caligrafiados a mano, no pueden ser devueltos ni reembolsados.",
+        "title4": "4. Venta de Alcohol",
+        "text4": "La venta de vino está estrictamente reservada a mayores de edad en su país de residencia. Al validar su pedido que contiene vino, certifica bajo juramento que tiene la edad legal requerida."
+      },
+      "cookies": {
+        "title1": "1. ¿Qué es una Cookie?",
+        "text1": "Una cookie es un pequeño archivo de texto que se almacena en su ordenador o dispositivo móvil cuando visita un sitio web. Permite que el sitio recuerde sus acciones y preferencias durante un período de tiempo.",
+        "title2": "2. Cookies Utilizadas",
+        "text2": "Utilizamos cookies estrictamente necesarias para garantizar el funcionamiento de la tienda (gestión de su carrito, mantenimiento de su sesión de inicio de sesión) y cookies estadísticas para medir la audiencia de nuestro sitio.",
+        "title3": "3. Gestión de sus Preferencias",
+        "text3": "Puede configurar su navegador para rechazar el almacenamiento de cookies o para ser avisado cuando se envíen. Tenga en cuenta que deshabilitar las cookies necesarias puede alterar el funcionamiento de la tienda en línea.",
+        "title4": "4. Consentimiento",
+        "text4": "Al navegar por nuestro sitio y aceptar nuestro banner de información, usted acepta el uso de cookies de acuerdo con esta política."
+      }
+    }
+  },
+  "account": {
+    "title": "Mi cuenta",
+    "subtitle": "Siga sus pedidos y gestione su información.",
+    "signInTitle": "Acceder a mi espacio",
+    "emailLabel": "Su dirección de correo",
+    "signIn": "Acceder",
+    "welcome": "Bienvenido/a",
+    "myOrders": "Mis pedidos",
+    "noOrders": "No hay pedidos vinculados a este correo.",
+    "profile": "Mi información",
+    "logout": "Cerrar sesión",
+    "demoNote": "Demostración: introduzca el correo de un cliente (p. ej. marie.lefevre@example.com) para ver el historial."
+  },
+  "cart": {
+    "title": "Su carrito",
+    "empty": "Su carrito está vacío.",
+    "emptyCta": "Descubrir la tienda",
+    "product": "Producto",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "remove": "Quitar",
+    "checkout": "Tramitar el pedido",
+    "continue": "Seguir comprando",
+    "addedToCart": "Añadido al carrito",
+    "customTextLabel": "Texto a caligrafiar",
+    "customTextPlaceholder": "Escriba el versículo, la bendición o el nombre a inscribir…",
+    "customTextRequired": "Por favor, escriba el texto a caligrafiar.",
+    "count": "{count, plural, =0 {Carrito vacío} one {# artículo} other {# artículos}}"
+  },
+  "checkout": {
+    "title": "Finalizar el pedido",
+    "contact": "Sus datos",
+    "shipping": "Dirección de envío",
+    "address": "Dirección",
+    "city": "Ciudad",
+    "zip": "Código postal",
+    "country": "País",
+    "phone": "Teléfono",
+    "payment": "Pago",
+    "placeOrder": "Pagar y pedir",
+    "summary": "Resumen",
+    "ageNotice": "La venta de vino está reservada a personas mayores de edad. Al pedir, certifica que cumple la edad legal en su país.",
+    "stripeNote": "Pago seguro mediante Stripe (por activar).",
+    "success": "¡Gracias! Su pedido ha sido registrado.",
+    "successText": "Le enviaremos un correo de confirmación. Para los pergaminos, podrá seguir cada etapa de la producción desde Jerusalén.",
+    "backToShop": "Volver a la tienda"
+  },
+  "footer": {
+    "tagline": "Al servicio de Tierra Santa, Jerusalén y la transmisión.",
+    "explore": "Explorar",
+    "shop": "Tienda",
+    "info": "Información",
+    "legal": "Aviso legal",
+    "privacy": "Política de privacidad",
+    "terms": "Condiciones de venta",
+    "cookies": "Cookies",
+    "newsletterTitle": "Reciba nuestras noticias",
+    "newsletterText": "Misión, proyectos y novedades — directamente en su correo.",
+    "newsletterPlaceholder": "Su dirección de correo",
+    "newsletterButton": "Suscribirse",
+    "verse": "«Pedid por la paz de Jerusalén.» — Salmo 122:6",
+    "rights": "Todos los derechos reservados."
+  },
+  "admin": {
+    "language": "Idioma",
+    "nav": { "dashboard": "Panel", "orders": "Pedidos", "products": "Productos", "stock": "Stock", "crm": "CRM / Contactos", "campaigns": "Campañas", "settings": "Ajustes" },
+    "common": { "logout": "Cerrar sesión", "viewSite": "Ver el sitio", "administration": "Administración", "new": "Nuevo", "import": "Importar CSV", "export": "Exportar CSV", "all": "Todos", "units": "unidades", "active": "Activo" },
+    "login": { "subtitle": "Área de administración", "email": "Correo", "password": "Contraseña", "signIn": "Iniciar sesión", "demo": "Demo", "error": "Credenciales no válidas." },
+    "dashboard": { "title": "Panel", "subtitle": "Visión general de la actividad de Jubileo.", "revenue": "Facturación", "revenueHint": "Pedidos pagados", "orders": "Pedidos", "avgCartHint": "Cesta media {v}", "contacts": "Contactos", "newContactsHint": "{n} nuevos en 2026", "openRate": "Tasa de apertura", "emailsSentHint": "{n} correos enviados", "byStatus": "Pedidos por estado", "campaignPerf": "Rendimiento de campañas", "recentOrders": "Últimos pedidos", "colNumber": "N.º", "colCustomer": "Cliente", "colStatus": "Estado", "colTotal": "Total" },
+    "orders": { "title": "Pedidos", "subtitle": "{n} pedidos — de la preparación a la entrega." },
+    "status": { "pending": "Pendiente", "paid": "Pagado", "prepared": "Preparado", "shipped": "Enviado", "delivered": "Entregado", "cancelled": "Cancelado" },
+    "products": { "title": "Productos", "subtitle": "{n} productos — vinos y pergaminos.", "new": "Nuevo producto", "colProduct": "Producto", "colCategory": "Categoría", "colPrice": "Precio", "colStock": "Stock", "colStatus": "Estado" },
+    "stock": { "title": "Stock", "subtitle": "Niveles de stock y alertas de reposición.", "alert": "{n} producto(s) por debajo del umbral de alerta ({s} unidades): considere reponer." },
+    "crm": { "title": "CRM / Contactos", "subtitle": "{n} contactos — clientes, prospectos y donantes.", "colContact": "Contacto", "colCountry": "País", "colStatus": "Estado", "colTags": "Etiquetas", "colConsent": "Consent.", "colTotal": "Total gastado" },
+    "contactStatus": { "client": "cliente", "lead": "prospecto", "donateur": "donante" },
+    "contact": { "back": "Volver a contactos", "clientSince": "Cliente desde {d} · Origen: {s}", "sendEmail": "Enviar un correo", "details": "Datos de contacto", "tags": "Etiquetas", "add": "+ Añadir", "ordersCount": "Pedidos", "totalSpent": "Total gastado", "history": "Historial de pedidos", "noOrders": "Aún no hay pedidos.", "notes": "Notas internas", "noNotes": "Sin notas.", "addNote": "Añadir una nota…" },
+    "campaigns": { "title": "Campañas", "subtitle": "Envíos vía Resend — contenido redactado por el equipo.", "new": "Nueva campaña", "sent": "Enviada", "scheduled": "Programada", "draft": "Borrador", "mSent": "Enviados", "mDelivered": "Entregados", "mOpened": "Aperturas", "mClicked": "Clics", "mUnsub": "Bajas", "scheduledFor": "Programada para {d}", "draftHint": "Borrador — por completar y programar." },
+    "settings": { "title": "Ajustes", "subtitle": "Integraciones, roles y registro de actividad.", "integrations": "Integraciones", "configured": "Configurada", "toConfigure": "Por configurar (clave faltante)", "rolesPerms": "Roles y permisos", "colRole": "Rol", "audit": "Registro de auditoría" },
+    "roles": { "super_admin": "Superadministrador", "admin": "Administrador", "shop": "Gestión tienda", "crm": "Gestión CRM", "content": "Gestión contenido", "marketing": "Gestión marketing", "support": "Soporte" },
+    "perms": { "dashboard": "Panel", "orders": "Pedidos", "stock": "Stock", "products": "Productos", "crm": "CRM", "clients": "Clientes", "campaigns": "Campañas", "settings": "Ajustes" }
+  }
+}

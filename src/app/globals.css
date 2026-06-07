@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Jubilé palette — premium, chaleureux, spirituel */
+    /* Background plus luxueux, légèrement teinté sable chaud */
+    --background: 40 35% 98%;          
+    /* Un bleu nuit beaucoup plus profond pour contraster */
+    --foreground: 215 50% 12%;         
+
+    --card: 0 0% 100%;
+    --card-foreground: 215 50% 12%;
+
+    /* Bleu Jérusalem plus intense et vibrant */
+    --primary: 215 60% 20%;            
+    --primary-foreground: 40 33% 97%;
+
+    /* Olivier plus riche */
+    --secondary: 90 25% 35%;           
+    --secondary-foreground: 40 33% 97%;
+
+    /* Or plus métallique et profond */
+    --gold: 42 75% 45%;                
+    --gold-foreground: 215 50% 12%;
+
+    --muted: 40 25% 90%;
+    --muted-foreground: 215 20% 45%;
+
+    --accent: 42 75% 92%;
+    --accent-foreground: 215 60% 20%;
+
+    --border: 40 25% 85%;
+    --input: 40 25% 85%;
+    --ring: 42 75% 45%;
+
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    /* Texture subtile premium */
+    background-image:
+      radial-gradient(circle at 10% 20%, hsl(42 75% 45% / 0.03), transparent 40%),
+      radial-gradient(circle at 90% 80%, hsl(215 60% 20% / 0.03), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-serif tracking-tight text-foreground/95;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-gold/20 text-foreground;
+  }
+
+  /* Support RTL (hébreu) */
+  [dir='rtl'] {
+    text-align: right;
+  }
+}
+
+@layer components {
+  .container-prose {
+    @apply mx-auto max-w-3xl px-6;
+  }
+  .verse {
+    @apply font-serif italic text-muted-foreground leading-relaxed;
+  }
+  .ornament {
+    @apply flex items-center justify-center gap-4 text-gold;
+  }
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    @apply h-[2px] w-12 bg-gradient-to-r from-transparent via-gold/50 to-transparent rounded-full;
+  }
+  .card-elevated {
+    @apply rounded-3xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-[0_12px_40px_-15px_hsl(215_60%_20%_/_0.15)] transition-all hover:shadow-[0_16px_50px_-15px_hsl(215_60%_20%_/_0.20)] hover:-translate-y-1;
+  }
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-[0.25em] text-gold;
+  }
+  .glass {
+    @apply bg-background/70 backdrop-blur-md border border-white/20 shadow-sm;
+  }
+}

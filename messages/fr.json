@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "title": "Jubilé — Au service de la Terre Sainte et de Jérusalem",
+    "description": "Jubilé est une association chrétienne dédiée à Israël et à Jérusalem. Découvrez notre mission, nos vins de la Terre Sainte et nos parchemins manuscrits de Jérusalem."
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "mission": "Mission & Impact",
+    "shop": "Boutique",
+    "wines": "Nos vins",
+    "parchments": "Parchemins",
+    "testimonials": "Témoignages",
+    "news": "Actualités",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "cart": "Panier",
+    "account": "Mon compte"
+  },
+  "common": {
+    "discover": "Découvrir la mission",
+    "shopNow": "Visiter la boutique",
+    "discoverParchments": "Découvrir les parchemins",
+    "learnMore": "En savoir plus",
+    "readMore": "Lire la suite",
+    "addToCart": "Ajouter au panier",
+    "viewProduct": "Voir le produit",
+    "from": "À partir de",
+    "languageLabel": "Langue",
+    "menu": "Menu",
+    "close": "Fermer",
+    "notFoundTitle": "Page introuvable",
+    "notFoundText": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "backHome": "Retour à l'accueil",
+    "cookieText": "Nous utilisons des cookies pour améliorer votre expérience et mesurer notre audience.",
+    "cookieAccept": "Accepter",
+    "cookieDecline": "Refuser"
+  },
+  "home": {
+    "hero": {
+      "badge": "Association au service de la Terre Sainte",
+      "title": "Au cœur de Jérusalem, une mission qui traverse les générations",
+      "subtitle": "Jubilé unit chrétiens et amis d'Israël autour d'un même appel : honorer la Terre Sainte, soutenir Jérusalem et transmettre un héritage spirituel vivant.",
+      "ctaPrimary": "Découvrir notre mission",
+      "ctaSecondary": "Visiter la boutique"
+    },
+    "intro": {
+      "title": "Qui est Jubilé",
+      "text": "Jubilé est une association à but non lucratif enracinée dans la foi et tournée vers Jérusalem. Nous bâtissons un pont entre les peuples, soutenons des projets en Terre Sainte et proposons des produits porteurs de sens — des vins d'Israël aux parchemins manuscrits de Jérusalem — dont chaque acquisition soutient notre mission.",
+      "verse": "« Priez pour la paix de Jérusalem : que ceux qui t'aiment vivent en sécurité. » — Psaume 122:6"
+    },
+    "mission": {
+      "title": "Notre mission",
+      "text": "Préserver, honorer et transmettre l'héritage spirituel de la Terre Sainte, en soutenant des projets concrets à Jérusalem et alentour.",
+      "cta": "Découvrir nos projets"
+    },
+    "jerusalem": {
+      "title": "Jérusalem au centre",
+      "text": "Là où l'histoire biblique prend vie. Chaque action de Jubilé est tournée vers la Ville sainte, son peuple et la promesse de restauration.",
+      "verse": "« Belle dans son élévation, joie de toute la terre, est la montagne de Sion. » — Psaume 48:2"
+    },
+    "wines": {
+      "title": "Les vins de la Terre Sainte",
+      "text": "Des vins blancs, rouges et rosés issus de la terre d'Israël. Une dégustation qui relie la table à la Terre promise.",
+      "cta": "Découvrir nos vins"
+    },
+    "parchments": {
+      "title": "Parchemins de Jérusalem",
+      "text": "Des parchemins personnalisés, écrits à la main depuis Jérusalem. Un texte choisi, calligraphié avec soin : un héritage à transmettre.",
+      "cta": "Personnaliser un parchemin"
+    },
+    "impact": {
+      "title": "Notre impact",
+      "stats": {
+        "projects": "Projets soutenus en Terre Sainte",
+        "supporters": "Soutiens à travers le monde",
+        "countries": "Pays touchés par la mission",
+        "years": "Années d'engagement"
+      }
+    },
+    "testimonials": {
+      "title": "Ils soutiennent Jubilé",
+      "text": "Des voix du monde entier, unies par une même espérance."
+    },
+    "partners": {
+      "title": "Soutiens & partenaires",
+      "text": "Aux côtés de communautés et d'amis d'Israël qui partagent notre vision."
+    },
+    "news": {
+      "title": "Dernières actualités",
+      "cta": "Toutes les actualités"
+    },
+    "finalCta": {
+      "title": "Rejoignez la mission de Jubilé",
+      "text": "Chaque geste compte. Soutenez Jérusalem, découvrez nos produits, faites partie de l'histoire.",
+      "ctaPrimary": "Découvrir la mission",
+      "ctaSecondary": "Découvrir les parchemins"
+    }
+  },
+  "pages": {
+    "about": {
+      "badge": "À propos de Jubilé",
+      "title": "Aux origines de Jubilé",
+      "subtitle": "Une mission enracinée dans la foi, tournée vers Jérusalem et la transmission.",
+      "paragraphs": [
+        "Jubilé est une association à but non lucratif dédiée à la Terre Sainte. Notre engagement prend racine dans les promesses bibliques et dans l'amour de Jérusalem, ville au cœur de l'histoire et de l'espérance.",
+        "Nous sommes un pont entre les peuples et entre les communautés chrétiennes et amies d'Israël, unis par une même conviction : honorer l'héritage spirituel de la Terre promise et soutenir concrètement Jérusalem.",
+        "Notre action conjugue présentation de la mission, soutien à des projets en Terre Sainte et proposition de produits porteurs de sens — vins d'Israël et parchemins manuscrits de Jérusalem — dont chaque acquisition prolonge notre engagement.",
+        "Par notre travail, nous cherchons à renforcer les liens entre les communautés, à transmettre un héritage vivant et à faire connaître la beauté et la profondeur de la Terre Sainte."
+      ],
+      "verse": "« Je donnerai à toi et à ta descendance après toi le pays de tes pèlerinages, tout le pays de Canaan, en possession perpétuelle. » — Genèse 17:8",
+      "valuesTitle": "Nos valeurs",
+      "values": [
+        { "title": "Foi", "text": "Une mission enracinée dans les Écritures et l'espérance." },
+        { "title": "Authenticité", "text": "Des produits artisanaux et un engagement sincère." },
+        { "title": "Transmission", "text": "Relier les générations à l'héritage de Jérusalem." }
+      ]
+    },
+    "mission": {
+      "badge": "Mission & Impact",
+      "title": "Notre mission en Terre Sainte",
+      "subtitle": "Préserver, honorer et transmettre l'héritage spirituel de Jérusalem et de ses environs.",
+      "intro": "Jubilé soutient des projets concrets au cœur de la Terre Sainte. Chaque initiative vise à protéger un patrimoine sacré et à servir ceux qui y vivent.",
+      "projects": [
+        {
+          "title": "La Vieille ville de Jérusalem",
+          "text": "Soutenir la préservation du cœur sacré de la Vieille ville, là où l'histoire biblique prend vie, afin d'en honorer et protéger l'héritage."
+        },
+        {
+          "title": "Les alentours de Jérusalem",
+          "text": "Accompagner la préservation des terres anciennes et des sites bibliques qui entourent la Ville sainte."
+        },
+        {
+          "title": "Le site baptismal de Qasr al-Yahud",
+          "text": "Préserver et valoriser le site révéré du baptême sur le Jourdain, lieu de pèlerinage majeur, en améliorant sa préservation et son accessibilité."
+        }
+      ],
+      "verse": "« Belle dans son élévation, joie de toute la terre, est la montagne de Sion. » — Psaume 48:2"
+    },
+    "contact": {
+      "badge": "Contact",
+      "title": "Écrivez-nous",
+      "subtitle": "Une question sur la mission, la boutique ou un parchemin ? Notre équipe vous répond.",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "message": "Votre message",
+      "send": "Envoyer",
+      "infoTitle": "Coordonnées",
+      "infoText": "Nous revenons vers vous dans les meilleurs délais.",
+      "error": "Une erreur est survenue. Merci de réessayer."
+    },
+    "faq": {
+      "badge": "FAQ",
+      "title": "Questions fréquentes",
+      "subtitle": "Tout ce que vous devez savoir sur Jubilé, nos produits et nos expéditions.",
+      "items": [
+        { "q": "Qui est Jubilé ?", "a": "Jubilé est une association chrétienne à but non lucratif dédiée à la Terre Sainte et à Jérusalem, qui soutient des projets et propose des produits porteurs de sens." },
+        { "q": "D'où proviennent vos vins ?", "a": "Nos vins blancs, rouges et rosés sont issus de la terre d'Israël et sélectionnés pour leur qualité." },
+        { "q": "Comment fonctionne la personnalisation d'un parchemin ?", "a": "Vous choisissez le texte souhaité ; il est ensuite calligraphié à la main à Jérusalem, puis expédié avec un suivi de production." },
+        { "q": "Livrez-vous à l'international ?", "a": "Oui. Les délais et frais d'expédition dépendent du pays de destination et vous sont indiqués lors de la commande." },
+        { "q": "Comment mon achat soutient-il la mission ?", "a": "Chaque acquisition contribue au financement des projets de Jubilé en Terre Sainte." }
+      ]
+    },
+    "testimonials": {
+      "badge": "Témoignages",
+      "title": "Ils soutiennent Jubilé",
+      "subtitle": "Des voix du monde entier, unies par une même espérance."
+    },
+    "news": {
+      "badge": "Actualités",
+      "title": "Actualités & réflexions",
+      "subtitle": "Nouvelles de la mission, regards sur la Terre Sainte et la transmission.",
+      "readMore": "Lire l'article"
+    },
+    "shop": {
+      "badge": "Boutique",
+      "title": "La boutique Jubilé",
+      "subtitle": "Des produits porteurs de sens : vins d'Israël et parchemins manuscrits de Jérusalem.",
+      "comingSoon": "Notre catalogue en ligne arrive très bientôt. Chaque achat soutient la mission de Jubilé."
+    },
+    "legal": {
+      "mentionsTitle": "Mentions légales",
+      "privacyTitle": "Politique de confidentialité",
+      "termsTitle": "Conditions générales de vente",
+      "cookiesTitle": "Politique de cookies",
+      "mentions": {
+        "title1": "1. Éditeur du Site",
+        "text1": "Le site Jubilé est édité par l'Association Jubilé, association à but non lucratif, domiciliée à Paris, France. Directeur de la publication : Équipe de Direction Jubilé.",
+        "title2": "2. Hébergement",
+        "text2": "Ce site est hébergé par Cloudflare Inc. (101 Townsend St, San Francisco, CA 94107, USA) et déployé via Cloudflare Pages.",
+        "title3": "3. Propriété Intellectuelle",
+        "text3": "Tous les contenus présents sur le site (textes, images, designs, logos) sont protégés par le droit d'auteur. Toute reproduction ou distribution non autorisée est interdite.",
+        "title4": "4. Contact",
+        "text4": "Pour toute demande, vous pouvez nous écrire via le formulaire de contact du site ou directement à l'adresse contact@jubilee-israel.org."
+      },
+      "privacy": {
+        "title1": "1. Collecte des Données",
+        "text1": "Nous collectons des informations personnelles uniquement lorsque vous les fournissez volontairement (création de compte, commande de produits ou inscription à notre newsletter). Ces données incluent votre nom, adresse email, adresse de livraison et numéro de téléphone.",
+        "title2": "2. Utilisation des Données",
+        "text2": "Vos données personnelles sont utilisées exclusivement pour gérer et livrer vos commandes, répondre à vos demandes via le formulaire de contact, et vous envoyer nos lettres d'information si vous y avez consenti.",
+        "title3": "3. Partage et Sécurité",
+        "text3": "Nous ne vendons ni ne louons vos données personnelles à des tiers. Vos informations de paiement sont traitées de manière totalement sécurisée par notre prestataire de paiement Stripe. Nous utilisons des protocoles sécurisés pour protéger toutes les transmissions de données.",
+        "title4": "4. Vos Droits",
+        "text4": "Conformément au RGPD, vous disposez d'un droit d'accès, de modification, de rectification et de suppression des données vous concernant. Pour exercer ce droit, veuillez contacter notre équipe par email."
+      },
+      "terms": {
+        "title1": "1. Objet et Champ d'Application",
+        "text1": "Les présentes conditions générales de vente (CGV) régissent toutes les ventes de produits (vins de Terre Sainte, parchemins personnalisés) conclues sur le site de l'Association Jubilé.",
+        "title2": "2. Commandes et Prix",
+        "text2": "Les prix de nos produits sont indiqués en Euros (EUR), toutes taxes comprises, hors frais de port. L'Association se réserve le droit de modifier ses prix à tout moment. La commande est validée après paiement complet.",
+        "title3": "3. Livraison et Rétractation",
+        "text3": "Nous livrons en France et à l'international. Les délais de livraison sont fournis à titre indicatif. Pour les produits non personnalisés (vins), vous disposez d'un droit de rétractation de 14 jours. Les parchemins calligraphiés à la main étant personnalisés, ils ne peuvent faire l'objet d'un retour ou d'un remboursement.",
+        "title4": "4. Vente d'Alcool",
+        "text4": "La vente de vin est strictement réservée aux personnes majeures ayant l'âge légal requis dans leur pays de résidence. En validant votre commande contenant du vin, vous certifiez sur l'honneur avoir l'âge légal requis."
+      },
+      "cookies": {
+        "title1": "1. Qu'est-ce qu'un Cookie ?",
+        "text1": "Un cookie est un petit fichier texte déposé sur votre ordinateur ou appareil mobile lorsque vous visitez un site internet. Il permet au site de se souvenir de vos actions et preferences sur une période donnée.",
+        "title2": "2. Cookies Utilisés",
+        "text2": "Nous utilisons des cookies strictement nécessaires pour assurer le fonctionnement de la boutique (gestion de votre panier, maintien de votre session de connexion) et des cookies de statistiques pour mesurer l'audience de notre site.",
+        "title3": "3. Gestion de vos Préférences",
+        "text3": "Vous pouvez configurer votre navigateur internet pour refuser le dépôt de cookies ou pour être averti lors de leur envoi. Veuillez noter que la désactivation des cookies nécessaires peut altérer le fonctionnement de la boutique en ligne.",
+        "title4": "4. Consentement",
+        "text4": "En naviguant sur notre site et en acceptant notre bandeau d'information, vous consentez à l'utilisation des cookies conformément à la présente politique."
+      }
+    }
+  },
+  "account": {
+    "title": "Mon compte",
+    "subtitle": "Suivez vos commandes et gérez vos informations.",
+    "signInTitle": "Accéder à mon espace",
+    "emailLabel": "Votre adresse email",
+    "signIn": "Accéder",
+    "welcome": "Bienvenue",
+    "myOrders": "Mes commandes",
+    "noOrders": "Aucune commande associée à cet email.",
+    "profile": "Mes informations",
+    "logout": "Se déconnecter",
+    "demoNote": "Démonstration : saisissez l'email d'un client (ex. marie.lefevre@example.com) pour voir l'historique."
+  },
+  "cart": {
+    "title": "Votre panier",
+    "empty": "Votre panier est vide.",
+    "emptyCta": "Découvrir la boutique",
+    "product": "Produit",
+    "quantity": "Quantité",
+    "price": "Prix",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "remove": "Retirer",
+    "checkout": "Passer la commande",
+    "continue": "Continuer mes achats",
+    "addedToCart": "Ajouté au panier",
+    "customTextLabel": "Texte à calligraphier",
+    "customTextPlaceholder": "Saisissez le verset, la bénédiction ou le nom à inscrire…",
+    "customTextRequired": "Veuillez saisir le texte à calligraphier.",
+    "count": "{count, plural, =0 {Panier vide} one {# article} other {# articles}}"
+  },
+  "checkout": {
+    "title": "Finaliser la commande",
+    "contact": "Vos coordonnées",
+    "shipping": "Adresse de livraison",
+    "address": "Adresse",
+    "city": "Ville",
+    "zip": "Code postal",
+    "country": "Pays",
+    "phone": "Téléphone",
+    "payment": "Paiement",
+    "placeOrder": "Payer et commander",
+    "summary": "Récapitulatif",
+    "ageNotice": "La vente de vin est réservée aux personnes majeures. En commandant, vous certifiez avoir l'âge légal requis dans votre pays.",
+    "stripeNote": "Paiement sécurisé par Stripe (à activer).",
+    "success": "Merci ! Votre commande a bien été enregistrée.",
+    "successText": "Un email de confirmation vous sera envoyé. Pour les parchemins, vous suivrez chaque étape de la production depuis Jérusalem.",
+    "backToShop": "Retour à la boutique"
+  },
+  "footer": {
+    "tagline": "Au service de la Terre Sainte, de Jérusalem et de la transmission.",
+    "explore": "Explorer",
+    "shop": "Boutique",
+    "info": "Informations",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions générales de vente",
+    "cookies": "Cookies",
+    "newsletterTitle": "Recevoir nos actualités",
+    "newsletterText": "Mission, projets et nouveautés — directement dans votre boîte mail.",
+    "newsletterPlaceholder": "Votre adresse email",
+    "newsletterButton": "S'inscrire",
+    "verse": "« Priez pour la paix de Jérusalem. » — Psaume 122:6",
+    "rights": "Tous droits réservés."
+  },
+  "admin": {
+    "language": "Langue",
+    "nav": { "dashboard": "Tableau de bord", "orders": "Commandes", "products": "Produits", "stock": "Stock", "crm": "CRM / Contacts", "campaigns": "Campagnes email", "settings": "Paramètres" },
+    "common": { "logout": "Déconnexion", "viewSite": "Voir le site", "administration": "Administration", "new": "Nouveau", "import": "Importer CSV", "export": "Exporter CSV", "all": "Toutes", "units": "unités", "active": "Actif" },
+    "login": { "subtitle": "Espace d'administration", "email": "Email", "password": "Mot de passe", "signIn": "Se connecter", "demo": "Démo", "error": "Identifiants invalides." },
+    "dashboard": { "title": "Tableau de bord", "subtitle": "Vue d'ensemble de l'activité de Jubilé.", "revenue": "Chiffre d'affaires", "revenueHint": "Commandes payées", "orders": "Commandes", "avgCartHint": "Panier moyen {v}", "contacts": "Contacts", "newContactsHint": "{n} nouveaux en 2026", "openRate": "Taux d'ouverture", "emailsSentHint": "{n} emails envoyés", "byStatus": "Commandes par statut", "campaignPerf": "Performance des campagnes", "recentOrders": "Dernières commandes", "colNumber": "N°", "colCustomer": "Client", "colStatus": "Statut", "colTotal": "Total" },
+    "orders": { "title": "Commandes", "subtitle": "{n} commandes — suivi de la préparation à la livraison." },
+    "status": { "pending": "En attente", "paid": "Payée", "prepared": "Préparée", "shipped": "Expédiée", "delivered": "Livrée", "cancelled": "Annulée" },
+    "products": { "title": "Produits", "subtitle": "{n} produits — vins & parchemins.", "new": "Nouveau produit", "colProduct": "Produit", "colCategory": "Catégorie", "colPrice": "Prix", "colStock": "Stock", "colStatus": "Statut" },
+    "stock": { "title": "Stock", "subtitle": "Niveaux de stock et alertes de réassort.", "alert": "{n} produit(s) sous le seuil d'alerte ({s} unités) : pensez au réassort." },
+    "crm": { "title": "CRM / Contacts", "subtitle": "{n} contacts — clients, prospects et donateurs.", "colContact": "Contact", "colCountry": "Pays", "colStatus": "Statut", "colTags": "Tags", "colConsent": "Consent.", "colTotal": "Total dépensé" },
+    "contactStatus": { "client": "client", "lead": "prospect", "donateur": "donateur" },
+    "contact": { "back": "Retour aux contacts", "clientSince": "Client depuis le {d} · Source : {s}", "sendEmail": "Envoyer un email", "details": "Coordonnées", "tags": "Tags", "add": "+ Ajouter", "ordersCount": "Commandes", "totalSpent": "Total dépensé", "history": "Historique des commandes", "noOrders": "Aucune commande pour le moment.", "notes": "Notes internes", "noNotes": "Aucune note.", "addNote": "Ajouter une note…" },
+    "campaigns": { "title": "Campagnes email", "subtitle": "Envois via Resend — contenu rédigé par l'équipe.", "new": "Nouvelle campagne", "sent": "Envoyée", "scheduled": "Planifiée", "draft": "Brouillon", "mSent": "Envoyés", "mDelivered": "Délivrés", "mOpened": "Ouvertures", "mClicked": "Clics", "mUnsub": "Désabos", "scheduledFor": "Programmée le {d}", "draftHint": "Brouillon — à compléter et planifier." },
+    "settings": { "title": "Paramètres", "subtitle": "Intégrations, rôles et journal d'activité.", "integrations": "Intégrations", "configured": "Configurée", "toConfigure": "À configurer (clé manquante)", "rolesPerms": "Rôles & permissions", "colRole": "Rôle", "audit": "Journal d'audit" },
+    "roles": { "super_admin": "Super administrateur", "admin": "Administrateur", "shop": "Gestion boutique", "crm": "Gestion CRM", "content": "Gestion contenu", "marketing": "Gestion marketing", "support": "Support" },
+    "perms": { "dashboard": "Tableau de bord", "orders": "Commandes", "stock": "Stock", "products": "Produits", "crm": "CRM", "clients": "Clients", "campaigns": "Campagnes", "settings": "Paramètres" }
+  }
+}
