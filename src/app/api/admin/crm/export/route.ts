@@ -1,12 +1,8 @@
-export const runtime = 'edge';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { contacts } from '../../../../../../db/schema';
 import { desc } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
-
-export const dynamic = 'force-dynamic';
 
 function csvCell(value: unknown): string {
   const str = value === null || value === undefined ? '' : String(value);

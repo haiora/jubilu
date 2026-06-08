@@ -1,7 +1,3 @@
-export const runtime = 'edge';
-
-export const dynamic = 'force-dynamic';
-
 import { redirect } from 'next/navigation';
 import { CheckCircle2, XCircle, ShieldCheck, History, Key, Database, Mail, CreditCard } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';

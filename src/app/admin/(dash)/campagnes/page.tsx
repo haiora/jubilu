@@ -1,7 +1,3 @@
-export const runtime = 'edge';
-
-export const dynamic = 'force-dynamic';
-
 import { redirect } from 'next/navigation';
 import { Mail, Plus, Send, Clock, FileEdit, MailOpen, MousePointerClick, Users, AlertCircle } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';

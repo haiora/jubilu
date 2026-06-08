@@ -10,8 +10,6 @@ const UNSUB_LABEL: Record<string, string> = { fr: 'Se désabonner', en: 'Unsubsc
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-export const dynamic = 'force-dynamic';
-
 /**
  * GET /api/admin/campaigns/[id]/send
  * Sends a draft campaign to all consenting contacts, then redirects back to the

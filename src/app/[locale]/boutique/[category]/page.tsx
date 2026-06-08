@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/site/page-hero';
@@ -8,14 +6,21 @@ import { getProductsByCategory, type ProductCategory } from '@/lib/catalog';
 import { getStockBySku, effectiveStock } from '@/lib/stock';
 import { type Locale } from '@/i18n/routing';
 
-export const dynamic = 'force-dynamic';
-
 const CATEGORY_KEY: Record<ProductCategory, 'wines' | 'parchments'> = {
   'vin-blanc': 'wines',
   'vin-rouge': 'wines',
   'vin-rose': 'wines',
   parchemins: 'parchments'
 };
+
+export function generateStaticParams() {
+  return ['fr', 'en', 'he', 'es'].flatMap((locale) =>
+    ['vin-rouge', 'vin-blanc', 'vin-rose', 'parchemins'].map((category) => ({
+      locale,
+      category
+    }))
+  );
+}
 
 export default async function CategoryPage({
   params: { locale, category }

@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -11,7 +9,14 @@ import { getProduct, formatPrice } from '@/lib/catalog';
 import { getStockForSlug } from '@/lib/stock';
 import { type Locale } from '@/i18n/routing';
 
-export const dynamic = 'force-dynamic';
+export function generateStaticParams() {
+  return ['fr', 'en', 'he', 'es'].flatMap((locale) =>
+    ['vin-rouge-galilee', 'vin-blanc-judee', 'vin-rose-sharon', 'parchemin-personnalise-jerusalem'].map((slug) => ({
+      locale,
+      slug
+    }))
+  );
+}
 
 export async function generateMetadata({
   params: { locale, slug }

@@ -7,8 +7,6 @@ import {
 import { eq } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
 
-export const dynamic = 'force-dynamic';
-
 const VALID_CATEGORIES = ['wine', 'parchment'];
 const VALID_STATUS = ['active', 'draft', 'archived'];
 

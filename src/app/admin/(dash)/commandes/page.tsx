@@ -1,7 +1,3 @@
-export const runtime = 'edge';
-
-export const dynamic = 'force-dynamic';
-
 import { redirect } from 'next/navigation';
 import { ScrollText, Package } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';

@@ -1,11 +1,7 @@
-export const runtime = 'edge';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { contacts, orders, orderItems } from '../../../../../db/schema';
 import { eq } from 'drizzle-orm';
-
-export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);

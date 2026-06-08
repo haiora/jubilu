@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { NextResponse } from 'next/server';
 import { sendEmail, baseTemplate } from '@/lib/email';
 import { getProduct } from '@/lib/catalog';

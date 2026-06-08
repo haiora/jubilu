@@ -1,12 +1,8 @@
-export const runtime = 'edge';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { contacts } from '../../../../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
-
-export const dynamic = 'force-dynamic';
 
 const VALID_STATUS = new Set(['lead', 'client', 'donateur']);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

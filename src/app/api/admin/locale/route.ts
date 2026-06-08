@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { NextResponse } from 'next/server';
 import { ADMIN_LOCALES, ADMIN_LOCALE_COOKIE } from '@/lib/admin-i18n';
 

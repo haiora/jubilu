@@ -1,12 +1,8 @@
-export const runtime = 'edge';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { productVariants, stockMovements, users } from '../../../../../db/schema';
 import { eq, sql } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
-
-export const dynamic = 'force-dynamic';
 
 /**
  * POST /api/admin/stock

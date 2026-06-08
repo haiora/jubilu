@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { campaigns, contacts, emailLogs } from '../../../../../db/schema';
@@ -13,8 +11,6 @@ function unsubFooter(email: string, loc: string): string {
 }
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
-
-export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   try {

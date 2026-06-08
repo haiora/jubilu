@@ -1,12 +1,8 @@
-export const runtime = 'edge';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { contacts, contactTags, tags as tagsTable } from '../../../../../../db/schema';
 import { and, eq } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
-
-export const dynamic = 'force-dynamic';
 
 /**
  * POST /api/admin/crm/tags

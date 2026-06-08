@@ -1,5 +1,3 @@
-export const runtime = 'edge';
-
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ChevronDown } from 'lucide-react';
 import { PageHero } from '@/components/site/page-hero';

@@ -1,7 +1,3 @@
-export const runtime = 'edge';
-
-export const dynamic = 'force-dynamic';
-
 import { redirect, notFound } from 'next/navigation';
 import { ArrowLeft, Mail, Phone, Globe, Tag, StickyNote, ShoppingBag } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';

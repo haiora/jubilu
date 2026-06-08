@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic';
-
 import { redirect } from 'next/navigation';
 import { getSession, ROLE_PERMISSIONS } from '@/lib/auth';
 import { Sidebar } from '@/components/admin/sidebar';

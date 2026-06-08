@@ -1,7 +1,3 @@
-export const runtime = 'edge';
-
-export const dynamic = 'force-dynamic';
-
 import { Euro, ShoppingCart, Users, MailOpen, TrendingUp } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { getAdminLocale } from '@/lib/admin-i18n';

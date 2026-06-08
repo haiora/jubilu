@@ -1,12 +1,8 @@
-export const runtime = 'edge';
-
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { orders, auditLogs } from '../../../../../../db/schema';
 import { eq } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
-
-export const dynamic = 'force-dynamic';
 
 const VALID_STATUSES = ['pending', 'paid', 'prepared', 'shipped', 'delivered', 'cancelled'];
 
