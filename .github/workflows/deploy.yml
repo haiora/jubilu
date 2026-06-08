@@ -23,11 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build with @cloudflare/next-on-pages
-        run: npx @cloudflare/next-on-pages
+      - name: Build Next.js
+        run: npm run build
 
       - name: Deploy to Cloudflare Pages via wrangler
-        run: npx wrangler pages deploy .vercel/output/static --project-name=jubilee-israel
+        run: npx wrangler pages deploy .next --project-name=jubilee-israel
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
