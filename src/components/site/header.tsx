@@ -42,18 +42,18 @@ export function Header() {
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 border-b border-white/20 bg-background/70 backdrop-blur-xl shadow-sm transition-all duration-300">
-      <div className="container flex h-20 items-center justify-between gap-4">
-        <Logo />
+    <header ref={headerRef} className="sticky top-0 z-40 border-b border-border/80 bg-background/95 backdrop-blur-xl shadow-sm transition-all duration-300">
+      <div className="container flex h-[72px] items-center justify-between gap-3">
+        <Logo className="shrink-0" />
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-5 xl:flex">
           {NAV.map((item) => (
             <Link
               key={item.key}
               href={item.href}
               className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
-                isActive(item.href) ? 'text-primary' : 'text-foreground/80'
+                'text-sm font-medium transition-colors hover:text-gold',
+                isActive(item.href) ? 'text-gold' : 'text-foreground'
               )}
             >
               {t(item.key)}
@@ -66,18 +66,18 @@ export function Header() {
           <Link
             href="/compte"
             aria-label={t('account')}
-            className="hidden h-10 w-10 items-center justify-center rounded-full hover:bg-accent sm:inline-flex"
+            className="hidden h-9 w-9 items-center justify-center rounded-full hover:bg-accent sm:inline-flex"
           >
-            <User className="h-5 w-5" />
+            <User className="h-[18px] w-[18px]" />
           </Link>
           <Link
             href="/panier"
             aria-label={t('cart')}
-            className="relative inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-accent"
+            className="relative inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-accent"
           >
-            <ShoppingCart className="h-5 w-5" />
+            <ShoppingCart className="h-[18px] w-[18px]" />
             {count > 0 && (
-              <span className="absolute -end-0.5 -top-0.5 flex h-5 min-w-5 items-center justify-center rounded-full bg-gold px-1 text-xs font-semibold text-gold-foreground">
+              <span className="absolute -end-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-bold text-gold-foreground">
                 {count}
               </span>
             )}
@@ -85,24 +85,24 @@ export function Header() {
           <Button asChild size="sm" variant="gold" className="hidden sm:inline-flex">
             <Link href="/boutique">
               <ShoppingBag className="h-4 w-4" />
-              {t('shop')}
+              <span className="hidden md:inline">{t('shop')}</span>
             </Link>
           </Button>
           <button
             type="button"
-            className="lg:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-accent xl:hidden"
             aria-label={tc('menu')}
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
       <div
         className={cn(
-          'lg:hidden overflow-hidden border-t border-border/60 transition-all',
-          open ? 'max-h-[480px]' : 'max-h-0'
+          'xl:hidden overflow-hidden border-t border-border/60 bg-background shadow-lg transition-all',
+          open ? 'max-h-[520px]' : 'max-h-0'
         )}
       >
         <nav className="container flex flex-col gap-1 py-4">
@@ -111,11 +111,22 @@ export function Header() {
               key={item.key}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="rounded-lg px-3 py-2.5 text-base font-medium hover:bg-accent"
+              className={cn(
+                'rounded-lg px-4 py-3 text-base font-medium transition-colors hover:bg-accent',
+                isActive(item.href) ? 'text-gold' : 'text-foreground'
+              )}
             >
               {t(item.key)}
             </Link>
           ))}
+          <div className="mt-2 border-t border-border/60 pt-3 sm:hidden">
+            <Button asChild size="sm" variant="gold" className="w-full justify-center">
+              <Link href="/boutique">
+                <ShoppingBag className="h-4 w-4 mr-2" />
+                {t('shop')}
+              </Link>
+            </Button>
+          </div>
         </nav>
       </div>
     </header>

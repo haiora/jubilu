@@ -6,15 +6,15 @@
   :root {
     /* Jubilé palette — premium, chaleureux, spirituel */
     /* Background plus luxueux, légèrement teinté sable chaud */
-    --background: 40 35% 98%;          
+    --background: 40 35% 97%;          
     /* Un bleu nuit beaucoup plus profond pour contraster */
-    --foreground: 215 50% 12%;         
+    --foreground: 215 60% 10%;         
 
     --card: 0 0% 100%;
-    --card-foreground: 215 50% 12%;
+    --card-foreground: 215 60% 10%;
 
     /* Bleu Jérusalem plus intense et vibrant */
-    --primary: 215 60% 20%;            
+    --primary: 215 75% 12%;            
     --primary-foreground: 40 33% 97%;
 
     /* Olivier plus riche */
@@ -22,18 +22,18 @@
     --secondary-foreground: 40 33% 97%;
 
     /* Or plus métallique et profond */
-    --gold: 42 75% 45%;                
-    --gold-foreground: 215 50% 12%;
+    --gold: 42 90% 55%;                
+    --gold-foreground: 215 60% 10%;
 
     --muted: 40 25% 90%;
-    --muted-foreground: 215 20% 45%;
+    --muted-foreground: 215 20% 38%;
 
-    --accent: 42 75% 92%;
-    --accent-foreground: 215 60% 20%;
+    --accent: 42 90% 92%;
+    --accent-foreground: 215 75% 12%;
 
     --border: 40 25% 85%;
     --input: 40 25% 85%;
-    --ring: 42 75% 45%;
+    --ring: 42 90% 55%;
 
     --radius: 1rem;
   }
@@ -50,8 +50,8 @@
     @apply bg-background text-foreground font-sans antialiased;
     /* Texture subtile premium */
     background-image:
-      radial-gradient(circle at 10% 20%, hsl(42 75% 45% / 0.03), transparent 40%),
-      radial-gradient(circle at 90% 80%, hsl(215 60% 20% / 0.03), transparent 40%);
+      radial-gradient(circle at 10% 20%, hsl(42 90% 55% / 0.04), transparent 40%),
+      radial-gradient(circle at 90% 80%, hsl(215 75% 12% / 0.04), transparent 40%);
     background-attachment: fixed;
   }
 
@@ -86,7 +86,7 @@
     @apply h-[2px] w-12 bg-gradient-to-r from-transparent via-gold/50 to-transparent rounded-full;
   }
   .card-elevated {
-    @apply rounded-3xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-[0_12px_40px_-15px_hsl(215_60%_20%_/_0.15)] transition-all hover:shadow-[0_16px_50px_-15px_hsl(215_60%_20%_/_0.20)] hover:-translate-y-1;
+    @apply rounded-3xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-[0_12px_40px_-15px_hsl(215_75%_12%_/_0.15)] transition-all hover:shadow-[0_16px_50px_-15px_hsl(215_75%_12%_/_0.20)] hover:-translate-y-1;
   }
   .eyebrow {
     @apply text-sm font-semibold uppercase tracking-[0.25em] text-gold;
