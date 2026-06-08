@@ -37,6 +37,7 @@
   "exclude": [
     "node_modules",
     "vitest.config.ts",
-    "src/lib/__tests__"
+    "src/lib/__tests__",
+    "src/_api"
   ]
 }
