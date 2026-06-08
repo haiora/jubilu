@@ -24,7 +24,7 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build with @cloudflare/next-on-pages
-        run: npx --yes @cloudflare/next-on-pages@1.13.5
+        run: npx @cloudflare/next-on-pages
 
       - name: Deploy to Cloudflare Pages via wrangler
         run: npx wrangler pages deploy .vercel/output/static --project-name=jubilee-israel
