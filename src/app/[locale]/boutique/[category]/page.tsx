@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/site/page-hero';

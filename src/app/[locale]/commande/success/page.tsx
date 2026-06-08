@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { CheckCircle2 } from 'lucide-react';
 import { Link } from '@/i18n/navigation';

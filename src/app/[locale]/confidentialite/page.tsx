@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { LegalPage } from '@/components/site/legal-page';
 import { routing } from '@/i18n/routing';
 

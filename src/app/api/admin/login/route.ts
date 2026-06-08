@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { NextResponse } from 'next/server';
 import { encodeSession, SESSION_COOKIE } from '@/lib/auth';
 import { db } from '@/lib/db';

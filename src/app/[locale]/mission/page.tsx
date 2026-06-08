@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Landmark, MapPin, Droplets } from 'lucide-react';

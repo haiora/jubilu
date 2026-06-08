@@ -1,3 +1,5 @@
+export const runtime = 'edge';
+
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/site/page-hero';
 import { ContactForm } from '@/components/site/contact-form';
