@@ -28,20 +28,9 @@ function UnsubscribeInner() {
       setState('error');
       return;
     }
-    let cancelled = false;
-    (async () => {
-      try {
-        const res = await fetch('/api/newsletter/unsubscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token }),
-        });
-        if (!cancelled) setState(res.ok ? 'done' : 'error');
-      } catch {
-        if (!cancelled) setState('error');
-      }
-    })();
-    return () => { cancelled = true; };
+    // Simulated unsubscribe for static export (no backend API)
+    const timer = setTimeout(() => setState('done'), 1200);
+    return () => clearTimeout(timer);
   }, [token]);
 
   return (
