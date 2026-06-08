@@ -14,6 +14,11 @@ const nextConfig = {
       { protocol: 'https', hostname: 'static.wixstatic.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' }
     ]
+  },
+  async redirects() {
+    return [
+      { source: '/', destination: '/fr/', permanent: false }
+    ];
   }
 };
 
