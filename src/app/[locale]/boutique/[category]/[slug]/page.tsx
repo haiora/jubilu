@@ -5,15 +5,16 @@ import Image from 'next/image';
 import { Wine, ScrollText, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { AddToCart } from '@/components/shop/add-to-cart';
-import { getProduct, formatPrice } from '@/lib/catalog';
+import { PRODUCTS, getProduct, formatPrice } from '@/lib/catalog';
 import { getStockForSlug } from '@/lib/stock';
 import { type Locale } from '@/i18n/routing';
 
 export function generateStaticParams() {
   return ['fr', 'en', 'he', 'es'].flatMap((locale) =>
-    ['vin-rouge-galilee', 'vin-blanc-judee', 'vin-rose-sharon', 'parchemin-personnalise-jerusalem'].map((slug) => ({
+    PRODUCTS.map((product) => ({
       locale,
-      slug
+      category: product.category,
+      slug: product.slug
     }))
   );
 }
