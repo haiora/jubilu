@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { Package, Users, ShoppingBag, TrendingUp, LogOut } from 'lucide-react';
 
 const MOCK_STATS = {
@@ -12,26 +11,15 @@ const MOCK_STATS = {
 };
 
 export default function AdminDashboard() {
-  const router = useRouter();
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('admin_token');
-    if (!token) {
-      router.replace('/admin/login/');
-      return;
-    }
-    const u = localStorage.getItem('admin_user');
-    if (u) setUser(JSON.parse(u));
-  }, [router]);
+  const [user] = useState<{ name: string; email: string }>({ name: 'Administrateur', email: 'admin@jubilee-israel.org' });
 
   const handleLogout = () => {
-    localStorage.removeItem('admin_token');
-    localStorage.removeItem('admin_user');
-    router.replace('/admin/login/');
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem('admin_token');
+      window.localStorage.removeItem('admin_user');
+      window.location.href = '/admin/login/';
+    }
   };
-
-  if (!user) return null;
 
   return (
     <div className="min-h-screen bg-stone-50">

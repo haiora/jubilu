@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { ArrowLeft, Mail, Phone, ShoppingBag } from 'lucide-react';
 
 const CLIENTS = [
@@ -28,21 +26,6 @@ const CLIENTS = [
 ];
 
 export default function ClientsPage() {
-  const router = useRouter();
-  const [user, setUser] = useState<{ name: string } | null>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('admin_token');
-    if (!token) {
-      router.replace('/admin/login/');
-      return;
-    }
-    const u = localStorage.getItem('admin_user');
-    if (u) setUser(JSON.parse(u));
-  }, [router]);
-
-  if (!user) return null;
-
   return (
     <div className="min-h-screen bg-stone-50">
       <header className="border-b border-border bg-white">
