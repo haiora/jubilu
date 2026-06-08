@@ -30,12 +30,14 @@ jobs:
         run: |
           mkdir -p _deploy
           cp -r dist/* _deploy/
+          ls -la _deploy/
+          find _deploy/ -maxdepth 1 -type f
 
       - name: Remove index.html to allow _redirects
         run: rm -f _deploy/index.html
 
       - name: Deploy to Cloudflare Pages via wrangler
-        run: npx wrangler pages deploy _deploy --project-name=jubilee-israel-org
+        run: npx wrangler pages deploy _deploy --project-name=jubilee-israel-org --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
