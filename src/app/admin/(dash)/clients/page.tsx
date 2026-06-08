@@ -10,7 +10,7 @@ const CLIENTS = [
     phone: '+33 6 12 34 56 78',
     address: '12 Rue de la Paix, 75002 Paris',
     orders: 1,
-    total: 2490,
+    total: 10000,
     lastOrder: '15/06/2024'
   },
   {

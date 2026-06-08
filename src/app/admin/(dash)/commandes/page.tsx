@@ -8,9 +8,9 @@ const ORDERS = [
     client: 'Jean Dupont',
     email: 'jean.dupont@example.fr',
     date: '15/06/2024',
-    total: 2490,
+    total: 10000,
     status: 'payée',
-    items: [{ name: 'Vin rouge Galilée', qty: 1, price: 2490 }]
+    items: [{ name: 'Vin rouge Galilée', qty: 1, price: 10000 }]
   },
   {
     id: 'JBL-240620-002',

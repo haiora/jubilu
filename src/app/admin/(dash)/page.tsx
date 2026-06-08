@@ -7,7 +7,7 @@ const MOCK_STATS = {
   orders: 2,
   clients: 2,
   products: 4,
-  revenue: 11390 // en centimes
+  revenue: 18900 // en centimes (10000 + 8900)
 };
 
 export default function AdminDashboard() {
@@ -79,7 +79,7 @@ function StatCard({ icon: Icon, label, value }: { icon: React.ElementType; label
 
 function RecentOrders() {
   const orders = [
-    { id: 'JBL-240615-001', client: 'Jean Dupont', total: 24.90, status: 'payée' },
+    { id: 'JBL-240615-001', client: 'Jean Dupont', total: 100.00, status: 'payée' },
     { id: 'JBL-240620-002', client: 'Marie Cohen', total: 89.00, status: 'en préparation' }
   ];
 

@@ -29,7 +29,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'vin-rouge-galilee',
     category: 'vin-rouge',
-    price: 2490,
+    price: 10000,
     currency: 'EUR',
     stock: 120,
     sku: 'WINE-GAL-RED',
@@ -48,7 +48,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'vin-blanc-judee',
     category: 'vin-blanc',
-    price: 2290,
+    price: 10000,
     currency: 'EUR',
     stock: 90,
     featured: true,
@@ -66,7 +66,7 @@ export const PRODUCTS: Product[] = [
   {
     slug: 'vin-rose-sharon',
     category: 'vin-rose',
-    price: 2190,
+    price: 10000,
     currency: 'EUR',
     stock: 75,
     featured: false,
