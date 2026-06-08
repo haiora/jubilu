@@ -8,6 +8,13 @@
       "when": 1780851634255,
       "tag": "0000_numerous_giant_man",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1780923192598,
+      "tag": "0001_oval_johnny_blaze",
+      "breakpoints": true
     }
   ]
 }

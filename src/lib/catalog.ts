@@ -14,6 +14,7 @@ export interface Product {
   price: number; // en centimes (EUR)
   currency: 'EUR';
   stock: number;
+  sku?: string; // SKU de la variante en base (liaison stock/commandes)
   featured: boolean;
   customizable: boolean; // parchemins = saisie d'un texte personnalisé
   icon: 'wine' | 'scroll';
@@ -31,6 +32,7 @@ export const PRODUCTS: Product[] = [
     price: 2490,
     currency: 'EUR',
     stock: 120,
+    sku: 'WINE-GAL-RED',
     featured: true,
     customizable: false,
     icon: 'wine',
@@ -85,6 +87,7 @@ export const PRODUCTS: Product[] = [
     price: 8900,
     currency: 'EUR',
     stock: 25,
+    sku: 'PARCH-JERU-STD',
     featured: true,
     customizable: true,
     icon: 'scroll',

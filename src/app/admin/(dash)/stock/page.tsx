@@ -7,6 +7,7 @@ import { getAdminLocale } from '@/lib/admin-i18n';
 import { getSession, can } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { products, productTranslations, productVariants } from '../../../../../db/schema';
+import StockAdjust from '@/components/admin/stock-adjust';
 
 const LOW_STOCK = 30;
 
@@ -55,11 +56,11 @@ export default async function StockPage() {
       {/* Summary */}
       <div className="flex gap-4">
         <div className="rounded-xl border border-border bg-card px-5 py-3">
-          <p className="text-xs text-muted-foreground uppercase tracking-wide">Stock total</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wide">{t('stock.totalLabel')}</p>
           <p className="font-serif text-2xl font-semibold">{grandTotal}</p>
         </div>
         <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-3">
-          <p className="text-xs text-amber-700 uppercase tracking-wide">Références en alerte</p>
+          <p className="text-xs text-amber-700 uppercase tracking-wide">{t('stock.alertRefs')}</p>
           <p className="font-serif text-2xl font-semibold text-amber-700">{lowRows.length}</p>
         </div>
       </div>
@@ -74,7 +75,7 @@ export default async function StockPage() {
       {rows.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-card/50 py-16 text-center">
           <Package className="mx-auto mb-3 h-10 w-10 opacity-20" />
-          <p className="text-muted-foreground">Aucun produit dans la base de données.</p>
+          <p className="text-muted-foreground">{t('stock.empty')}</p>
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -94,8 +95,8 @@ export default async function StockPage() {
 
                 {p.variants.length > 0 && p.variants.map(v => (
                   <div key={v.id} className="mt-3 flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">{v.name ?? 'Standard'}</span>
-                    <span className={`font-semibold ${v.stock < LOW_STOCK ? 'text-amber-600' : 'text-primary'}`}>{v.stock}</span>
+                    <span className="text-muted-foreground">{v.name ?? t('common.standard')}</span>
+                    <StockAdjust variantId={v.id} stock={v.stock} lowThreshold={LOW_STOCK} />
                   </div>
                 ))}
 

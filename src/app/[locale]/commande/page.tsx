@@ -14,6 +14,7 @@ export default function CheckoutPage() {
   const t = useTranslations('checkout');
   const tcart = useTranslations('cart');
   const tcontact = useTranslations('pages.contact');
+  const tcommon = useTranslations('common');
   const { items, clear } = useCart();
 
   const [submitting, setSubmitting] = useState(false);
@@ -40,7 +41,7 @@ export default function CheckoutPage() {
     };
 
     if (!data.email || !data.firstName || !data.lastName || !data.address || !data.zip || !data.city || !data.country) {
-      setError('Veuillez remplir tous les champs obligatoires.');
+      setError(tcommon('formIncomplete'));
       setSubmitting(false);
       return;
     }

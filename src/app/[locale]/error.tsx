@@ -21,13 +21,13 @@ export default function Error({
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center p-4 text-center">
       <AlertTriangle className="h-16 w-16 text-red-500 mb-6" />
-      <h2 className="text-3xl font-semibold mb-4">Une erreur inattendue est survenue</h2>
+      <h2 className="text-3xl font-semibold mb-4">{t('errorTitle')}</h2>
       <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-        Nous sommes désolés, une erreur technique a empêché l&apos;affichage de cette page.
+        {t('errorText')}
       </p>
       <div className="flex gap-4">
         <Button onClick={() => reset()} variant="gold">
-          Réessayer
+          {t('retry')}
         </Button>
         <Button onClick={() => window.location.href = '/'} variant="outline">
           {t('backHome')}

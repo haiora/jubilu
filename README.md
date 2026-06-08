@@ -33,6 +33,24 @@ src/
   lib/                catalog, demo-data, auth, email, blog, utils
 ```
 
+## Variables d'environnement
+
+| Variable | Usage |
+|---|---|
+| `NEXT_PUBLIC_SITE_URL` | URL publique (success/cancel Stripe, liens email) |
+| `STRIPE_SECRET_KEY` | Clé secrète Stripe (création des sessions Checkout) |
+| `STRIPE_WEBHOOK_SECRET` | Secret du endpoint webhook `/api/webhooks/stripe` (`whsec_...`) |
+| `RESEND_API_KEY` | Clé API Resend (emails transactionnels + campagnes) |
+| `RESEND_WEBHOOK_SECRET` | Secret Svix du webhook `/api/webhooks/resend` (optionnel) |
+| `EMAIL_FROM` | Expéditeur par défaut, ex: `Jubilé <noreply@jubilee-israel.org>` |
+
+### Webhooks à configurer
+
+- **Stripe** → `https://<domaine>/api/webhooks/stripe`, événement `checkout.session.completed`. Confirme la commande (statut `paid`), promeut le contact en `client`, met à jour les totaux/stock et envoie l'email de confirmation.
+- **Resend** → `https://<domaine>/api/webhooks/resend`, événements `email.delivered/opened/clicked/bounced`. Met à jour `email_logs` et recalcule les statistiques de campagne.
+
+> En l'absence de clés, l'application fonctionne en **mode démo** (commande marquée payée sans paiement réel, emails simplement journalisés).
+
 ## Accès back-office (démo)
 
 `/admin/login` — identifiants de démonstration :

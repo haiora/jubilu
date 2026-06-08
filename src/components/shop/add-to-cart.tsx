@@ -8,10 +8,12 @@ import { Button } from '@/components/ui/button';
 
 export function AddToCart({
   slug,
-  customizable
+  customizable,
+  stock
 }: {
   slug: string;
   customizable: boolean;
+  stock?: number;
 }) {
   const t = useTranslations('cart');
   const tc = useTranslations('common');
@@ -21,7 +23,11 @@ export function AddToCart({
   const [error, setError] = useState('');
   const [done, setDone] = useState(false);
 
+  const isOut = typeof stock === 'number' && stock <= 0;
+  const maxQty = typeof stock === 'number' && stock > 0 ? stock : Infinity;
+
   function onAdd() {
+    if (isOut) return;
     if (customizable && customText.trim().length === 0) {
       setError(t('customTextRequired'));
       return;
@@ -48,17 +54,28 @@ export function AddToCart({
         </div>
       )}
 
-      <div className="flex items-center gap-3">
-        <div className="flex items-center rounded-full border border-input">
-          <button type="button" aria-label="-" onClick={() => setQty((q) => Math.max(1, q - 1))} className="h-10 w-10 text-lg">−</button>
-          <span className="w-8 text-center">{qty}</span>
-          <button type="button" aria-label="+" onClick={() => setQty((q) => q + 1)} className="h-10 w-10 text-lg">+</button>
+      {isOut ? (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-700">
+          {t('outOfStock')}
         </div>
-        <Button onClick={onAdd} variant="gold" size="lg" className="flex-1">
-          {done ? <Check className="h-4 w-4" /> : <ShoppingCart className="h-4 w-4" />}
-          {done ? t('addedToCart') : tc('addToCart')}
-        </Button>
-      </div>
+      ) : (
+        <>
+          {typeof stock === 'number' && stock <= 10 && (
+            <p className="text-sm font-medium text-amber-600">{t('lowStock', { n: stock })}</p>
+          )}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center rounded-full border border-input">
+              <button type="button" aria-label="-" onClick={() => setQty((q) => Math.max(1, q - 1))} className="h-10 w-10 text-lg">−</button>
+              <span className="w-8 text-center">{qty}</span>
+              <button type="button" aria-label="+" onClick={() => setQty((q) => Math.min(maxQty, q + 1))} disabled={qty >= maxQty} className="h-10 w-10 text-lg disabled:opacity-40">+</button>
+            </div>
+            <Button onClick={onAdd} variant="gold" size="lg" className="flex-1">
+              {done ? <Check className="h-4 w-4" /> : <ShoppingCart className="h-4 w-4" />}
+              {done ? t('addedToCart') : tc('addToCart')}
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 }

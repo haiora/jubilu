@@ -34,7 +34,13 @@
     "backHome": "Back to home",
     "cookieText": "We use cookies to improve your experience and measure our audience.",
     "cookieAccept": "Accept",
-    "cookieDecline": "Decline"
+    "cookieDecline": "Decline",
+    "loading": "Loading…",
+    "errorTitle": "An unexpected error occurred",
+    "errorText": "We're sorry, a technical error prevented this page from displaying.",
+    "retry": "Try again",
+    "genericError": "Error",
+    "formIncomplete": "Please fill in all required fields."
   },
   "home": {
     "hero": {
@@ -149,7 +155,14 @@
       "send": "Send",
       "infoTitle": "Contact details",
       "infoText": "We will get back to you as soon as possible.",
-      "error": "An error occurred. Please try again."
+      "error": "An error occurred. Please try again.",
+      "success": "Message sent!",
+      "successText": "We will get back to you as soon as possible.",
+      "sending": "Sending…",
+      "errFirstName": "First name must be at least 2 characters.",
+      "errLastName": "Last name must be at least 2 characters.",
+      "errEmail": "Invalid email address.",
+      "errMessage": "Message must be at least 10 characters."
     },
     "faq": {
       "badge": "FAQ",
@@ -238,7 +251,32 @@
     "noOrders": "No orders linked to this email.",
     "profile": "My information",
     "logout": "Sign out",
-    "demoNote": "Demo: enter a customer email (e.g. marie.lefevre@example.com) to see order history."
+    "demoNote": "Demo: enter a customer email (e.g. marie.lefevre@example.com) to see order history.",
+    "verifying": "Verifying…",
+    "accountHint": "Enter the email you used for your orders to view your history.",
+    "notFound": "Email not found",
+    "fieldName": "Name",
+    "fieldEmail": "Email",
+    "fieldStatus": "Status",
+    "memberSince": "Member since",
+    "statusDonor": "Donor",
+    "statusClient": "Customer",
+    "statusMember": "Member",
+    "myBalance": "My summary",
+    "ordersCountLabel": "Orders",
+    "totalSpent": "Total spent",
+    "exploreShop": "Explore the shop",
+    "orderLabel": "Order",
+    "viewInvoice": "View invoice",
+    "totalIncl": "Total incl. tax"
+  },
+  "unsubscribe": {
+    "title": "Unsubscribe",
+    "processing": "Processing your request…",
+    "done": "You have been unsubscribed",
+    "doneText": "You will no longer receive our emails. You can resubscribe anytime from the website.",
+    "error": "Invalid or expired link.",
+    "backHome": "Back to home"
   },
   "cart": {
     "title": "Your cart",
@@ -256,6 +294,8 @@
     "customTextLabel": "Text to be handwritten",
     "customTextPlaceholder": "Enter the verse, blessing or name to inscribe…",
     "customTextRequired": "Please enter the text to be handwritten.",
+    "outOfStock": "Out of stock",
+    "lowStock": "Only {n} left in stock",
     "count": "{count, plural, =0 {Empty cart} one {# item} other {# items}}"
   },
   "checkout": {
@@ -295,18 +335,20 @@
   "admin": {
     "language": "Language",
     "nav": { "dashboard": "Dashboard", "orders": "Orders", "products": "Products", "stock": "Stock", "crm": "CRM / Contacts", "campaigns": "Email campaigns", "settings": "Settings" },
-    "common": { "logout": "Sign out", "viewSite": "View site", "administration": "Administration", "new": "New", "import": "Import CSV", "export": "Export CSV", "all": "All", "units": "units", "active": "Active" },
-    "login": { "subtitle": "Administration area", "email": "Email", "password": "Password", "signIn": "Sign in", "demo": "Demo", "error": "Invalid credentials." },
+    "common": { "logout": "Sign out", "viewSite": "View site", "administration": "Administration", "new": "New", "import": "Import CSV", "export": "Export CSV", "all": "All", "units": "units", "active": "Active", "inactive": "Inactive", "standard": "Standard", "cancel": "Cancel" },
+    "login": { "subtitle": "Administration area", "email": "Email", "password": "Password", "signIn": "Sign in", "demo": "Demo", "error": "Invalid credentials.", "securedAccess": "Secure access reserved for Jubilee staff.", "demoHint": "Demo: {email} / {password}" },
     "dashboard": { "title": "Dashboard", "subtitle": "Overview of Jubilee's activity.", "revenue": "Revenue", "revenueHint": "Paid orders", "orders": "Orders", "avgCartHint": "Average cart {v}", "contacts": "Contacts", "newContactsHint": "{n} new in 2026", "openRate": "Open rate", "emailsSentHint": "{n} emails sent", "byStatus": "Orders by status", "campaignPerf": "Campaign performance", "recentOrders": "Latest orders", "colNumber": "No.", "colCustomer": "Customer", "colStatus": "Status", "colTotal": "Total" },
-    "orders": { "title": "Orders", "subtitle": "{n} orders — from preparation to delivery." },
+    "orders": { "title": "Orders", "subtitle": "{n} orders — from preparation to delivery.", "empty": "No orders yet.", "shippingIncluded": "incl. {v} shipping" },
     "status": { "pending": "Pending", "paid": "Paid", "prepared": "Prepared", "shipped": "Shipped", "delivered": "Delivered", "cancelled": "Cancelled" },
-    "products": { "title": "Products", "subtitle": "{n} products — wines & parchments.", "new": "New product", "colProduct": "Product", "colCategory": "Category", "colPrice": "Price", "colStock": "Stock", "colStatus": "Status" },
-    "stock": { "title": "Stock", "subtitle": "Stock levels and restock alerts.", "alert": "{n} product(s) below the alert threshold ({s} units): consider restocking." },
-    "crm": { "title": "CRM / Contacts", "subtitle": "{n} contacts — customers, leads and donors.", "colContact": "Contact", "colCountry": "Country", "colStatus": "Status", "colTags": "Tags", "colConsent": "Consent", "colTotal": "Total spent" },
+    "production": { "to_produce": "To produce", "in_production": "In production", "quality_check": "Quality check", "ready": "Ready", "shipped": "Shipped" },
+    "products": { "title": "Products", "subtitle": "{n} products — wines & parchments.", "new": "New product", "colProduct": "Product", "colCategory": "Category", "colPrice": "Price", "colStock": "Stock", "colStatus": "Status", "colActions": "Actions", "lowStock": "{n} product(s) with low stock (< 30 units).", "empty": "No products. Start by adding one." },
+    "productForm": { "title": "New product", "name": "Product name", "shortDesc": "Short description", "category": "Category", "wine": "Wine", "parchment": "Parchment", "price": "Price (€)", "stock": "Initial stock", "status": "Status", "statusActive": "Active", "statusDraft": "Draft", "featured": "Feature it", "submit": "Create product", "submitting": "Creating…", "success": "Product created!", "errRequired": "A name and a valid price are required.", "editTitle": "Edit product", "save": "Save", "saving": "Saving…", "saved": "Saved!", "edit": "Edit", "delete": "Delete", "deleting": "Deleting…", "deleteConfirm": "Permanently delete this product?" },
+    "stock": { "title": "Stock", "subtitle": "Stock levels and restock alerts.", "alert": "{n} product(s) below the alert threshold ({s} units): consider restocking.", "totalLabel": "Total stock", "alertRefs": "Items in alert", "empty": "No products in the database." },
+    "crm": { "title": "CRM / Contacts", "subtitle": "{n} contacts — customers, leads and donors.", "colContact": "Contact", "colCountry": "Country", "colStatus": "Status", "colTags": "Tags", "colConsent": "Consent", "colTotal": "Total spent", "colOrders": "Orders", "emptyState": "No contacts yet.", "totalLabel": "Total" },
     "contactStatus": { "client": "customer", "lead": "lead", "donateur": "donor" },
     "contact": { "back": "Back to contacts", "clientSince": "Customer since {d} · Source: {s}", "sendEmail": "Send an email", "details": "Contact details", "tags": "Tags", "add": "+ Add", "ordersCount": "Orders", "totalSpent": "Total spent", "history": "Order history", "noOrders": "No orders yet.", "notes": "Internal notes", "noNotes": "No notes.", "addNote": "Add a note…" },
-    "campaigns": { "title": "Email campaigns", "subtitle": "Sent via Resend — content written by the team.", "new": "New campaign", "sent": "Sent", "scheduled": "Scheduled", "draft": "Draft", "mSent": "Sent", "mDelivered": "Delivered", "mOpened": "Opens", "mClicked": "Clicks", "mUnsub": "Unsub.", "scheduledFor": "Scheduled for {d}", "draftHint": "Draft — to complete and schedule." },
-    "settings": { "title": "Settings", "subtitle": "Integrations, roles and activity log.", "integrations": "Integrations", "configured": "Configured", "toConfigure": "To configure (key missing)", "rolesPerms": "Roles & permissions", "colRole": "Role", "audit": "Audit log" },
+    "campaigns": { "title": "Email campaigns", "subtitle": "Sent via Resend — content written by the team.", "new": "New campaign", "sent": "Sent", "scheduled": "Scheduled", "draft": "Draft", "mSent": "Sent", "mDelivered": "Delivered", "mOpened": "Opens", "mClicked": "Clicks", "mUnsub": "Unsub.", "scheduledFor": "Scheduled for {d}", "draftHint": "Draft — to complete and schedule.", "sendNow": "Send now", "audience": "Available audience", "withConsent": "contacts with email consent", "empty": "No campaigns yet. Create your first campaign.", "noSent": "No campaigns sent yet." },
+    "settings": { "title": "Settings", "subtitle": "Integrations, roles and activity log.", "integrations": "Integrations", "configured": "Configured", "toConfigure": "To configure (key missing)", "rolesPerms": "Roles & permissions", "colRole": "Role", "audit": "Audit log", "adminUsers": "Administrator users", "localDbActive": "local.db active", "addKeyHint": "Add {k} in .env", "noAudit": "No action recorded yet.", "system": "System" },
     "roles": { "super_admin": "Super administrator", "admin": "Administrator", "shop": "Shop management", "crm": "CRM management", "content": "Content management", "marketing": "Marketing management", "support": "Support" },
     "perms": { "dashboard": "Dashboard", "orders": "Orders", "stock": "Stock", "products": "Products", "crm": "CRM", "clients": "Customers", "campaigns": "Campaigns", "settings": "Settings" }
   }

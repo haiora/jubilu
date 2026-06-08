@@ -12,10 +12,10 @@ import NewCampaignButton from '@/components/admin/new-campaign-button';
 
 type CampaignStatus = 'sent' | 'scheduled' | 'draft';
 
-const STATUS: Record<CampaignStatus, { cls: string; icon: React.ElementType; label: string }> = {
-  sent:      { cls: 'bg-green-100 text-green-800', icon: Send, label: 'Envoyée' },
-  scheduled: { cls: 'bg-blue-100 text-blue-800',  icon: Clock, label: 'Planifiée' },
-  draft:     { cls: 'bg-muted text-muted-foreground', icon: FileEdit, label: 'Brouillon' }
+const STATUS: Record<CampaignStatus, { cls: string; icon: React.ElementType; labelKey: string }> = {
+  sent:      { cls: 'bg-green-100 text-green-800', icon: Send, labelKey: 'campaigns.sent' },
+  scheduled: { cls: 'bg-blue-100 text-blue-800',  icon: Clock, labelKey: 'campaigns.scheduled' },
+  draft:     { cls: 'bg-muted text-muted-foreground', icon: FileEdit, labelKey: 'campaigns.draft' }
 };
 
 function pct(n: number, d: number) { return d ? Math.round((n / d) * 100) : 0; }
@@ -33,7 +33,8 @@ function Stat({ label, value, icon: Icon }: { label: string; value: string; icon
 export default async function CampaignsPage() {
   const session = getSession();
   if (!can(session, 'campaigns')) redirect('/admin');
-  const t = await getTranslations({ locale: getAdminLocale(), namespace: 'admin' });
+  const locale = getAdminLocale();
+  const t = await getTranslations({ locale, namespace: 'admin' });
 
   const [allCampaigns, totalContacts] = await Promise.all([
     db.select().from(campaigns).orderBy(desc(campaigns.createdAt)),
@@ -56,7 +57,7 @@ export default async function CampaignsPage() {
       <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-5 py-3 text-sm">
         <Users className="h-4 w-4 text-muted-foreground" />
         <span className="text-muted-foreground">
-          Audience disponible : <strong className="text-primary">{consentCount}</strong> contacts avec consentement email
+          {t('campaigns.audience')} : <strong className="text-primary">{consentCount}</strong> {t('campaigns.withConsent')}
           <span className="ml-2 text-muted-foreground">/ {totalContacts.length} total</span>
         </span>
       </div>
@@ -64,13 +65,14 @@ export default async function CampaignsPage() {
       {allCampaigns.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-card/50 py-16 text-center">
           <Mail className="mx-auto mb-3 h-10 w-10 opacity-20" />
-          <p className="text-muted-foreground">Aucune campagne pour l&apos;instant. Créez votre première campagne.</p>
+          <p className="text-muted-foreground">{t('campaigns.empty')}</p>
         </div>
       ) : (
         <div className="space-y-3">
           {allCampaigns.map((c) => {
             const st = STATUS[c.status as CampaignStatus] ?? STATUS.draft;
             const StIcon = st.icon;
+            const stLabel = t(st.labelKey);
             const stats = c.stats ? JSON.parse(c.stats) : {};
             return (
               <div key={c.id} className="rounded-2xl border border-border bg-card p-5 shadow-sm transition-shadow hover:shadow-md">
@@ -84,18 +86,18 @@ export default async function CampaignsPage() {
                       <p className="text-sm text-muted-foreground">
                         « {c.subject} »
                         {c.locale && <> · <span className="uppercase">{c.locale}</span></>}
-                        {c.sentAt && <> · {new Date(c.sentAt).toLocaleDateString('fr-FR')}</>}
+                        {c.sentAt && <> · {new Date(c.sentAt).toLocaleDateString(locale)}</>}
                       </p>
                     </div>
                   </div>
                   <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${st.cls}`}>
-                    <StIcon className="h-3.5 w-3.5" /> {st.label}
+                    <StIcon className="h-3.5 w-3.5" /> {stLabel}
                   </span>
                 </div>
 
                 {c.status === 'sent' && stats.sent > 0 && (
                   <div className="mt-4 grid grid-cols-3 gap-3 border-t border-border/60 pt-4 sm:grid-cols-5">
-                    <Stat label={t('campaigns.mSent')} value={(stats.sent ?? 0).toLocaleString('fr-FR')} icon={Send} />
+                    <Stat label={t('campaigns.mSent')} value={(stats.sent ?? 0).toLocaleString(locale)} icon={Send} />
                     <Stat label={t('campaigns.mDelivered')} value={`${pct(stats.delivered, stats.sent)}%`} icon={Mail} />
                     <Stat label={t('campaigns.mOpened')} value={`${pct(stats.opened, stats.sent)}%`} icon={MailOpen} />
                     <Stat label={t('campaigns.mClicked')} value={`${pct(stats.clicked, stats.sent)}%`} icon={MousePointerClick} />
@@ -106,7 +108,7 @@ export default async function CampaignsPage() {
                   <div className="mt-3 flex gap-2 border-t border-border/60 pt-3">
                     <span className="text-xs text-muted-foreground">{t('campaigns.draftHint')}</span>
                     <a href={`/api/admin/campaigns/${c.id}/send`} className="ml-auto inline-flex items-center gap-1.5 rounded-full bg-gold px-3 py-1 text-xs font-medium text-gold-foreground hover:opacity-90">
-                      <Send className="h-3 w-3" /> Envoyer maintenant
+                      <Send className="h-3 w-3" /> {t('campaigns.sendNow')}
                     </a>
                   </div>
                 )}

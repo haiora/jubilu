@@ -1,13 +1,14 @@
 export const dynamic = 'force-dynamic';
 
 import { redirect } from 'next/navigation';
-import { Download, Upload, Check, X, Search, UserPlus } from 'lucide-react';
+import { Download, Check, X, UserPlus } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { getAdminLocale } from '@/lib/admin-i18n';
 import { getSession, can } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { contacts } from '../../../../../db/schema';
 import { desc } from 'drizzle-orm';
+import ImportContactsButton from '@/components/admin/import-contacts-button';
 
 function formatEUR(cents: number): string {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(cents / 100);
@@ -42,19 +43,17 @@ export default async function CrmPage() {
           <p className="text-muted-foreground">{t('crm.subtitle', { n: allContacts.length })}</p>
         </div>
         <div className="flex gap-2">
-          <button className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm hover:bg-accent">
-            <Upload className="h-4 w-4" /> {t('common.import')}
-          </button>
-          <button className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-medium text-gold-foreground">
+          <ImportContactsButton label={t('common.import')} />
+          <a href="/api/admin/crm/export" className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-medium text-gold-foreground hover:opacity-90">
             <Download className="h-4 w-4" /> {t('common.export')}
-          </button>
+          </a>
         </div>
       </div>
 
       {/* Stats bar */}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {[
-          { label: 'Total', value: stats.total },
+          { label: t('crm.totalLabel'), value: stats.total },
           { label: t('contactStatus.client'), value: stats.clients, cls: 'text-green-700' },
           { label: t('contactStatus.lead'), value: stats.leads, cls: 'text-amber-700' },
           { label: t('contactStatus.donateur'), value: stats.donateurs, cls: 'text-blue-700' },
@@ -83,7 +82,7 @@ export default async function CrmPage() {
               <tr>
                 <td colSpan={6} className="py-12 text-center text-muted-foreground">
                   <UserPlus className="mx-auto mb-2 h-8 w-8 opacity-30" />
-                  <p>Aucun contact encore.</p>
+                  <p>{t('crm.emptyState')}</p>
                 </td>
               </tr>
             ) : (

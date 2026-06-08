@@ -1,13 +1,15 @@
 export const dynamic = 'force-dynamic';
 
 import { redirect } from 'next/navigation';
-import { Wine, ScrollText, Star, Plus, AlertTriangle } from 'lucide-react';
+import { Wine, ScrollText, Star, AlertTriangle } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { getAdminLocale } from '@/lib/admin-i18n';
 import { getSession, can } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { products, productTranslations, productVariants } from '../../../../../db/schema';
 import { eq } from 'drizzle-orm';
+import NewProductButton from '@/components/admin/new-product-button';
+import ProductRowActions from '@/components/admin/product-row-actions';
 
 function formatEUR(cents: number): string {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(cents / 100);
@@ -51,15 +53,13 @@ export default async function ProductsPage() {
           <h1 className="font-serif text-3xl font-semibold">{t('products.title')}</h1>
           <p className="text-muted-foreground">{t('products.subtitle', { n: allProducts.length })}</p>
         </div>
-        <button className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-medium text-gold-foreground hover:opacity-90 transition-opacity">
-          <Plus className="h-4 w-4" /> {t('products.new')}
-        </button>
+        <NewProductButton />
       </div>
 
       {lowStockProducts.length > 0 && (
         <div className="flex items-start gap-3 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-800">
           <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0" />
-          <p><strong>{lowStockProducts.length} produit(s)</strong> avec stock faible (&lt; 30 unités).</p>
+          <p>{t('products.lowStock', { n: lowStockProducts.length })}</p>
         </div>
       )}
 
@@ -72,13 +72,14 @@ export default async function ProductsPage() {
               <th className="p-4 text-end">{t('products.colPrice')}</th>
               <th className="p-4 text-end">{t('products.colStock')}</th>
               <th className="p-4 text-center">{t('products.colStatus')}</th>
+              <th className="p-4 text-end">{t('products.colActions')}</th>
             </tr>
           </thead>
           <tbody>
             {allProducts.length === 0 ? (
               <tr>
-                <td colSpan={5} className="py-12 text-center text-muted-foreground">
-                  <p>Aucun produit. Commencez par en ajouter un.</p>
+                <td colSpan={6} className="py-12 text-center text-muted-foreground">
+                  <p>{t('products.empty')}</p>
                 </td>
               </tr>
             ) : (
@@ -110,6 +111,20 @@ export default async function ProductsPage() {
                       <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${p.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-muted text-muted-foreground'}`}>
                         {p.status === 'active' ? t('common.active') : t('common.inactive')}
                       </span>
+                    </td>
+                    <td className="p-4">
+                      <ProductRowActions
+                        id={p.id}
+                        initial={{
+                          name: tr?.name ?? p.slug,
+                          shortDesc: tr?.shortDesc ?? '',
+                          category: p.category,
+                          price: (variant?.price ?? p.basePrice) / 100,
+                          stock: variant?.stock ?? 0,
+                          status: p.status,
+                          featured: p.featured,
+                        }}
+                      />
                     </td>
                   </tr>
                 );

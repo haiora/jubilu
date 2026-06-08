@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { LogIn, LogOut, Package, User, ScrollText, ChevronRight, Loader2, Star, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -17,9 +17,6 @@ const ORDER_STATUS_COLORS: Record<OrderStatus, string> = {
   cancelled: 'bg-red-100 text-red-800',
 };
 
-function formatEUR(cents: number): string {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(cents / 100);
-}
 
 interface ClientOrder {
   id: string;
@@ -43,6 +40,9 @@ interface ClientContact {
 export default function AccountPage() {
   const t = useTranslations('account');
   const tAdmin = useTranslations('admin');
+  const locale = useLocale();
+  const formatEUR = (cents: number) =>
+    new Intl.NumberFormat(locale, { style: 'currency', currency: 'EUR' }).format(cents / 100);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -58,7 +58,7 @@ export default function AccountPage() {
     try {
       const res = await fetch(`/api/client/account?email=${encodeURIComponent(email)}`);
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? 'Email non trouvé');
+      if (!res.ok) throw new Error(data.error ?? t('notFound'));
       setContact(data.contact);
       setOrders(data.orders);
     } catch (err: any) {
@@ -110,12 +110,12 @@ export default function AccountPage() {
               )}
               <Button type="submit" variant="gold" size="lg" className="w-full h-12 text-base shadow-[0_0_20px_-5px_hsl(var(--gold))] hover:shadow-[0_0_30px_-5px_hsl(var(--gold))]" disabled={loading}>
                 {loading ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <LogIn className="mr-2 h-5 w-5" />}
-                {loading ? 'Vérification...' : t('signIn')}
+                {loading ? t('verifying') : t('signIn')}
               </Button>
             </form>
             
             <div className="mt-8 rounded-xl bg-black/20 border border-white/5 p-4 text-xs text-white/50 text-center">
-              Entrez l&apos;email utilisé lors de vos commandes pour voir votre historique.
+              {t('accountHint')}
             </div>
           </div>
         </div>
@@ -124,7 +124,7 @@ export default function AccountPage() {
   }
 
   const memberSince = new Date(contact.createdAt).getFullYear();
-  const statusLabel = contact.status === 'donateur' ? 'Donateur' : contact.status === 'client' ? 'Client' : 'Membre';
+  const statusLabel = contact.status === 'donateur' ? t('statusDonor') : contact.status === 'client' ? t('statusClient') : t('statusMember');
 
   return (
     <section className="min-h-screen bg-background/50">
@@ -155,22 +155,22 @@ export default function AccountPage() {
               <div className="space-y-4">
                 {(contact.firstName || contact.lastName) && (
                   <div>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">Nom</p>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">{t('fieldName')}</p>
                     <p className="text-foreground font-medium">{contact.firstName} {contact.lastName}</p>
                   </div>
                 )}
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">Email</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">{t('fieldEmail')}</p>
                   <p className="text-foreground font-medium">{contact.email}</p>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">Statut</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">{t('fieldStatus')}</p>
                   <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/10 px-3 py-1 text-sm font-medium text-gold border border-gold/20">
                     <Crown className="h-3.5 w-3.5" /> {statusLabel}
                   </span>
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">Membre depuis</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-semibold mb-1">{t('memberSince')}</p>
                   <p className="text-foreground">{memberSince}</p>
                 </div>
               </div>
@@ -178,14 +178,14 @@ export default function AccountPage() {
 
             {/* Stats */}
             <div className="card-elevated p-6">
-              <h3 className="font-semibold mb-4 flex items-center gap-2"><Star className="h-4 w-4 text-gold" /> Mon bilan</h3>
+              <h3 className="font-semibold mb-4 flex items-center gap-2"><Star className="h-4 w-4 text-gold" /> {t('myBalance')}</h3>
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Commandes</span>
+                  <span className="text-muted-foreground">{t('ordersCountLabel')}</span>
                   <span className="font-semibold">{contact.ordersCount}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Total dépensé</span>
+                  <span className="text-muted-foreground">{t('totalSpent')}</span>
                   <span className="font-semibold text-gold">{formatEUR(contact.totalSpent)}</span>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export default function AccountPage() {
                 <Package className="h-12 w-12 text-muted-foreground/30 mb-4" />
                 <p className="text-lg text-muted-foreground">{t('noOrders')}</p>
                 <Button variant="outline" className="mt-6 text-primary border-primary/20" asChild>
-                  <a href="/boutique">Explorer la boutique</a>
+                  <a href="/boutique">{t('exploreShop')}</a>
                 </Button>
               </div>
             ) : (
@@ -212,8 +212,8 @@ export default function AccountPage() {
                   <div key={o.id} className="card-elevated p-0 overflow-hidden group">
                     <div className="flex flex-wrap items-center justify-between bg-accent/20 p-6 border-b border-border/50">
                       <div>
-                        <span className="font-mono text-sm text-muted-foreground">Commande #{o.number}</span>
-                        <p className="font-medium mt-1">{new Date(o.createdAt).toLocaleDateString('fr-FR')}</p>
+                        <span className="font-mono text-sm text-muted-foreground">{t('orderLabel')} #{o.number}</span>
+                        <p className="font-medium mt-1">{new Date(o.createdAt).toLocaleDateString(locale)}</p>
                       </div>
                       <span className={`rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider ${ORDER_STATUS_COLORS[o.status]}`}>
                         {tAdmin(`status.${o.status}`)}
@@ -244,10 +244,10 @@ export default function AccountPage() {
                       
                       <div className="mt-6 pt-6 border-t border-border/50 flex items-center justify-between">
                         <Button variant="link" className="text-primary p-0 h-auto font-medium">
-                          Voir la facture <ChevronRight className="h-4 w-4 ml-1" />
+                          {t('viewInvoice')} <ChevronRight className="h-4 w-4 ml-1" />
                         </Button>
                         <div className="text-right">
-                          <p className="text-sm text-muted-foreground mb-1">Total TTC</p>
+                          <p className="text-sm text-muted-foreground mb-1">{t('totalIncl')}</p>
                           <p className="text-2xl font-semibold text-foreground">{formatEUR(o.total)}</p>
                         </div>
                       </div>

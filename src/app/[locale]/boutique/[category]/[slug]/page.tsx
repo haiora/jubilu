@@ -5,18 +5,11 @@ import Image from 'next/image';
 import { Wine, ScrollText, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { AddToCart } from '@/components/shop/add-to-cart';
-import { PRODUCTS, getProduct, formatPrice } from '@/lib/catalog';
-import { routing, type Locale } from '@/i18n/routing';
+import { getProduct, formatPrice } from '@/lib/catalog';
+import { getStockForSlug } from '@/lib/stock';
+import { type Locale } from '@/i18n/routing';
 
-export function generateStaticParams() {
-  const params: { locale: string; category: string; slug: string }[] = [];
-  for (const locale of routing.locales) {
-    for (const p of PRODUCTS) {
-      params.push({ locale, category: p.category, slug: p.slug });
-    }
-  }
-  return params;
-}
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({
   params: { locale, slug }
@@ -41,6 +34,7 @@ export default async function ProductPage({
   const tr = product.translations[locale as Locale];
   const nav = await getTranslations('nav');
   const Icon = product.icon === 'scroll' ? ScrollText : Wine;
+  const stock = await getStockForSlug(slug);
 
   return (
     <section className="container py-12">
@@ -71,7 +65,7 @@ export default async function ProductPage({
           <p className="mt-6 leading-relaxed text-foreground/90">{tr.long}</p>
 
           <div className="mt-8">
-            <AddToCart slug={product.slug} customizable={product.customizable} />
+            <AddToCart slug={product.slug} customizable={product.customizable} stock={stock ?? undefined} />
           </div>
         </div>
       </div>

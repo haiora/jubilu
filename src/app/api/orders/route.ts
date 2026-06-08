@@ -4,8 +4,8 @@ import { getProduct } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
 import Stripe from 'stripe';
 import { db } from '@/lib/db';
-import { contacts, orders, orderItems } from '../../../../db/schema';
-import { eq } from 'drizzle-orm';
+import { contacts, orders, orderItems, productVariants, stockMovements } from '../../../../db/schema';
+import { eq, sql } from 'drizzle-orm';
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = stripeSecretKey
@@ -50,16 +50,20 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: `product_not_found_${it.slug}` }, { status: 400 });
     }
 
-    // VERIFICATION DU STOCK (DB)
-    const variants = await db.query.productVariants?.findMany({
-      where: (pv, { eq }) => eq(pv.sku, it.slug)
-    });
-    
-    // Si on a un variant en base, on vérifie son stock
-    if (variants && variants.length > 0 && variants[0].stock < it.qty) {
-      return NextResponse.json({ error: `out_of_stock_${it.slug}` }, { status: 400 });
+    // VÉRIFICATION DU STOCK + résolution de la variante réelle en base (liaison commande↔stock)
+    let variantId: string | null = null;
+    if (product.sku) {
+      const [variant] = await db.select().from(productVariants).where(eq(productVariants.sku, product.sku));
+      if (variant) {
+        variantId = variant.id;
+        if (variant.stock < it.qty) {
+          return NextResponse.json({ error: `out_of_stock_${it.slug}` }, { status: 400 });
+        }
+      } else if (product.stock < it.qty) {
+        return NextResponse.json({ error: `out_of_stock_${it.slug}` }, { status: 400 });
+      }
     } else if (product.stock < it.qty) {
-      // Fallback si DB pas synchronisée (mode démo)
+      // Fallback catalogue (produit sans variante en base)
       return NextResponse.json({ error: `out_of_stock_${it.slug}` }, { status: 400 });
     }
 
@@ -81,6 +85,7 @@ export async function POST(request: Request) {
     totalCents += product.price * it.qty;
     parsedItems.push({
       product,
+      variantId,
       nameSnapshot: finalName,
       qty: it.qty,
       customText: it.customText || null
@@ -137,13 +142,40 @@ export async function POST(request: Request) {
       await db.insert(orderItems).values({
         id: `oi_${Date.now()}_${Math.random().toString(36).substring(7)}`,
         orderId,
-        variantId: null, // Would link to real variant ID
+        variantId: it.variantId,
         nameSnapshot: it.nameSnapshot,
         unitPrice: it.product.price,
         qty: it.qty,
         customText: it.customText,
         productionStatus: it.product.category === 'parchemins' ? 'to_produce' : 'ready'
       });
+    }
+
+    // Mode démo (sans Stripe) : la commande est payée immédiatement.
+    // On décrémente le stock et on met à jour le contact (en mode réel, le webhook Stripe s'en charge).
+    if (!stripe) {
+      for (const it of parsedItems) {
+        if (it.variantId) {
+          await db.update(productVariants)
+            .set({ stock: sql`MAX(0, ${productVariants.stock} - ${it.qty})` })
+            .where(eq(productVariants.id, it.variantId));
+          await db.insert(stockMovements).values({
+            id: `sm_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
+            variantId: it.variantId,
+            delta: -it.qty,
+            reason: `order ${orderNumber}`,
+            authorId: null,
+            createdAt: new Date().toISOString(),
+          }).catch(() => {});
+        }
+      }
+      await db.update(contacts)
+        .set({
+          status: 'client',
+          ordersCount: sql`${contacts.ordersCount} + 1`,
+          totalSpent: sql`${contacts.totalSpent} + ${totalCents}`,
+        })
+        .where(eq(contacts.id, contactId));
     }
   } catch (dbErr) {
     console.error('Database insertion error:', dbErr);

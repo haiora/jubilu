@@ -2,8 +2,11 @@ import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/site/page-hero';
 import { ProductCard } from '@/components/shop/product-card';
-import { getProductsByCategory, CATEGORY_ORDER, type ProductCategory } from '@/lib/catalog';
-import { routing, type Locale } from '@/i18n/routing';
+import { getProductsByCategory, type ProductCategory } from '@/lib/catalog';
+import { getStockBySku, effectiveStock } from '@/lib/stock';
+import { type Locale } from '@/i18n/routing';
+
+export const dynamic = 'force-dynamic';
 
 const CATEGORY_KEY: Record<ProductCategory, 'wines' | 'parchments'> = {
   'vin-blanc': 'wines',
@@ -11,16 +14,6 @@ const CATEGORY_KEY: Record<ProductCategory, 'wines' | 'parchments'> = {
   'vin-rose': 'wines',
   parchemins: 'parchments'
 };
-
-export function generateStaticParams() {
-  const params: { locale: string; category: string }[] = [];
-  for (const locale of routing.locales) {
-    for (const category of CATEGORY_ORDER) {
-      params.push({ locale, category });
-    }
-  }
-  return params;
-}
 
 export default async function CategoryPage({
   params: { locale, category }
@@ -34,6 +27,7 @@ export default async function CategoryPage({
   const home = await getTranslations('home');
   const shop = await getTranslations('pages.shop');
   const products = getProductsByCategory(category as ProductCategory);
+  const stockBySku = await getStockBySku();
 
   return (
     <>
@@ -41,7 +35,7 @@ export default async function CategoryPage({
       <section className="container py-16">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
-            <ProductCard key={p.slug} product={p} locale={locale as Locale} />
+            <ProductCard key={p.slug} product={p} locale={locale as Locale} stock={effectiveStock(p, stockBySku)} />
           ))}
         </div>
       </section>

@@ -22,9 +22,9 @@ export default async function SettingsPage() {
   ]);
 
   const integrations = [
-    { name: 'Resend (emails)', ok: Boolean(process.env.RESEND_API_KEY), icon: Mail, hint: process.env.RESEND_API_KEY ? 'Configuré' : 'Ajouter RESEND_API_KEY dans .env' },
-    { name: 'Stripe (paiement)', ok: Boolean(process.env.STRIPE_SECRET_KEY), icon: CreditCard, hint: process.env.STRIPE_SECRET_KEY ? 'Configuré' : 'Ajouter STRIPE_SECRET_KEY dans .env' },
-    { name: 'Cloudflare D1 (base de données)', ok: true, icon: Database, hint: 'local.db actif' },
+    { name: 'Resend (emails)', ok: Boolean(process.env.RESEND_API_KEY), icon: Mail, hint: process.env.RESEND_API_KEY ? t('settings.configured') : t('settings.addKeyHint', { k: 'RESEND_API_KEY' }) },
+    { name: 'Stripe (paiement)', ok: Boolean(process.env.STRIPE_SECRET_KEY), icon: CreditCard, hint: process.env.STRIPE_SECRET_KEY ? t('settings.configured') : t('settings.addKeyHint', { k: 'STRIPE_SECRET_KEY' }) },
+    { name: 'Cloudflare D1 (base de données)', ok: true, icon: Database, hint: t('settings.localDbActive') },
   ];
 
   const roles = Object.keys(ROLE_PERMISSIONS) as Role[];
@@ -91,7 +91,7 @@ export default async function SettingsPage() {
       {/* Admin Users */}
       {adminUsers.length > 0 && (
         <section className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-          <h2 className="font-semibold">Utilisateurs administrateurs</h2>
+          <h2 className="font-semibold">{t('settings.adminUsers')}</h2>
           <ul className="mt-4 divide-y divide-border/60">
             {adminUsers.map((u) => (
               <li key={u.id} className="flex items-center justify-between gap-3 py-3 text-sm">
@@ -101,7 +101,7 @@ export default async function SettingsPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${u.active ? 'bg-green-100 text-green-800' : 'bg-muted text-muted-foreground'}`}>
-                    {u.active ? 'Actif' : 'Inactif'}
+                    {u.active ? t('common.active') : t('common.inactive')}
                   </span>
                 </div>
               </li>
@@ -114,16 +114,16 @@ export default async function SettingsPage() {
       <section className="rounded-2xl border border-border bg-card p-6 shadow-sm">
         <h2 className="flex items-center gap-2 font-semibold"><History className="h-4 w-4" /> {t('settings.audit')}</h2>
         {recentLogs.length === 0 ? (
-          <p className="mt-4 text-sm text-muted-foreground">Aucune action enregistrée pour l&apos;instant.</p>
+          <p className="mt-4 text-sm text-muted-foreground">{t('settings.noAudit')}</p>
         ) : (
           <ul className="mt-4 divide-y divide-border/60">
             {recentLogs.map((log) => (
               <li key={log.id} className="flex flex-wrap items-center justify-between gap-2 py-3 text-sm">
                 <span>
-                  <strong>{log.userId ?? 'Système'}</strong> · {log.action}
+                  <strong>{log.userId ?? t('settings.system')}</strong> · {log.action}
                   {log.entity && <span className="text-muted-foreground"> ({log.entity})</span>}
                 </span>
-                <span className="font-mono text-xs text-muted-foreground">{new Date(log.createdAt).toLocaleString('fr-FR')}</span>
+                <span className="font-mono text-xs text-muted-foreground">{new Date(log.createdAt).toLocaleString(getAdminLocale())}</span>
               </li>
             ))}
           </ul>

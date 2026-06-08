@@ -9,7 +9,15 @@
     "lint": "next lint",
     "db:generate": "drizzle-kit generate",
     "db:studio": "drizzle-kit studio",
-    "test": "vitest run"
+    "db:seed": "tsx db/seed.ts",
+    "db:seed:demo": "tsx db/seed-demo.ts",
+    "test": "vitest run",
+    "cf:login": "wrangler login",
+    "cf:d1:create": "wrangler d1 create jubilee-db",
+    "cf:d1:migrate": "wrangler d1 migrations apply jubilee-db --remote",
+    "cf:build": "npx @cloudflare/next-on-pages",
+    "cf:deploy": "wrangler pages deploy .vercel/output/static --project-name=jubilee-israel",
+    "cf:preview": "wrangler pages dev .vercel/output/static"
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
@@ -31,6 +39,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.16",
     "@cloudflare/workers-types": "^4.20260607.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -49,6 +58,7 @@
     "tailwindcss-animate": "1.0.7",
     "tsx": "^4.22.4",
     "typescript": "5.5.4",
-    "vitest": "^4.1.8"
+    "vitest": "^4.1.8",
+    "wrangler": "^4.98.0"
   }
 }

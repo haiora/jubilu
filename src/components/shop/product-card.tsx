@@ -1,12 +1,18 @@
 import { Wine, ScrollText, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { formatPrice, type Product } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
 
-export function ProductCard({ product, locale }: { product: Product; locale: Locale }) {
+const LOW_STOCK = 10;
+
+export async function ProductCard({ product, locale, stock }: { product: Product; locale: Locale; stock?: number }) {
   const tr = product.translations[locale];
   const Icon = product.icon === 'scroll' ? ScrollText : Wine;
+  const t = await getTranslations('cart');
+  const isOut = typeof stock === 'number' && stock <= 0;
+  const isLow = typeof stock === 'number' && stock > 0 && stock <= LOW_STOCK;
 
   return (
     <Link
@@ -21,9 +27,19 @@ export function ProductCard({ product, locale }: { product: Product; locale: Loc
             <Icon className="h-9 w-9" />
           </div>
         )}
-        {product.featured && (
+        {product.featured && !isOut && (
           <span className="absolute end-3 top-3 rounded-full bg-gold px-3 py-1 text-xs font-semibold text-gold-foreground">
             ★
+          </span>
+        )}
+        {isOut && (
+          <span className="absolute end-3 top-3 z-20 rounded-full bg-red-600 px-3 py-1 text-xs font-semibold text-white">
+            {t('outOfStock')}
+          </span>
+        )}
+        {isLow && (
+          <span className="absolute end-3 top-3 z-20 rounded-full bg-amber-500 px-3 py-1 text-xs font-semibold text-white">
+            {t('lowStock', { n: stock })}
           </span>
         )}
       </div>

@@ -11,6 +11,14 @@ export interface SendEmailInput {
   replyTo?: string;
 }
 
+/**
+ * Build a one-click unsubscribe URL for a given recipient email.
+ */
+export function unsubscribeUrl(email: string, locale = 'fr'): string {
+  const token = Buffer.from(email, 'utf8').toString('base64url');
+  return `${websiteUrl}/${locale}/desabonnement?token=${token}`;
+}
+
 export async function sendEmail({ to, subject, html, replyTo }: SendEmailInput) {
   if (!apiKey) {
     console.warn('[email] RESEND_API_KEY absent — email non envoyé (mode démo) :', { to, subject });
@@ -40,9 +48,19 @@ const COLOR_GOLD = '#cf9d4f';
 const COLOR_BG = '#f7f4ee';
 const COLOR_TEXT = '#384a63';
 
-function buildLayout(title: string, content: string, locale: string): string {
+const UNSUB_LABEL: Record<string, string> = {
+  fr: 'Se désabonner',
+  en: 'Unsubscribe',
+  es: 'Darse de baja',
+  he: 'הסרה מרשימת התפוצה'
+};
+
+function buildLayout(title: string, content: string, locale: string, unsub?: string): string {
   const dir = locale === 'he' ? 'rtl' : 'ltr';
   const align = locale === 'he' ? 'right' : 'left';
+  const unsubHtml = unsub
+    ? `<p style="margin:12px 0 0;"><a href="${unsub}" style="color:#8a8170;text-decoration:underline;">${UNSUB_LABEL[locale] ?? UNSUB_LABEL.fr}</a></p>`
+    : '';
   
   const signature = {
     fr: "Avec toute notre gratitude,<br/><strong>L'équipe de Jubilé depuis Jérusalem</strong>",
@@ -91,6 +109,7 @@ function buildLayout(title: string, content: string, locale: string): string {
             <td style="padding:24px 40px;background:${COLOR_BG};text-align:center;font-size:13px;color:#8a8170;line-height:1.5;">
               <p style="margin:0 0 12px;font-family:Georgia,serif;color:${COLOR_GOLD};font-size:14px;font-style:italic;">${verse}</p>
               <p style="margin:0;"><a href="${websiteUrl}" style="color:#8a8170;text-decoration:none;">${websiteUrl.replace('https://','')}</a></p>
+              ${unsubHtml}
             </td>
           </tr>
         </table>
@@ -104,7 +123,7 @@ function buildLayout(title: string, content: string, locale: string): string {
 // ------------------------------------------
 // 1. WELCOME / NEWSLETTER EMAIL
 // ------------------------------------------
-export function getWelcomeEmail(locale: string, name?: string): { subject: string, html: string } {
+export function getWelcomeEmail(locale: string, name?: string, email?: string): { subject: string, html: string } {
   const translations = {
     fr: {
       subject: "Bienvenue dans la famille Jubilé",
@@ -151,7 +170,7 @@ export function getWelcomeEmail(locale: string, name?: string): { subject: strin
 
   return {
     subject: t.subject,
-    html: buildLayout(t.title, t.body, locale)
+    html: buildLayout(t.title, t.body, locale, email ? unsubscribeUrl(email, locale) : undefined)
   };
 }
 

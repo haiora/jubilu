@@ -1,5 +1,6 @@
 # Configuration Cloudflare Pages + Workers pour Jubilé.
-name = "jubilee-platform"
+# Nom du projet Cloudflare Pages (URL : https://jubilee-israel.pages.dev)
+name = "jubilee-israel"
 compatibility_date = "2024-07-29"
 compatibility_flags = ["nodejs_compat"]
 
@@ -10,7 +11,7 @@ pages_build_output_dir = ".vercel/output/static"
 [[d1_databases]]
 binding = "DB"
 database_name = "jubilee-db"
-database_id = "REMPLACER_PAR_VOTRE_DATABASE_ID"
+database_id = "6c438549-8a51-491a-98f5-61625057c050"
 
 # Stockage R2 pour les médias produits / parchemins
 [[r2_buckets]]

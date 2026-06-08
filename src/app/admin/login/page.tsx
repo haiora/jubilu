@@ -50,7 +50,7 @@ export default function AdminLoginPage() {
             <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gold/10 border border-gold/20 text-gold shadow-inner">
               <LockKeyhole className="h-8 w-8" />
             </div>
-            <h1 className="font-serif text-3xl font-semibold text-white tracking-wide">Administration</h1>
+            <h1 className="font-serif text-3xl font-semibold text-white tracking-wide">{t('common.administration')}</h1>
             <p className="mt-2 text-white/60">{t('login.subtitle')}</p>
           </div>
           
@@ -77,8 +77,8 @@ export default function AdminLoginPage() {
           </form>
           
           <div className="mt-8 rounded-xl bg-black/30 border border-white/5 p-4 text-center text-xs text-white/50 leading-relaxed">
-            Accès sécurisé réservé au personnel de Jubilé.<br/>
-            (Démo : <strong>admin@jubilee-israel.org</strong> / <strong>admin123</strong>)
+            {t('login.securedAccess')}<br/>
+            {t('login.demoHint', { email: 'admin@jubilee-israel.org', password: 'admin123' })}
           </div>
         </div>
       </div>

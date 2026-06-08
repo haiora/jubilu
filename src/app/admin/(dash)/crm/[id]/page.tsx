@@ -6,8 +6,10 @@ import { getTranslations } from 'next-intl/server';
 import { getAdminLocale } from '@/lib/admin-i18n';
 import { getSession, can } from '@/lib/auth';
 import { db } from '@/lib/db';
-import { contacts, orders, contactNotes } from '../../../../../../db/schema';
+import { contacts, orders, contactNotes, contactTags, tags as tagsTable } from '../../../../../../db/schema';
 import { eq, desc } from 'drizzle-orm';
+import AddNoteForm from '@/components/admin/add-note-form';
+import ContactTags from '@/components/admin/contact-tags';
 
 function formatEUR(cents: number): string {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(cents / 100);
@@ -25,18 +27,23 @@ const ORDER_STATUS_COLORS: Record<string, string> = {
 export default async function ContactDetailPage({ params }: { params: { id: string } }) {
   const session = getSession();
   if (!can(session, 'crm')) redirect('/admin');
-  const t = await getTranslations({ locale: getAdminLocale(), namespace: 'admin' });
+  const locale = getAdminLocale();
+  const t = await getTranslations({ locale, namespace: 'admin' });
 
   const [contact] = await db.select().from(contacts).where(eq(contacts.id, params.id));
   if (!contact) notFound();
 
-  const [contactOrders, rawNotes] = await Promise.all([
+  const [contactOrders, rawNotes, tagRows] = await Promise.all([
     db.select().from(orders).where(eq(orders.contactId, contact.id)).orderBy(desc(orders.createdAt)),
-    db.select().from(contactNotes).where(eq(contactNotes.contactId, contact.id)).orderBy(desc(contactNotes.createdAt))
+    db.select().from(contactNotes).where(eq(contactNotes.contactId, contact.id)).orderBy(desc(contactNotes.createdAt)),
+    db
+      .select({ name: tagsTable.name })
+      .from(contactTags)
+      .innerJoin(tagsTable, eq(contactTags.tagId, tagsTable.id))
+      .where(eq(contactTags.contactId, contact.id))
   ]);
 
-  // FIXME: Add tags query when needed
-  const tags: string[] = [];
+  const tags: string[] = tagRows.map(row => row.name);
   const notes = rawNotes.map(n => n.body);
 
   return (
@@ -50,14 +57,17 @@ export default async function ContactDetailPage({ params }: { params: { id: stri
           <h1 className="font-serif text-3xl font-semibold">{contact.firstName} {contact.lastName}</h1>
           <p className="text-muted-foreground">
             {t('contact.clientSince', { 
-              d: new Date(contact.createdAt).toLocaleDateString('fr-FR'), 
+              d: new Date(contact.createdAt).toLocaleDateString(locale), 
               s: contact.source ?? 'inconnu'
             })}
           </p>
         </div>
-        <button className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-medium text-gold-foreground transition-opacity hover:opacity-90">
+        <a
+          href={`mailto:${contact.email}`}
+          className="inline-flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-medium text-gold-foreground transition-opacity hover:opacity-90"
+        >
           <Mail className="h-4 w-4" /> {t('contact.sendEmail')}
-        </button>
+        </a>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -79,11 +89,12 @@ export default async function ContactDetailPage({ params }: { params: { id: stri
 
           <div className="rounded-2xl border border-border bg-card p-5 shadow-sm">
             <h2 className="mb-3 flex items-center gap-2 font-semibold"><Tag className="h-4 w-4" /> {t('contact.tags')}</h2>
-            <div className="flex flex-wrap gap-2">
-              {tags.map((tag: string) => <span key={tag} className="rounded-full bg-accent px-3 py-1 text-xs text-primary">{tag}</span>)}
-              {tags.length === 0 && <span className="text-xs text-muted-foreground italic">Aucun tag</span>}
-              <button className="rounded-full border border-dashed border-border px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent">{t('contact.add')}</button>
-            </div>
+            <ContactTags
+              contactId={contact.id}
+              initialTags={tags}
+              addLabel={t('contact.add')}
+              emptyLabel="Aucun tag"
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
@@ -112,7 +123,7 @@ export default async function ContactDetailPage({ params }: { params: { id: stri
                   <li key={o.id} className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border/60 p-3 text-sm hover:bg-accent/30 transition-colors">
                     <div>
                       <span className="font-mono text-xs font-semibold">{o.number}</span>
-                      <span className="ms-3 text-muted-foreground">{new Date(o.createdAt).toLocaleDateString('fr-FR')}</span>
+                      <span className="ms-3 text-muted-foreground">{new Date(o.createdAt).toLocaleDateString(locale)}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${ORDER_STATUS_COLORS[o.status]}`}>{t(`status.${o.status}`)}</span>
@@ -135,7 +146,7 @@ export default async function ContactDetailPage({ params }: { params: { id: stri
             ) : (
               <p className="text-sm text-muted-foreground italic mb-2">{t('contact.noNotes')}</p>
             )}
-            <textarea rows={2} placeholder={t('contact.addNote')} className="mt-3 w-full rounded-xl border border-input bg-card px-4 py-3 text-sm outline-none ring-gold focus:ring-2 resize-none" />
+            <AddNoteForm contactId={contact.id} placeholder={t('contact.addNote')} />
           </div>
         </div>
       </div>

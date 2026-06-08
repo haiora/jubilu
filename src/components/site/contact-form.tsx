@@ -7,16 +7,15 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-const contactSchema = z.object({
-  firstName: z.string().min(2, 'Le prénom doit contenir au moins 2 caractères.'),
-  lastName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères.'),
-  email: z.string().email('Adresse email invalide.'),
-  subject: z.string().optional(),
-  message: z.string().min(10, 'Le message doit contenir au moins 10 caractères.'),
-});
-
 export function ContactForm() {
   const t = useTranslations('pages.contact');
+  const contactSchema = z.object({
+    firstName: z.string().min(2, t('errFirstName')),
+    lastName: z.string().min(2, t('errLastName')),
+    email: z.string().email(t('errEmail')),
+    subject: z.string().optional(),
+    message: z.string().min(10, t('errMessage')),
+  });
   const locale = useLocale();
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -48,12 +47,12 @@ export function ContactForm() {
       });
       if (!res.ok) throw new Error('failed');
       
-      toast.success('Message envoyé !', {
-        description: t('infoText')
+      toast.success(t('success'), {
+        description: t('successText')
       });
       (e.target as HTMLFormElement).reset();
     } catch {
-      toast.error('Erreur', {
+      toast.error(t('error'), {
         description: t('error')
       });
     } finally {
@@ -95,7 +94,7 @@ export function ContactForm() {
       {/* Honeypot anti-spam */}
       <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
       <Button type="submit" variant="gold" size="lg" className="w-full sm:w-auto" disabled={submitting}>
-        {submitting ? 'Envoi...' : t('send')} <Send className="h-4 w-4" />
+        {submitting ? t('sending') : t('send')} <Send className="h-4 w-4" />
       </Button>
     </form>
   );

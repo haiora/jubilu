@@ -34,7 +34,13 @@
     "backHome": "חזרה לדף הבית",
     "cookieText": "אנו משתמשים בעוגיות כדי לשפר את חוויית הגלישה ולמדוד את הקהל שלנו.",
     "cookieAccept": "אישור",
-    "cookieDecline": "סירוב"
+    "cookieDecline": "סירוב",
+    "loading": "טוען…",
+    "errorTitle": "אירעה שגיאה בלתי צפויה",
+    "errorText": "אנו מצטערים, תקלה טכנית מנעה את הצגת הדף הזה.",
+    "retry": "נסה שוב",
+    "genericError": "שגיאה",
+    "formIncomplete": "אנא מלא את כל שדות החובה."
   },
   "home": {
     "hero": {
@@ -149,7 +155,14 @@
       "send": "שליחה",
       "infoTitle": "פרטי קשר",
       "infoText": "נחזור אליכם בהקדם האפשרי.",
-      "error": "אירעה שגיאה. אנא נסה שנית."
+      "error": "אירעה שגיאה. אנא נסה שנית.",
+      "success": "ההודעה נשלחה!",
+      "successText": "נחזור אליכם בהקדם האפשרי.",
+      "sending": "שולח…",
+      "errFirstName": "השם הפרטי חייב להכיל לפחות 2 תווים.",
+      "errLastName": "שם המשפחה חייב להכיל לפחות 2 תווים.",
+      "errEmail": "כתובת אימייל לא תקינה.",
+      "errMessage": "ההודעה חייבת להכיל לפחות 10 תווים."
     },
     "faq": {
       "badge": "שאלות נפוצות",
@@ -238,7 +251,32 @@
     "noOrders": "אין הזמנות המשויכות לדוא\"ל זה.",
     "profile": "הפרטים שלי",
     "logout": "התנתקות",
-    "demoNote": "הדגמה: הזינו דוא\"ל של לקוח (למשל marie.lefevre@example.com) כדי לראות היסטוריית הזמנות."
+    "demoNote": "הדגמה: הזינו דוא\"ל של לקוח (למשל marie.lefevre@example.com) כדי לראות היסטוריית הזמנות.",
+    "verifying": "מאמת…",
+    "accountHint": "הזינו את הדוא\"ל ששימש בהזמנות שלכם כדי לראות את ההיסטוריה.",
+    "notFound": "הדוא\"ל לא נמצא",
+    "fieldName": "שם",
+    "fieldEmail": "דוא\"ל",
+    "fieldStatus": "סטטוס",
+    "memberSince": "חבר מאז",
+    "statusDonor": "תורם",
+    "statusClient": "לקוח",
+    "statusMember": "חבר",
+    "myBalance": "הסיכום שלי",
+    "ordersCountLabel": "הזמנות",
+    "totalSpent": "סך ההוצאות",
+    "exploreShop": "לחנות",
+    "orderLabel": "הזמנה",
+    "viewInvoice": "צפייה בחשבונית",
+    "totalIncl": "סה\"כ כולל מע\"מ"
+  },
+  "unsubscribe": {
+    "title": "הסרה מרשימת התפוצה",
+    "processing": "מעבד את בקשתכם…",
+    "done": "הוסרתם מרשימת התפוצה",
+    "doneText": "לא תקבלו עוד מאיתנו מיילים. תוכלו להירשם מחדש בכל עת דרך האתר.",
+    "error": "קישור לא תקין או שפג תוקפו.",
+    "backHome": "חזרה לדף הבית"
   },
   "cart": {
     "title": "סל הקניות שלכם",
@@ -256,6 +294,8 @@
     "customTextLabel": "הטקסט לכתיבה בכתב יד",
     "customTextPlaceholder": "הזינו את הפסוק, הברכה או השם לכתיבה…",
     "customTextRequired": "אנא הזינו את הטקסט לכתיבה בכתב יד.",
+    "outOfStock": "אזל מהמלאי",
+    "lowStock": "נותרו {n} במלאי בלבד",
     "count": "{count, plural, =0 {סל ריק} one {פריט #} two {# פריטים} other {# פריטים}}"
   },
   "checkout": {
@@ -295,18 +335,20 @@
   "admin": {
     "language": "שפה",
     "nav": { "dashboard": "לוח בקרה", "orders": "הזמנות", "products": "מוצרים", "stock": "מלאי", "crm": "CRM / אנשי קשר", "campaigns": "קמפיינים", "settings": "הגדרות" },
-    "common": { "logout": "התנתקות", "viewSite": "צפייה באתר", "administration": "ניהול", "new": "חדש", "import": "ייבוא CSV", "export": "ייצוא CSV", "all": "הכול", "units": "יחידות", "active": "פעיל" },
-    "login": { "subtitle": "אזור הניהול", "email": "דוא\"ל", "password": "סיסמה", "signIn": "כניסה", "demo": "הדגמה", "error": "פרטי התחברות שגויים." },
+    "common": { "logout": "התנתקות", "viewSite": "צפייה באתר", "administration": "ניהול", "new": "חדש", "import": "ייבוא CSV", "export": "ייצוא CSV", "all": "הכול", "units": "יחידות", "active": "פעיל", "inactive": "לא פעיל", "standard": "סטנדרט", "cancel": "ביטול" },
+    "login": { "subtitle": "אזור הניהול", "email": "דוא\"ל", "password": "סיסמה", "signIn": "כניסה", "demo": "הדגמה", "error": "פרטי התחברות שגויים.", "securedAccess": "גישה מאובטחת לצוות יובל בלבד.", "demoHint": "הדגמה: {email} / {password}" },
     "dashboard": { "title": "לוח בקרה", "subtitle": "סקירת הפעילות של יוּבּל.", "revenue": "הכנסות", "revenueHint": "הזמנות ששולמו", "orders": "הזמנות", "avgCartHint": "סל ממוצע {v}", "contacts": "אנשי קשר", "newContactsHint": "{n} חדשים ב-2026", "openRate": "שיעור פתיחה", "emailsSentHint": "{n} מיילים נשלחו", "byStatus": "הזמנות לפי סטטוס", "campaignPerf": "ביצועי קמפיינים", "recentOrders": "הזמנות אחרונות", "colNumber": "מס׳", "colCustomer": "לקוח", "colStatus": "סטטוס", "colTotal": "סה\"כ" },
-    "orders": { "title": "הזמנות", "subtitle": "{n} הזמנות — מהכנה ועד משלוח." },
+    "orders": { "title": "הזמנות", "subtitle": "{n} הזמנות — מהכנה ועד משלוח.", "empty": "אין הזמנות עדיין.", "shippingIncluded": "כולל {v} משלוח" },
     "status": { "pending": "ממתינה", "paid": "שולמה", "prepared": "הוכנה", "shipped": "נשלחה", "delivered": "נמסרה", "cancelled": "בוטלה" },
-    "products": { "title": "מוצרים", "subtitle": "{n} מוצרים — יינות ומגילות קלף.", "new": "מוצר חדש", "colProduct": "מוצר", "colCategory": "קטגוריה", "colPrice": "מחיר", "colStock": "מלאי", "colStatus": "סטטוס" },
-    "stock": { "title": "מלאי", "subtitle": "רמות מלאי והתראות חידוש.", "alert": "{n} מוצר(ים) מתחת לסף ההתראה ({s} יחידות): כדאי לחדש מלאי." },
-    "crm": { "title": "CRM / אנשי קשר", "subtitle": "{n} אנשי קשר — לקוחות, לידים ותורמים.", "colContact": "איש קשר", "colCountry": "מדינה", "colStatus": "סטטוס", "colTags": "תגיות", "colConsent": "הסכמה", "colTotal": "סך הוצאות" },
+    "production": { "to_produce": "לייצור", "in_production": "בייצור", "quality_check": "בקרת איכות", "ready": "מוכן", "shipped": "נשלח" },
+    "products": { "title": "מוצרים", "subtitle": "{n} מוצרים — יינות ומגילות קלף.", "new": "מוצר חדש", "colProduct": "מוצר", "colCategory": "קטגוריה", "colPrice": "מחיר", "colStock": "מלאי", "colStatus": "סטטוס", "colActions": "פעולות", "lowStock": "{n} מוצר(ים) עם מלאי נמוך (< 30 יחידות).", "empty": "אין מוצרים. התחילו בהוספת מוצר." },
+    "productForm": { "title": "מוצר חדש", "name": "שם המוצר", "shortDesc": "תיאור קצר", "category": "קטגוריה", "wine": "יין", "parchment": "מגילת קלף", "price": "מחיר (€)", "stock": "מלאי התחלתי", "status": "סטטוס", "statusActive": "פעיל", "statusDraft": "טיוטה", "featured": "הדגשה", "submit": "יצירת מוצר", "submitting": "יוצר…", "success": "המוצר נוצר!", "errRequired": "נדרשים שם ומחיר תקין.", "editTitle": "עריכת מוצר", "save": "שמירה", "saving": "שומר…", "saved": "נשמר!", "edit": "עריכה", "delete": "מחיקה", "deleting": "מוחק…", "deleteConfirm": "למחוק לצמיתות את המוצר?" },
+    "stock": { "title": "מלאי", "subtitle": "רמות מלאי והתראות חידוש.", "alert": "{n} מוצר(ים) מתחת לסף ההתראה ({s} יחידות): כדאי לחדש מלאי.", "totalLabel": "סה\"כ מלאי", "alertRefs": "פריטים בהתראה", "empty": "אין מוצרים במסד הנתונים." },
+    "crm": { "title": "CRM / אנשי קשר", "subtitle": "{n} אנשי קשר — לקוחות, לידים ותורמים.", "colContact": "איש קשר", "colCountry": "מדינה", "colStatus": "סטטוס", "colTags": "תגיות", "colConsent": "הסכמה", "colTotal": "סך הוצאות", "colOrders": "הזמנות", "emptyState": "אין אנשי קשר עדיין.", "totalLabel": "סך הכול" },
     "contactStatus": { "client": "לקוח", "lead": "ליד", "donateur": "תורם" },
     "contact": { "back": "חזרה לאנשי קשר", "clientSince": "לקוח מאז {d} · מקור: {s}", "sendEmail": "שליחת דוא\"ל", "details": "פרטי קשר", "tags": "תגיות", "add": "+ הוספה", "ordersCount": "הזמנות", "totalSpent": "סך הוצאות", "history": "היסטוריית הזמנות", "noOrders": "אין הזמנות עדיין.", "notes": "הערות פנימיות", "noNotes": "אין הערות.", "addNote": "הוספת הערה…" },
-    "campaigns": { "title": "קמפיינים", "subtitle": "נשלח באמצעות Resend — התוכן נכתב על ידי הצוות.", "new": "קמפיין חדש", "sent": "נשלח", "scheduled": "מתוזמן", "draft": "טיוטה", "mSent": "נשלחו", "mDelivered": "נמסרו", "mOpened": "פתיחות", "mClicked": "קליקים", "mUnsub": "הסרות", "scheduledFor": "מתוזמן ל-{d}", "draftHint": "טיוטה — להשלמה ותזמון." },
-    "settings": { "title": "הגדרות", "subtitle": "אינטגרציות, תפקידים ויומן פעילות.", "integrations": "אינטגרציות", "configured": "מוגדר", "toConfigure": "להגדרה (חסר מפתח)", "rolesPerms": "תפקידים והרשאות", "colRole": "תפקיד", "audit": "יומן ביקורת" },
+    "campaigns": { "title": "קמפיינים", "subtitle": "נשלח באמצעות Resend — התוכן נכתב על ידי הצוות.", "new": "קמפיין חדש", "sent": "נשלח", "scheduled": "מתוזמן", "draft": "טיוטה", "mSent": "נשלחו", "mDelivered": "נמסרו", "mOpened": "פתיחות", "mClicked": "קליקים", "mUnsub": "הסרות", "scheduledFor": "מתוזמן ל-{d}", "draftHint": "טיוטה — להשלמה ותזמון.", "sendNow": "שליחה עכשיו", "audience": "קהל זמין", "withConsent": "אנשי קשר עם הסכמה לדוא\"ל", "empty": "אין קמפיינים עדיין. צרו את הקמפיין הראשון שלכם.", "noSent": "טרם נשלחו קמפיינים." },
+    "settings": { "title": "הגדרות", "subtitle": "אינטגרציות, תפקידים ויומן פעילות.", "integrations": "אינטגרציות", "configured": "מוגדר", "toConfigure": "להגדרה (חסר מפתח)", "rolesPerms": "תפקידים והרשאות", "colRole": "תפקיד", "audit": "יומן ביקורת", "adminUsers": "משתמשי ניהול", "localDbActive": "local.db פעיל", "addKeyHint": "הוסיפו {k} ב-.env", "noAudit": "טרם נרשמה פעולה.", "system": "מערכת" },
     "roles": { "super_admin": "מנהל-על", "admin": "מנהל", "shop": "ניהול חנות", "crm": "ניהול CRM", "content": "ניהול תוכן", "marketing": "ניהול שיווק", "support": "תמיכה" },
     "perms": { "dashboard": "לוח בקרה", "orders": "הזמנות", "stock": "מלאי", "products": "מוצרים", "crm": "CRM", "clients": "לקוחות", "campaigns": "קמפיינים", "settings": "הגדרות" }
   }

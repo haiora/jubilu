@@ -34,7 +34,13 @@
     "backHome": "Volver al inicio",
     "cookieText": "Usamos cookies para mejorar su experiencia y medir nuestra audiencia.",
     "cookieAccept": "Aceptar",
-    "cookieDecline": "Rechazar"
+    "cookieDecline": "Rechazar",
+    "loading": "Cargando…",
+    "errorTitle": "Se produjo un error inesperado",
+    "errorText": "Lo sentimos, un error técnico impidió mostrar esta página.",
+    "retry": "Reintentar",
+    "genericError": "Error",
+    "formIncomplete": "Por favor, complete todos los campos obligatorios."
   },
   "home": {
     "hero": {
@@ -149,7 +155,14 @@
       "send": "Enviar",
       "infoTitle": "Datos de contacto",
       "infoText": "Le responderemos lo antes posible.",
-      "error": "Ocurrió un error. Por favor inténtelo de nuevo."
+      "error": "Ocurrió un error. Por favor inténtelo de nuevo.",
+      "success": "¡Mensaje enviado!",
+      "successText": "Le responderemos lo antes posible.",
+      "sending": "Enviando…",
+      "errFirstName": "El nombre debe tener al menos 2 caracteres.",
+      "errLastName": "El apellido debe tener al menos 2 caracteres.",
+      "errEmail": "Dirección de correo no válida.",
+      "errMessage": "El mensaje debe tener al menos 10 caracteres."
     },
     "faq": {
       "badge": "Preguntas frecuentes",
@@ -238,7 +251,32 @@
     "noOrders": "No hay pedidos vinculados a este correo.",
     "profile": "Mi información",
     "logout": "Cerrar sesión",
-    "demoNote": "Demostración: introduzca el correo de un cliente (p. ej. marie.lefevre@example.com) para ver el historial."
+    "demoNote": "Demostración: introduzca el correo de un cliente (p. ej. marie.lefevre@example.com) para ver el historial.",
+    "verifying": "Verificando…",
+    "accountHint": "Introduzca el correo que utilizó en sus pedidos para ver su historial.",
+    "notFound": "Correo no encontrado",
+    "fieldName": "Nombre",
+    "fieldEmail": "Correo",
+    "fieldStatus": "Estado",
+    "memberSince": "Miembro desde",
+    "statusDonor": "Donante",
+    "statusClient": "Cliente",
+    "statusMember": "Miembro",
+    "myBalance": "Mi resumen",
+    "ordersCountLabel": "Pedidos",
+    "totalSpent": "Total gastado",
+    "exploreShop": "Explorar la tienda",
+    "orderLabel": "Pedido",
+    "viewInvoice": "Ver factura",
+    "totalIncl": "Total con IVA"
+  },
+  "unsubscribe": {
+    "title": "Baja de suscripción",
+    "processing": "Procesando su solicitud…",
+    "done": "Se ha dado de baja",
+    "doneText": "Ya no recibirá nuestros correos. Puede volver a suscribirse en cualquier momento desde el sitio.",
+    "error": "Enlace no válido o caducado.",
+    "backHome": "Volver al inicio"
   },
   "cart": {
     "title": "Su carrito",
@@ -256,6 +294,8 @@
     "customTextLabel": "Texto a caligrafiar",
     "customTextPlaceholder": "Escriba el versículo, la bendición o el nombre a inscribir…",
     "customTextRequired": "Por favor, escriba el texto a caligrafiar.",
+    "outOfStock": "Agotado",
+    "lowStock": "Solo quedan {n} en stock",
     "count": "{count, plural, =0 {Carrito vacío} one {# artículo} other {# artículos}}"
   },
   "checkout": {
@@ -295,18 +335,20 @@
   "admin": {
     "language": "Idioma",
     "nav": { "dashboard": "Panel", "orders": "Pedidos", "products": "Productos", "stock": "Stock", "crm": "CRM / Contactos", "campaigns": "Campañas", "settings": "Ajustes" },
-    "common": { "logout": "Cerrar sesión", "viewSite": "Ver el sitio", "administration": "Administración", "new": "Nuevo", "import": "Importar CSV", "export": "Exportar CSV", "all": "Todos", "units": "unidades", "active": "Activo" },
-    "login": { "subtitle": "Área de administración", "email": "Correo", "password": "Contraseña", "signIn": "Iniciar sesión", "demo": "Demo", "error": "Credenciales no válidas." },
+    "common": { "logout": "Cerrar sesión", "viewSite": "Ver el sitio", "administration": "Administración", "new": "Nuevo", "import": "Importar CSV", "export": "Exportar CSV", "all": "Todos", "units": "unidades", "active": "Activo", "inactive": "Inactivo", "standard": "Estándar", "cancel": "Cancelar" },
+    "login": { "subtitle": "Área de administración", "email": "Correo", "password": "Contraseña", "signIn": "Iniciar sesión", "demo": "Demo", "error": "Credenciales no válidas.", "securedAccess": "Acceso seguro reservado al personal de Jubileo.", "demoHint": "Demo: {email} / {password}" },
     "dashboard": { "title": "Panel", "subtitle": "Visión general de la actividad de Jubileo.", "revenue": "Facturación", "revenueHint": "Pedidos pagados", "orders": "Pedidos", "avgCartHint": "Cesta media {v}", "contacts": "Contactos", "newContactsHint": "{n} nuevos en 2026", "openRate": "Tasa de apertura", "emailsSentHint": "{n} correos enviados", "byStatus": "Pedidos por estado", "campaignPerf": "Rendimiento de campañas", "recentOrders": "Últimos pedidos", "colNumber": "N.º", "colCustomer": "Cliente", "colStatus": "Estado", "colTotal": "Total" },
-    "orders": { "title": "Pedidos", "subtitle": "{n} pedidos — de la preparación a la entrega." },
+    "orders": { "title": "Pedidos", "subtitle": "{n} pedidos — de la preparación a la entrega.", "empty": "Aún no hay pedidos.", "shippingIncluded": "incl. {v} de envío" },
     "status": { "pending": "Pendiente", "paid": "Pagado", "prepared": "Preparado", "shipped": "Enviado", "delivered": "Entregado", "cancelled": "Cancelado" },
-    "products": { "title": "Productos", "subtitle": "{n} productos — vinos y pergaminos.", "new": "Nuevo producto", "colProduct": "Producto", "colCategory": "Categoría", "colPrice": "Precio", "colStock": "Stock", "colStatus": "Estado" },
-    "stock": { "title": "Stock", "subtitle": "Niveles de stock y alertas de reposición.", "alert": "{n} producto(s) por debajo del umbral de alerta ({s} unidades): considere reponer." },
-    "crm": { "title": "CRM / Contactos", "subtitle": "{n} contactos — clientes, prospectos y donantes.", "colContact": "Contacto", "colCountry": "País", "colStatus": "Estado", "colTags": "Etiquetas", "colConsent": "Consent.", "colTotal": "Total gastado" },
+    "production": { "to_produce": "Por producir", "in_production": "En producción", "quality_check": "Control de calidad", "ready": "Listo", "shipped": "Enviado" },
+    "products": { "title": "Productos", "subtitle": "{n} productos — vinos y pergaminos.", "new": "Nuevo producto", "colProduct": "Producto", "colCategory": "Categoría", "colPrice": "Precio", "colStock": "Stock", "colStatus": "Estado", "colActions": "Acciones", "lowStock": "{n} producto(s) con stock bajo (< 30 unidades).", "empty": "No hay productos. Empiece por añadir uno." },
+    "productForm": { "title": "Nuevo producto", "name": "Nombre del producto", "shortDesc": "Descripción corta", "category": "Categoría", "wine": "Vino", "parchment": "Pergamino", "price": "Precio (€)", "stock": "Stock inicial", "status": "Estado", "statusActive": "Activo", "statusDraft": "Borrador", "featured": "Destacar", "submit": "Crear producto", "submitting": "Creando…", "success": "¡Producto creado!", "errRequired": "Se requiere un nombre y un precio válido.", "editTitle": "Editar producto", "save": "Guardar", "saving": "Guardando…", "saved": "¡Guardado!", "edit": "Editar", "delete": "Eliminar", "deleting": "Eliminando…", "deleteConfirm": "¿Eliminar definitivamente este producto?" },
+    "stock": { "title": "Stock", "subtitle": "Niveles de stock y alertas de reposición.", "alert": "{n} producto(s) por debajo del umbral de alerta ({s} unidades): considere reponer.", "totalLabel": "Stock total", "alertRefs": "Referencias en alerta", "empty": "No hay productos en la base de datos." },
+    "crm": { "title": "CRM / Contactos", "subtitle": "{n} contactos — clientes, prospectos y donantes.", "colContact": "Contacto", "colCountry": "País", "colStatus": "Estado", "colTags": "Etiquetas", "colConsent": "Consent.", "colTotal": "Total gastado", "colOrders": "Pedidos", "emptyState": "Aún no hay contactos.", "totalLabel": "Total" },
     "contactStatus": { "client": "cliente", "lead": "prospecto", "donateur": "donante" },
     "contact": { "back": "Volver a contactos", "clientSince": "Cliente desde {d} · Origen: {s}", "sendEmail": "Enviar un correo", "details": "Datos de contacto", "tags": "Etiquetas", "add": "+ Añadir", "ordersCount": "Pedidos", "totalSpent": "Total gastado", "history": "Historial de pedidos", "noOrders": "Aún no hay pedidos.", "notes": "Notas internas", "noNotes": "Sin notas.", "addNote": "Añadir una nota…" },
-    "campaigns": { "title": "Campañas", "subtitle": "Envíos vía Resend — contenido redactado por el equipo.", "new": "Nueva campaña", "sent": "Enviada", "scheduled": "Programada", "draft": "Borrador", "mSent": "Enviados", "mDelivered": "Entregados", "mOpened": "Aperturas", "mClicked": "Clics", "mUnsub": "Bajas", "scheduledFor": "Programada para {d}", "draftHint": "Borrador — por completar y programar." },
-    "settings": { "title": "Ajustes", "subtitle": "Integraciones, roles y registro de actividad.", "integrations": "Integraciones", "configured": "Configurada", "toConfigure": "Por configurar (clave faltante)", "rolesPerms": "Roles y permisos", "colRole": "Rol", "audit": "Registro de auditoría" },
+    "campaigns": { "title": "Campañas", "subtitle": "Envíos vía Resend — contenido redactado por el equipo.", "new": "Nueva campaña", "sent": "Enviada", "scheduled": "Programada", "draft": "Borrador", "mSent": "Enviados", "mDelivered": "Entregados", "mOpened": "Aperturas", "mClicked": "Clics", "mUnsub": "Bajas", "scheduledFor": "Programada para {d}", "draftHint": "Borrador — por completar y programar.", "sendNow": "Enviar ahora", "audience": "Audiencia disponible", "withConsent": "contactos con consentimiento de correo", "empty": "Aún no hay campañas. Cree su primera campaña.", "noSent": "Aún no se ha enviado ninguna campaña." },
+    "settings": { "title": "Ajustes", "subtitle": "Integraciones, roles y registro de actividad.", "integrations": "Integraciones", "configured": "Configurada", "toConfigure": "Por configurar (clave faltante)", "rolesPerms": "Roles y permisos", "colRole": "Rol", "audit": "Registro de auditoría", "adminUsers": "Usuarios administradores", "localDbActive": "local.db activo", "addKeyHint": "Añadir {k} en .env", "noAudit": "Aún no se ha registrado ninguna acción.", "system": "Sistema" },
     "roles": { "super_admin": "Superadministrador", "admin": "Administrador", "shop": "Gestión tienda", "crm": "Gestión CRM", "content": "Gestión contenido", "marketing": "Gestión marketing", "support": "Soporte" },
     "perms": { "dashboard": "Panel", "orders": "Pedidos", "stock": "Stock", "products": "Productos", "crm": "CRM", "clients": "Clientes", "campaigns": "Campañas", "settings": "Ajustes" }
   }

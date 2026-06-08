@@ -264,3 +264,34 @@ export const settings = sqliteTable('settings', {
   key: text('key').primaryKey(),
   value: text('value_json')
 });
+
+// === Session Management (Requirement 16.5) ===
+export const sessions = sqliteTable('sessions', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id),
+  token: text('token').notNull().unique(),
+  ip: text('ip'),
+  userAgent: text('user_agent'),
+  expiresAt: text('expires_at').notNull(),
+  createdAt: text('created_at').notNull()
+});
+
+// === Rate Limiting (Requirement 16.4) ===
+export const rateLimits = sqliteTable('rate_limits', {
+  id: text('id').primaryKey(),
+  identifier: text('identifier').notNull(), // IP address or user ID
+  action: text('action').notNull(), // e.g., 'login', 'api_call', 'password_reset'
+  count: integer('count').notNull().default(1),
+  windowStart: text('window_start').notNull(), // Start of the time window
+  expiresAt: text('expires_at').notNull()
+});
+
+// === Resend Webhook Events (Requirement 9.7) ===
+export const resendWebhookEvents = sqliteTable('resend_webhook_events', {
+  id: text('id').primaryKey(),
+  type: text('type').notNull(), // e.g., 'email.delivered', 'email.opened', 'email.clicked', 'email.bounced'
+  emailLogId: text('email_log_id').references(() => emailLogs.id),
+  payload: text('payload_json').notNull(), // Full webhook payload as JSON
+  processedAt: text('processed_at'),
+  createdAt: text('created_at').notNull()
+});

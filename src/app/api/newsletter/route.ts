@@ -43,7 +43,7 @@ export async function POST(request: Request) {
 
   // Envoyer l'email de bienvenue multilingue
   try {
-    const { subject, html } = getWelcomeEmail(locale);
+    const { subject, html } = getWelcomeEmail(locale, undefined, email);
     await sendEmail({
       to: email,
       subject,

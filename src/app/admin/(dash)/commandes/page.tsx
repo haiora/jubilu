@@ -9,6 +9,7 @@ import { db } from '@/lib/db';
 import { orders, contacts, orderItems } from '../../../../../db/schema';
 import { desc, eq } from 'drizzle-orm';
 import { ORDER_STATUS_COLORS, type OrderStatus } from '@/lib/demo-data';
+import OrderStatusSelect from '@/components/admin/order-status-select';
 
 function formatEUR(cents: number): string {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(cents / 100);
@@ -19,13 +20,16 @@ const STATUSES: OrderStatus[] = ['pending', 'paid', 'prepared', 'shipped', 'deli
 export default async function OrdersPage() {
   const session = getSession();
   if (!can(session, 'orders')) redirect('/admin');
-  const t = await getTranslations({ locale: getAdminLocale(), namespace: 'admin' });
+  const locale = getAdminLocale();
+  const t = await getTranslations({ locale, namespace: 'admin' });
 
   const [allOrders, allContacts, allItems] = await Promise.all([
     db.select().from(orders).orderBy(desc(orders.createdAt)),
     db.select().from(contacts),
     db.select().from(orderItems),
   ]);
+
+  const statusOptions = STATUSES.map(s => ({ value: s, label: t(`status.${s}`) }));
 
   const contactMap = Object.fromEntries(
     allContacts.map(c => [c.id, { name: `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim(), country: c.country }])
@@ -68,18 +72,16 @@ export default async function OrdersPage() {
                   <div>
                     <div className="flex items-center gap-3">
                       <span className="font-mono text-sm font-semibold">{o.number}</span>
-                      <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${ORDER_STATUS_COLORS[o.status as OrderStatus] ?? 'bg-muted'}`}>
-                        {t(`status.${o.status}`)}
-                      </span>
+                      <OrderStatusSelect orderId={o.id} current={o.status} options={statusOptions} />
                     </div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      {contact?.name ?? '—'} · {contact?.country ?? '—'} · {new Date(o.createdAt).toLocaleDateString('fr-FR')}
+                      {contact?.name ?? '—'} · {contact?.country ?? '—'} · {new Date(o.createdAt).toLocaleDateString(locale)}
                     </p>
                   </div>
                   <div className="text-end">
                     <span className="text-lg font-semibold text-primary">{formatEUR(o.total)}</span>
                     {o.shipping > 0 && (
-                      <p className="text-xs text-muted-foreground">dont {formatEUR(o.shipping)} livraison</p>
+                      <p className="text-xs text-muted-foreground">{t('orders.shippingIncluded', { v: formatEUR(o.shipping) })}</p>
                     )}
                   </div>
                 </div>
@@ -96,7 +98,7 @@ export default async function OrdersPage() {
                         )}
                         {it.productionStatus && (
                           <span className="ml-auto rounded-full bg-muted px-2 py-0.5 text-xs">
-                            {it.productionStatus}
+                            {t(`production.${it.productionStatus}`)}
                           </span>
                         )}
                       </li>

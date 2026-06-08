@@ -34,7 +34,13 @@
     "backHome": "Retour à l'accueil",
     "cookieText": "Nous utilisons des cookies pour améliorer votre expérience et mesurer notre audience.",
     "cookieAccept": "Accepter",
-    "cookieDecline": "Refuser"
+    "cookieDecline": "Refuser",
+    "loading": "Chargement en cours…",
+    "errorTitle": "Une erreur inattendue est survenue",
+    "errorText": "Nous sommes désolés, une erreur technique a empêché l'affichage de cette page.",
+    "retry": "Réessayer",
+    "genericError": "Erreur",
+    "formIncomplete": "Veuillez remplir tous les champs obligatoires."
   },
   "home": {
     "hero": {
@@ -149,7 +155,14 @@
       "send": "Envoyer",
       "infoTitle": "Coordonnées",
       "infoText": "Nous revenons vers vous dans les meilleurs délais.",
-      "error": "Une erreur est survenue. Merci de réessayer."
+      "error": "Une erreur est survenue. Merci de réessayer.",
+      "success": "Message envoyé !",
+      "successText": "Nous revenons vers vous dans les meilleurs délais.",
+      "sending": "Envoi…",
+      "errFirstName": "Le prénom doit contenir au moins 2 caractères.",
+      "errLastName": "Le nom doit contenir au moins 2 caractères.",
+      "errEmail": "Adresse email invalide.",
+      "errMessage": "Le message doit contenir au moins 10 caractères."
     },
     "faq": {
       "badge": "FAQ",
@@ -238,7 +251,32 @@
     "noOrders": "Aucune commande associée à cet email.",
     "profile": "Mes informations",
     "logout": "Se déconnecter",
-    "demoNote": "Démonstration : saisissez l'email d'un client (ex. marie.lefevre@example.com) pour voir l'historique."
+    "demoNote": "Démonstration : saisissez l'email d'un client (ex. marie.lefevre@example.com) pour voir l'historique.",
+    "verifying": "Vérification…",
+    "accountHint": "Entrez l'email utilisé lors de vos commandes pour voir votre historique.",
+    "notFound": "Email non trouvé",
+    "fieldName": "Nom",
+    "fieldEmail": "Email",
+    "fieldStatus": "Statut",
+    "memberSince": "Membre depuis",
+    "statusDonor": "Donateur",
+    "statusClient": "Client",
+    "statusMember": "Membre",
+    "myBalance": "Mon bilan",
+    "ordersCountLabel": "Commandes",
+    "totalSpent": "Total dépensé",
+    "exploreShop": "Explorer la boutique",
+    "orderLabel": "Commande",
+    "viewInvoice": "Voir la facture",
+    "totalIncl": "Total TTC"
+  },
+  "unsubscribe": {
+    "title": "Désabonnement",
+    "processing": "Traitement de votre demande…",
+    "done": "Vous êtes désabonné(e)",
+    "doneText": "Vous ne recevrez plus nos emails. Vous pouvez vous réinscrire à tout moment depuis le site.",
+    "error": "Lien invalide ou expiré.",
+    "backHome": "Retour à l'accueil"
   },
   "cart": {
     "title": "Votre panier",
@@ -256,6 +294,8 @@
     "customTextLabel": "Texte à calligraphier",
     "customTextPlaceholder": "Saisissez le verset, la bénédiction ou le nom à inscrire…",
     "customTextRequired": "Veuillez saisir le texte à calligraphier.",
+    "outOfStock": "Rupture de stock",
+    "lowStock": "Plus que {n} en stock",
     "count": "{count, plural, =0 {Panier vide} one {# article} other {# articles}}"
   },
   "checkout": {
@@ -295,18 +335,20 @@
   "admin": {
     "language": "Langue",
     "nav": { "dashboard": "Tableau de bord", "orders": "Commandes", "products": "Produits", "stock": "Stock", "crm": "CRM / Contacts", "campaigns": "Campagnes email", "settings": "Paramètres" },
-    "common": { "logout": "Déconnexion", "viewSite": "Voir le site", "administration": "Administration", "new": "Nouveau", "import": "Importer CSV", "export": "Exporter CSV", "all": "Toutes", "units": "unités", "active": "Actif" },
-    "login": { "subtitle": "Espace d'administration", "email": "Email", "password": "Mot de passe", "signIn": "Se connecter", "demo": "Démo", "error": "Identifiants invalides." },
+    "common": { "logout": "Déconnexion", "viewSite": "Voir le site", "administration": "Administration", "new": "Nouveau", "import": "Importer CSV", "export": "Exporter CSV", "all": "Toutes", "units": "unités", "active": "Actif", "inactive": "Inactif", "standard": "Standard", "cancel": "Annuler" },
+    "login": { "subtitle": "Espace d'administration", "email": "Email", "password": "Mot de passe", "signIn": "Se connecter", "demo": "Démo", "error": "Identifiants invalides.", "securedAccess": "Accès sécurisé réservé au personnel de Jubilé.", "demoHint": "Démo : {email} / {password}" },
     "dashboard": { "title": "Tableau de bord", "subtitle": "Vue d'ensemble de l'activité de Jubilé.", "revenue": "Chiffre d'affaires", "revenueHint": "Commandes payées", "orders": "Commandes", "avgCartHint": "Panier moyen {v}", "contacts": "Contacts", "newContactsHint": "{n} nouveaux en 2026", "openRate": "Taux d'ouverture", "emailsSentHint": "{n} emails envoyés", "byStatus": "Commandes par statut", "campaignPerf": "Performance des campagnes", "recentOrders": "Dernières commandes", "colNumber": "N°", "colCustomer": "Client", "colStatus": "Statut", "colTotal": "Total" },
-    "orders": { "title": "Commandes", "subtitle": "{n} commandes — suivi de la préparation à la livraison." },
+    "orders": { "title": "Commandes", "subtitle": "{n} commandes — suivi de la préparation à la livraison.", "empty": "Aucune commande pour le moment.", "shippingIncluded": "dont {v} livraison" },
     "status": { "pending": "En attente", "paid": "Payée", "prepared": "Préparée", "shipped": "Expédiée", "delivered": "Livrée", "cancelled": "Annulée" },
-    "products": { "title": "Produits", "subtitle": "{n} produits — vins & parchemins.", "new": "Nouveau produit", "colProduct": "Produit", "colCategory": "Catégorie", "colPrice": "Prix", "colStock": "Stock", "colStatus": "Statut" },
-    "stock": { "title": "Stock", "subtitle": "Niveaux de stock et alertes de réassort.", "alert": "{n} produit(s) sous le seuil d'alerte ({s} unités) : pensez au réassort." },
-    "crm": { "title": "CRM / Contacts", "subtitle": "{n} contacts — clients, prospects et donateurs.", "colContact": "Contact", "colCountry": "Pays", "colStatus": "Statut", "colTags": "Tags", "colConsent": "Consent.", "colTotal": "Total dépensé" },
+    "production": { "to_produce": "À produire", "in_production": "En production", "quality_check": "Contrôle qualité", "ready": "Prêt", "shipped": "Expédié" },
+    "products": { "title": "Produits", "subtitle": "{n} produits — vins & parchemins.", "new": "Nouveau produit", "colProduct": "Produit", "colCategory": "Catégorie", "colPrice": "Prix", "colStock": "Stock", "colStatus": "Statut", "colActions": "Actions", "lowStock": "{n} produit(s) avec stock faible (< 30 unités).", "empty": "Aucun produit. Commencez par en ajouter un." },
+    "productForm": { "title": "Nouveau produit", "name": "Nom du produit", "shortDesc": "Description courte", "category": "Catégorie", "wine": "Vin", "parchment": "Parchemin", "price": "Prix (€)", "stock": "Stock initial", "status": "Statut", "statusActive": "Actif", "statusDraft": "Brouillon", "featured": "Mettre en avant", "submit": "Créer le produit", "submitting": "Création…", "success": "Produit créé !", "errRequired": "Le nom et un prix valide sont requis.", "editTitle": "Modifier le produit", "save": "Enregistrer", "saving": "Enregistrement…", "saved": "Enregistré !", "edit": "Modifier", "delete": "Supprimer", "deleting": "Suppression…", "deleteConfirm": "Supprimer définitivement ce produit ?" },
+    "stock": { "title": "Stock", "subtitle": "Niveaux de stock et alertes de réassort.", "alert": "{n} produit(s) sous le seuil d'alerte ({s} unités) : pensez au réassort.", "totalLabel": "Stock total", "alertRefs": "Références en alerte", "empty": "Aucun produit dans la base de données." },
+    "crm": { "title": "CRM / Contacts", "subtitle": "{n} contacts — clients, prospects et donateurs.", "colContact": "Contact", "colCountry": "Pays", "colStatus": "Statut", "colTags": "Tags", "colConsent": "Consent.", "colTotal": "Total dépensé", "colOrders": "Commandes", "emptyState": "Aucun contact encore.", "totalLabel": "Total" },
     "contactStatus": { "client": "client", "lead": "prospect", "donateur": "donateur" },
     "contact": { "back": "Retour aux contacts", "clientSince": "Client depuis le {d} · Source : {s}", "sendEmail": "Envoyer un email", "details": "Coordonnées", "tags": "Tags", "add": "+ Ajouter", "ordersCount": "Commandes", "totalSpent": "Total dépensé", "history": "Historique des commandes", "noOrders": "Aucune commande pour le moment.", "notes": "Notes internes", "noNotes": "Aucune note.", "addNote": "Ajouter une note…" },
-    "campaigns": { "title": "Campagnes email", "subtitle": "Envois via Resend — contenu rédigé par l'équipe.", "new": "Nouvelle campagne", "sent": "Envoyée", "scheduled": "Planifiée", "draft": "Brouillon", "mSent": "Envoyés", "mDelivered": "Délivrés", "mOpened": "Ouvertures", "mClicked": "Clics", "mUnsub": "Désabos", "scheduledFor": "Programmée le {d}", "draftHint": "Brouillon — à compléter et planifier." },
-    "settings": { "title": "Paramètres", "subtitle": "Intégrations, rôles et journal d'activité.", "integrations": "Intégrations", "configured": "Configurée", "toConfigure": "À configurer (clé manquante)", "rolesPerms": "Rôles & permissions", "colRole": "Rôle", "audit": "Journal d'audit" },
+    "campaigns": { "title": "Campagnes email", "subtitle": "Envois via Resend — contenu rédigé par l'équipe.", "new": "Nouvelle campagne", "sent": "Envoyée", "scheduled": "Planifiée", "draft": "Brouillon", "mSent": "Envoyés", "mDelivered": "Délivrés", "mOpened": "Ouvertures", "mClicked": "Clics", "mUnsub": "Désabos", "scheduledFor": "Programmée le {d}", "draftHint": "Brouillon — à compléter et planifier.", "sendNow": "Envoyer maintenant", "audience": "Audience disponible", "withConsent": "contacts avec consentement email", "empty": "Aucune campagne pour l'instant. Créez votre première campagne.", "noSent": "Aucune campagne envoyée pour le moment." },
+    "settings": { "title": "Paramètres", "subtitle": "Intégrations, rôles et journal d'activité.", "integrations": "Intégrations", "configured": "Configuré", "toConfigure": "À configurer (clé manquante)", "rolesPerms": "Rôles & permissions", "colRole": "Rôle", "audit": "Journal d'audit", "adminUsers": "Utilisateurs administrateurs", "localDbActive": "local.db actif", "addKeyHint": "Ajouter {k} dans .env", "noAudit": "Aucune action enregistrée pour l'instant.", "system": "Système" },
     "roles": { "super_admin": "Super administrateur", "admin": "Administrateur", "shop": "Gestion boutique", "crm": "Gestion CRM", "content": "Gestion contenu", "marketing": "Gestion marketing", "support": "Support" },
     "perms": { "dashboard": "Tableau de bord", "orders": "Commandes", "stock": "Stock", "products": "Produits", "crm": "CRM", "clients": "Clients", "campaigns": "Campagnes", "settings": "Paramètres" }
   }

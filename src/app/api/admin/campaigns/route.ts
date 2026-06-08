@@ -3,6 +3,12 @@ import { db } from '@/lib/db';
 import { campaigns, contacts, emailLogs } from '../../../../../db/schema';
 import { eq, and } from 'drizzle-orm';
 import { Resend } from 'resend';
+import { unsubscribeUrl } from '@/lib/email';
+
+const UNSUB_LABEL: Record<string, string> = { fr: 'Se désabonner', en: 'Unsubscribe', es: 'Darse de baja', he: 'הסרה מרשימת התפוצה' };
+function unsubFooter(email: string, loc: string): string {
+  return `<p style="margin-top:24px;font-size:12px;color:#8a8170;text-align:center;"><a href="${unsubscribeUrl(email, loc)}" style="color:#8a8170;">${UNSUB_LABEL[loc] ?? UNSUB_LABEL.fr}</a></p>`;
+}
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
@@ -45,7 +51,8 @@ export async function POST(req: NextRequest) {
         try {
           const personalizedBody = body
             .replace(/{{firstName}}/g, contact.firstName ?? 'Ami')
-            .replace(/{{lastName}}/g, contact.lastName ?? '');
+            .replace(/{{lastName}}/g, contact.lastName ?? '')
+            + unsubFooter(contact.email, contact.locale ?? locale ?? 'fr');
 
           const result = await resend.emails.send({
             from: process.env.EMAIL_FROM ?? 'Jubilé d\'Israël <noreply@jubilee-israel.org>',
