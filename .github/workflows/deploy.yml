@@ -26,6 +26,9 @@ jobs:
       - name: Build Next.js static export
         run: npm run build
 
+      - name: Remove index.html to allow _redirects
+        run: rm -f dist/index.html
+
       - name: Deploy to Cloudflare Pages via wrangler
         run: npx wrangler pages deploy dist --project-name=jubilee-israel-org
         env:
