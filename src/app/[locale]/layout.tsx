@@ -8,6 +8,7 @@ import { Header } from '@/components/site/header';
 import { Footer } from '@/components/site/footer';
 import { CartProvider } from '@/components/shop/cart-context';
 import { CookieConsent } from '@/components/site/cookie-consent';
+import { ScrollToTop } from '@/components/site/scroll-to-top';
 import { Toaster } from '@/components/ui/toaster';
 import '../globals.css';
 
@@ -35,6 +36,11 @@ export async function generateMetadata({
     metadataBase: new URL(siteUrl),
     title: { default: t('title'), template: '%s · Jubilé' },
     description: t('description'),
+    icons: {
+      icon: '/favicon.svg',
+      apple: '/favicon.svg'
+    },
+    manifest: '/manifest.json',
     openGraph: {
       title: t('title'),
       description: t('description'),
@@ -47,6 +53,15 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t('title'),
       description: t('description')
+    },
+    alternates: {
+      canonical: `${siteUrl}/${params.locale}`,
+      languages: {
+        fr: `${siteUrl}/fr`,
+        en: `${siteUrl}/en`,
+        es: `${siteUrl}/es`,
+        he: `${siteUrl}/he`
+      }
     }
   };
 }
@@ -75,6 +90,7 @@ export default async function LocaleLayout({
             <main className="flex-1">{children}</main>
             <CookieConsent />
             <Footer />
+            <ScrollToTop />
             <Toaster />
           </CartProvider>
         </NextIntlClientProvider>

@@ -47,19 +47,25 @@ export default function CheckoutPage() {
     }
 
     try {
-      const res = await fetch('/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          items,
-          contact: data,
-          locale
-        })
-      });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error ?? 'error');
+      const orderNumber = `JBL-${Date.now().toString(36).toUpperCase()}`;
+      const order = {
+        number: orderNumber,
+        items: lines.map((l) => ({
+          name: l.product!.translations[locale].name,
+          qty: l.item.qty,
+          price: l.product!.price,
+          customText: l.item.customText || null
+        })),
+        contact: data,
+        total,
+        locale,
+        date: new Date().toISOString()
+      };
+      const existing = JSON.parse(localStorage.getItem('jubilee_orders') || '[]');
+      existing.unshift(order);
+      localStorage.setItem('jubilee_orders', JSON.stringify(existing));
       clear();
-      window.location.href = json.url;
+      window.location.href = `/${locale}/commande/success?order=${orderNumber}`;
     } catch (err) {
       setError(String(err));
       setSubmitting(false);

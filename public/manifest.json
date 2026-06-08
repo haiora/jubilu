@@ -1,0 +1,20 @@
+{
+  "name": "Jubilé — Au service de la Terre Sainte et de Jérusalem",
+  "short_name": "Jubilé",
+  "description": "Association chrétienne dédiée à Israël et à Jérusalem. Découvrez notre mission, nos vins de la Terre Sainte et nos parchemins manuscrits.",
+  "start_url": "/fr/",
+  "display": "standalone",
+  "background_color": "#f9f7f2",
+  "theme_color": "#08152a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "lang": "fr",
+  "categories": ["non-profit", "education", "shopping"]
+}

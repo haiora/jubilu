@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Base -->
+  <rect x="22" y="52" width="12" height="6" rx="2" fill="#c59b2a"/>
+  <!-- Central stem -->
+  <rect x="26" y="24" width="4" height="30" rx="2" fill="#c59b2a"/>
+  <!-- Central flame -->
+  <ellipse cx="28" cy="20" rx="5" ry="8" fill="#e8c44a"/>
+  <ellipse cx="28" cy="20" rx="3" ry="5" fill="#f5e080"/>
+  <!-- Left branches -->
+  <rect x="16" y="30" width="16" height="3" rx="1.5" fill="#c59b2a" transform="rotate(-25 24 32)"/>
+  <rect x="10" y="24" width="14" height="3" rx="1.5" fill="#c59b2a" transform="rotate(-40 17 26)"/>
+  <rect x="6" y="18" width="12" height="3" rx="1.5" fill="#c59b2a" transform="rotate(-55 12 20)"/>
+  <!-- Right branches -->
+  <rect x="24" y="30" width="16" height="3" rx="1.5" fill="#c59b2a" transform="rotate(25 32 32)"/>
+  <rect x="28" y="24" width="14" height="3" rx="1.5" fill="#c59b2a" transform="rotate(40 35 26)"/>
+  <rect x="32" y="18" width="12" height="3" rx="1.5" fill="#c59b2a" transform="rotate(55 38 20)"/>
+  <!-- Side flames -->
+  <ellipse cx="14" cy="16" rx="3.5" ry="5.5" fill="#d4ab3a"/>
+  <ellipse cx="8" cy="12" rx="3" ry="4.5" fill="#d4ab3a"/>
+  <ellipse cx="3" cy="8" rx="2.5" ry="4" fill="#d4ab3a"/>
+  <ellipse cx="42" cy="16" rx="3.5" ry="5.5" fill="#d4ab3a"/>
+  <ellipse cx="48" cy="12" rx="3" ry="4.5" fill="#d4ab3a"/>
+  <ellipse cx="53" cy="8" rx="2.5" ry="4" fill="#d4ab3a"/>
+</svg>
