@@ -10,16 +10,14 @@ export function generateStaticParams() {
 
 interface SuccessPageProps {
   params: { locale: string };
-  searchParams: { order?: string };
 }
 
 export default async function SuccessPage({
-  params: { locale },
-  searchParams
+  params: { locale }
 }: SuccessPageProps) {
   setRequestLocale(locale);
   const t = await getTranslations('checkout');
-  const orderNumber = searchParams.order || 'JBL-XXXXXX';
+  const orderNumber = 'JBL-XXXXXX';
 
   return (
     <section className="container py-16">
