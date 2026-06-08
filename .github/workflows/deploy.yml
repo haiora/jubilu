@@ -26,11 +26,16 @@ jobs:
       - name: Build Next.js static export
         run: npm run build
 
+      - name: Copy build to deploy directory
+        run: |
+          mkdir -p _deploy
+          cp -r dist/* _deploy/
+
       - name: Remove index.html to allow _redirects
-        run: rm -f dist/index.html
+        run: rm -f _deploy/index.html
 
       - name: Deploy to Cloudflare Pages via wrangler
-        run: npx wrangler pages deploy dist --project-name=jubilee-israel-org
+        run: npx wrangler pages deploy _deploy --project-name=jubilee-israel-org
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
