@@ -37,10 +37,10 @@ export async function generateMetadata({
     title: { default: t('title'), template: '%s · Jubilé' },
     description: t('description'),
     icons: {
-      icon: '/favicon.svg',
-      apple: '/favicon.svg'
+      icon: '/icons/favicon.svg',
+      apple: '/icons/favicon.svg'
     },
-    manifest: '/manifest.json',
+    manifest: '/icons/manifest.json',
     openGraph: {
       title: t('title'),
       description: t('description'),
