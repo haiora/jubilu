@@ -38,6 +38,7 @@
     "node_modules",
     "vitest.config.ts",
     "src/lib/__tests__",
-    "src/_api"
+    "src/_api",
+    "src/_admin"
   ]
 }
