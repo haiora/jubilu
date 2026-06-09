@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 import { Landmark, MapPin, Droplets } from 'lucide-react';
 import { PageHero } from '@/components/site/page-hero';
 import { routing } from '@/i18n/routing';
+
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'pages.mission' });
+  return { title: t('title'), description: t('subtitle') };
+}
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));

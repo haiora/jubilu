@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { PageHero } from '@/components/site/page-hero';
@@ -12,6 +13,14 @@ const CATEGORY_KEY: Record<ProductCategory, 'wines' | 'parchments'> = {
   'vin-rose': 'wines',
   parchemins: 'parchments'
 };
+
+export async function generateMetadata({ params: { locale, category } }: { params: { locale: string; category: string } }): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace: 'pages.shop' });
+  const home = await getTranslations({ locale, namespace: 'home' });
+  const key = CATEGORY_KEY[category as ProductCategory];
+  const title = key ? home(`${key}.title`) : t('title');
+  return { title, description: t('subtitle') };
+}
 
 export function generateStaticParams() {
   return ['fr', 'en', 'he', 'es'].flatMap((locale) =>
