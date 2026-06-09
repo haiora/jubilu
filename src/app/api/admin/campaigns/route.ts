@@ -14,6 +14,11 @@ function unsubFooter(email: string, loc: string): string {
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(req: NextRequest) {
+  const session = getSession();
+  if (!can(session, 'campaigns')) {
+    return NextResponse.json({ error: 'Non autorisé.' }, { status: 401 });
+  }
+
   try {
     const { name, subject, body, locale, sendNow } = await req.json();
 

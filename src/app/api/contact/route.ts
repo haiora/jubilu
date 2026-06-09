@@ -41,9 +41,11 @@ export async function POST(request: Request) {
   }
 
   const to = process.env.EMAIL_TO ?? 'contact@jubilee-israel.org';
+  const escapeHtml = (text: string) =>
+    text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   const htmlAdmin = baseTemplate(
-    `Nouveau message — ${subject || 'Contact'}`,
-    `<p><strong>${firstName} ${lastName}</strong> (${email})</p><p>${message.replace(/\n/g, '<br>')}</p>`
+    `Nouveau message — ${escapeHtml(subject || 'Contact')}`,
+    `<p><strong>${escapeHtml(firstName)} ${escapeHtml(lastName)}</strong> (${escapeHtml(email)})</p><p>${escapeHtml(message).replace(/\n/g, '<br>')}</p>`
   );
 
   try {

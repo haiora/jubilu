@@ -8,7 +8,8 @@ export async function POST(req: NextRequest) {
     const data = await req.json();
     const { amount, name, email, message, recurring, locale } = data;
 
-    if (!amount || amount <= 0 || !email) {
+    const amountNum = Number(amount);
+    if (!Number.isFinite(amountNum) || amountNum <= 0 || amountNum > 100000 || !email) {
       return NextResponse.json({ error: 'Données invalides.' }, { status: 400 });
     }
 
