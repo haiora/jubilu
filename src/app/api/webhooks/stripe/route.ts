@@ -6,6 +6,9 @@ import { eq, sql } from 'drizzle-orm';
 import { sendEmail, getOrderConfirmationEmail } from '@/lib/email';
 import { formatPrice } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type OrderItem = InferSelectModel<typeof orderItems>;
 
 export const dynamic = 'force-dynamic';
 // Stripe needs the raw body to verify the signature; disable Next body parsing.
@@ -86,7 +89,7 @@ async function fulfillOrder(session: Stripe.Checkout.Session) {
   }
 
   // 3. Décrémenter le stock pour les variantes liées.
-  const items = await db.select().from(orderItems).where(eq(orderItems.orderId, order.id));
+  const items: OrderItem[] = await db.select().from(orderItems).where(eq(orderItems.orderId, order.id));
   for (const item of items) {
     if (item.variantId) {
       await db
@@ -103,7 +106,7 @@ async function fulfillOrder(session: Stripe.Checkout.Session) {
       const locale = (order.locale ?? 'fr') as Locale;
       const itemsHtml = items
         .map(
-          (it: any) => `<li style="padding: 8px 0; border-bottom: 1px solid #eee;">
+          (it) => `<li style="padding: 8px 0; border-bottom: 1px solid #eee;">
             <strong>${it.qty} × ${it.nameSnapshot}</strong>
             <span style="float: right;">${formatPrice(it.unitPrice * it.qty, locale)}</span>
             ${it.customText ? `<br/><em style="color: #666; font-size: 13px;">« ${it.customText} »</em>` : ''}

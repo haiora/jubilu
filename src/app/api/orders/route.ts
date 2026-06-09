@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
-import { sendEmail, baseTemplate } from '@/lib/email';
-import { getProduct } from '@/lib/catalog';
+import { sendEmail } from '@/lib/email';
 import type { Locale } from '@/i18n/routing';
 import Stripe from 'stripe';
 import { db } from '@/lib/db';
 import { contacts, orders, orderItems, productVariants, stockMovements } from "@db/schema";
 import { eq, sql } from 'drizzle-orm';
+import { getShopProduct } from '@/lib/shop';
+import { formatPrice } from '@/lib/catalog';
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 const stripe = stripeSecretKey
@@ -39,18 +40,18 @@ export async function POST(request: Request) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
   const orderNumber = `JBL-${Date.now().toString(36).toUpperCase()}`;
 
-  // 1. Validation des produits & calcul du total
+  // 1. Validation des produits & calcul du total (prix et stock depuis la DB)
   const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
   let totalCents = 0;
-  
+
   const parsedItems = [];
   for (const it of data.items) {
-    const product = getProduct(it.slug);
+    const product = await getShopProduct(it.slug);
     if (!product) {
       return NextResponse.json({ error: `product_not_found_${it.slug}` }, { status: 400 });
     }
 
-    // VÉRIFICATION DU STOCK + résolution de la variante réelle en base (liaison commande↔stock)
+    // Vérification du stock en DB
     let variantId: string | null = null;
     if (product.sku) {
       const [variant] = await db.select().from(productVariants).where(eq(productVariants.sku, product.sku));
@@ -63,7 +64,6 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: `out_of_stock_${it.slug}` }, { status: 400 });
       }
     } else if (product.stock < it.qty) {
-      // Fallback catalogue (produit sans variante en base)
       return NextResponse.json({ error: `out_of_stock_${it.slug}` }, { status: 400 });
     }
 
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
       },
       quantity: it.qty,
     });
-    
+
     totalCents += product.price * it.qty;
     parsedItems.push({
       product,
@@ -121,7 +121,7 @@ export async function POST(request: Request) {
       id: orderId,
       number: orderNumber,
       contactId,
-      status: stripe ? 'pending' : 'paid', // If no stripe, mark paid for demo
+      status: stripe ? 'pending' : 'paid',
       subtotal: totalCents,
       total: totalCents,
       currency: 'EUR',
@@ -148,8 +148,8 @@ export async function POST(request: Request) {
       });
     }
 
-    // Mode démo (sans Stripe) : la commande est payée immédiatement.
-    // On décrémente le stock et on met à jour le contact (en mode réel, le webhook Stripe s'en charge).
+    // Sans Stripe : la commande est marquée payée immédiatement.
+    // Le stock est décrémenté et le contact mis à jour (le webhook Stripe le fait en mode production).
     if (!stripe) {
       for (const it of parsedItems) {
         if (it.variantId) {
@@ -179,9 +179,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'database_error' }, { status: 500 });
   }
 
-  // 3. Création de la session Stripe (ou simulation si clé manquante)
+  // 3. Création de la session Stripe (fallback direct si clé manquante)
   let checkoutUrl: string;
-  let sessionId = `mock_sess_${Date.now()}`;
+  let sessionId = `sess_${Date.now()}`;
 
   if (stripe) {
     try {
@@ -212,14 +212,12 @@ export async function POST(request: Request) {
       checkoutUrl = `${siteUrl}/${locale}/commande/success?session_id=${sessionId}&order=${orderNumber}`;
     }
   } else {
-    // Mode démo / test sans Stripe configuré
     checkoutUrl = `${siteUrl}/${locale}/commande/success?session_id=${sessionId}&order=${orderNumber}`;
   }
 
   // 4. Envoi d'email de confirmation (transactionnel)
   const { getOrderConfirmationEmail } = await import('@/lib/email');
-  const { formatPrice } = await import('@/lib/catalog');
-  
+
   const itemsHtml = parsedItems
     .map((it) => `<li style="padding: 8px 0; border-bottom: 1px solid #eee;">
       <strong>${it.qty} × ${it.product.translations[locale as Locale]?.name || it.product.slug}</strong>

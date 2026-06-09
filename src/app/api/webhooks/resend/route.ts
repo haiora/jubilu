@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { emailLogs, resendWebhookEvents, campaigns } from "@db/schema";
 import { eq } from 'drizzle-orm';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type EmailLog = InferSelectModel<typeof emailLogs>;
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -26,7 +29,7 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  let event: any;
+  let event: { type?: string; data?: { email_id?: string; id?: string } };
   try {
     event = JSON.parse(rawBody);
   } catch {
@@ -79,14 +82,14 @@ export async function POST(req: NextRequest) {
 }
 
 async function recomputeCampaignStats(campaignId: string) {
-  const logs = await db.select().from(emailLogs).where(eq(emailLogs.campaignId, campaignId));
+  const logs: EmailLog[] = await db.select().from(emailLogs).where(eq(emailLogs.campaignId, campaignId));
   const stats = {
     sent: logs.length,
-    delivered: logs.filter((l: any) => l.status === 'delivered' || l.openedAt || l.clickedAt).length,
-    opened: logs.filter((l: any) => l.openedAt).length,
-    clicked: logs.filter((l: any) => l.clickedAt).length,
+    delivered: logs.filter((l) => l.status === 'delivered' || l.openedAt || l.clickedAt).length,
+    opened: logs.filter((l) => l.openedAt).length,
+    clicked: logs.filter((l) => l.clickedAt).length,
     unsubscribed: 0,
-    bounced: logs.filter((l: any) => l.bouncedAt).length,
+    bounced: logs.filter((l) => l.bouncedAt).length,
   };
   await db.update(campaigns).set({ stats: JSON.stringify(stats) }).where(eq(campaigns.id, campaignId));
 }
