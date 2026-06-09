@@ -316,6 +316,7 @@
     "remove": "Quitar",
     "checkout": "Tramitar el pedido",
     "continue": "Seguir comprando",
+    "summary": "Resumen",
     "addedToCart": "Añadido al carrito",
     "customTextLabel": "Texto a caligrafiar",
     "customTextPlaceholder": "Escriba el versículo, la bendición o el nombre a inscribir…",

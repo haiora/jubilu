@@ -96,12 +96,9 @@ export async function POST(request: Request) {
   let contactId = '';
   try {
     const email = data.contact.email.toLowerCase().trim();
-    const existing = await db.query.contacts?.findMany({
-      where: (c: any, { eq }: any) => eq(c.email, email),
-      limit: 1
-    });
+    const existing = await db.select().from(contacts).where(eq(contacts.email, email)).limit(1);
     
-    if (existing && existing.length > 0) {
+    if (existing.length > 0) {
       contactId = existing[0].id;
     } else {
       contactId = `c_${Date.now()}`;

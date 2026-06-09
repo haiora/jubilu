@@ -4,6 +4,7 @@ import { campaigns, contacts, emailLogs } from "@db/schema";
 import { eq, and } from 'drizzle-orm';
 import { Resend } from 'resend';
 import { unsubscribeUrl } from '@/lib/email';
+import { getSession, can } from '@/lib/auth';
 
 const UNSUB_LABEL: Record<string, string> = { fr: 'Se désabonner', en: 'Unsubscribe', es: 'Darse de baja', he: 'הסרה מרשימת התפוצה' };
 function unsubFooter(email: string, loc: string): string {
@@ -95,7 +96,11 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const session = getSession();
+  if (!can(session, 'campaigns')) {
+    return NextResponse.json({ error: 'Non autorisé.' }, { status: 401 });
+  }
   const all = await db.select().from(campaigns);
   return NextResponse.json(all);
 }

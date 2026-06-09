@@ -316,6 +316,7 @@
     "remove": "Retirer",
     "checkout": "Passer la commande",
     "continue": "Continuer mes achats",
+    "summary": "Récapitulatif",
     "addedToCart": "Ajouté au panier",
     "customTextLabel": "Texte à calligraphier",
     "customTextPlaceholder": "Saisissez le verset, la bénédiction ou le nom à inscrire…",
