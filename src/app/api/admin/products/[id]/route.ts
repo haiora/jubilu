@@ -6,6 +6,9 @@ import {
 } from "@db/schema";
 import { eq } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type Translation = InferSelectModel<typeof productTranslations>;
 
 const VALID_CATEGORIES = ['wine', 'parchment'];
 const VALID_STATUS = ['active', 'draft', 'archived'];
@@ -46,9 +49,9 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       .where(eq(products.id, product.id));
 
     // Upsert the translation for the chosen locale.
-    const existingTr = await db.select().from(productTranslations)
+    const existingTr: Translation[] = await db.select().from(productTranslations)
       .where(eq(productTranslations.productId, product.id));
-    const trForLocale = existingTr.find((t: any) => t.locale === locale);
+    const trForLocale = existingTr.find((t) => t.locale === locale);
     if (trForLocale) {
       await db.update(productTranslations)
         .set({ name, shortDesc: shortDesc || null })

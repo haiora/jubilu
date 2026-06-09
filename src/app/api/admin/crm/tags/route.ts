@@ -3,6 +3,9 @@ import { db } from '@/lib/db';
 import { contacts, contactTags, tags as tagsTable } from "@db/schema";
 import { and, eq } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type Tag = InferSelectModel<typeof tagsTable>;
 
 /**
  * POST /api/admin/crm/tags
@@ -29,8 +32,8 @@ export async function POST(req: NextRequest) {
     }
 
     // Find or create the tag (case-insensitive match on name).
-    const existingTags = await db.select().from(tagsTable);
-    let tag = existingTags.find((t: any) => t.name.toLowerCase() === label.toLowerCase());
+    const existingTags: Tag[] = await db.select().from(tagsTable);
+    let tag = existingTags.find((t) => t.name.toLowerCase() === label.toLowerCase());
 
     if (!tag) {
       const id = `tag_${Date.now()}`;
@@ -73,8 +76,8 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'Champs requis manquants.' }, { status: 400 });
     }
 
-    const existingTags = await db.select().from(tagsTable);
-    const tag = existingTags.find((t: any) => t.name.toLowerCase() === label.toLowerCase());
+    const existingTags: Tag[] = await db.select().from(tagsTable);
+    const tag = existingTags.find((t) => t.name.toLowerCase() === label.toLowerCase());
     if (tag) {
       await db
         .delete(contactTags)

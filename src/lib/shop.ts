@@ -1,11 +1,10 @@
 import { db } from './db';
-import { products, productTranslations, productVariants } from '@db/schema';
-import { eq } from 'drizzle-orm';
+import { products, productVariants } from '@db/schema';
+import { eq, inArray } from 'drizzle-orm';
 import { PRODUCTS, type Product, type ProductCategory } from './catalog';
 import type { InferSelectModel } from 'drizzle-orm';
 
 type DbProduct = InferSelectModel<typeof products>;
-type DbTranslation = InferSelectModel<typeof productTranslations>;
 type DbVariant = InferSelectModel<typeof productVariants>;
 
 /**
@@ -15,19 +14,24 @@ type DbVariant = InferSelectModel<typeof productVariants>;
  */
 export async function getShopProducts(category?: ProductCategory): Promise<Product[]> {
   const base = category ? PRODUCTS.filter((p) => p.category === category) : [...PRODUCTS];
+  const slugs = base.map((p) => p.slug);
+  if (slugs.length === 0) return [];
 
   try {
-    const dbProducts = await db.select().from(products);
-    const translations = await db.select().from(productTranslations);
-    const variants = await db.select().from(productVariants);
+    // Parallel DB queries filtered by relevant slugs
+    const [dbProducts, variants] = await Promise.all([
+      db.select().from(products).where(inArray(products.slug, slugs)),
+      db.select().from(productVariants),
+    ]);
+
+    const dbMap = new Map((dbProducts as DbProduct[]).map((d) => [d.slug, d]));
 
     return base.map((p) => {
-      const dbP = dbProducts.find((d: DbProduct) => d.slug === p.slug);
+      const dbP = dbMap.get(p.slug);
       if (!dbP) return p;
 
-      const tr = translations.filter((t: DbTranslation) => t.productId === dbP.id);
-      const vs = variants.filter((v: DbVariant) => v.productId === dbP.id);
-      const totalStock = vs.reduce((sum: number, v: DbVariant) => sum + v.stock, 0);
+      const vs = (variants as DbVariant[]).filter((v) => v.productId === dbP.id);
+      const totalStock = vs.reduce((sum, v) => sum + v.stock, 0);
 
       return {
         ...p,
@@ -48,17 +52,19 @@ export async function getShopProduct(slug: string): Promise<Product | null> {
   if (!base) return null;
 
   try {
-    const [dbP] = await db.select().from(products).where(eq(products.slug, slug));
+    const [[dbP], variants] = await Promise.all([
+      db.select().from(products).where(eq(products.slug, slug)),
+      db.select().from(productVariants).where(eq(productVariants.sku, base.sku ?? '')),
+    ]);
     if (!dbP) return base;
 
-    const vs = await db.select().from(productVariants).where(eq(productVariants.productId, dbP.id));
-    const totalStock = vs.reduce((sum: number, v: DbVariant) => sum + v.stock, 0);
+    const totalStock = (variants as DbVariant[]).reduce((sum, v) => sum + v.stock, 0);
 
     return {
       ...base,
-      price: vs[0]?.price ?? base.price,
+      price: variants[0]?.price ?? base.price,
       stock: totalStock,
-      sku: vs[0]?.sku ?? base.sku,
+      sku: variants[0]?.sku ?? base.sku,
       featured: dbP.featured,
       customizable: dbP.customizable,
     };

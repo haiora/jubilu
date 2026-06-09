@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { contacts, orders, orderItems } from "@db/schema";
-import { eq } from 'drizzle-orm';
+import { eq, inArray } from 'drizzle-orm';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type Order = InferSelectModel<typeof orders>;
+type OrderItem = InferSelectModel<typeof orderItems>;
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -19,36 +23,35 @@ export async function GET(req: NextRequest) {
   }
 
   // Fetch all orders for this contact
-  const contactOrders = await db.select().from(orders).where(eq(orders.contactId, contact.id));
+  const contactOrders: Order[] = await db.select().from(orders).where(eq(orders.contactId, contact.id));
 
-  // Fetch all order items for these orders
-  const orderData: Array<{
-    id: string;
-    number: string;
-    status: string;
-    total: number;
-    createdAt: string;
-    items: { name: string; qty: number; customText: string | null }[];
-  }> = [];
+  // Batch fetch all items in one query
+  const orderIds = contactOrders.map((o) => o.id);
+  const allItems: OrderItem[] = orderIds.length
+    ? await db.select().from(orderItems).where(inArray(orderItems.orderId, orderIds))
+    : [];
 
-  for (const o of contactOrders) {
-    const items = await db.select().from(orderItems).where(eq(orderItems.orderId, o.id));
-    orderData.push({
+  const itemsByOrder = new Map<string, OrderItem[]>();
+  for (const item of allItems) {
+    const list = itemsByOrder.get(item.orderId) ?? [];
+    list.push(item);
+    itemsByOrder.set(item.orderId, list);
+  }
+
+  const orderData = contactOrders
+    .map((o) => ({
       id: o.id,
       number: o.number,
       status: o.status,
       total: o.total,
       createdAt: o.createdAt,
-      items: items.map((i: any) => ({
+      items: (itemsByOrder.get(o.id) ?? []).map((i) => ({
         name: i.nameSnapshot,
         qty: i.qty,
         customText: i.customText,
       })),
-    });
-  }
-
-  // Sort orders by date desc
-  orderData.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+    }))
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
   return NextResponse.json({
     contact: {

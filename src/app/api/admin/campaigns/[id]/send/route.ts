@@ -48,8 +48,10 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
       try {
         if (resend) {
           const loc = contact.locale ?? campaign.locale ?? 'fr';
-          const html = `<p>Bonjour ${contact.firstName ?? 'Ami'},</p>`
-            + `<p style="margin-top:24px;font-size:12px;color:#8a8170;text-align:center;"><a href="${unsubscribeUrl(contact.email, loc)}" style="color:#8a8170;">${UNSUB_LABEL[loc] ?? UNSUB_LABEL.fr}</a></p>`;
+          const greeting = `<p>Bonjour ${contact.firstName ?? 'Ami'},</p>`;
+          const body = campaign.body ? `<div style="margin-top:16px;">${campaign.body}</div>` : '';
+          const unsub = `<p style="margin-top:24px;font-size:12px;color:#8a8170;text-align:center;"><a href="${unsubscribeUrl(contact.email, loc)}" style="color:#8a8170;">${UNSUB_LABEL[loc] ?? UNSUB_LABEL.fr}</a></p>`;
+          const html = greeting + body + unsub;
           const result = await resend.emails.send({
             from: process.env.EMAIL_FROM ?? "Jubilé d'Israël <noreply@jubilee-israel.org>",
             to: contact.email,
