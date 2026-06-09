@@ -2,13 +2,14 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { CheckCircle2, ShieldCheck, CreditCard, Loader2 } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, CreditCard } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useCart } from '@/components/shop/cart-context';
 import { Button } from '@/components/ui/button';
 import { formatPrice } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
 import { createOrder, getShopProducts } from '@/lib/api-client';
+import { CartItemSkeleton } from '@/components/site/skeleton';
 
 interface ShopProduct {
   slug: string;
@@ -100,9 +101,22 @@ export default function CheckoutPage() {
     return (
       <section className="container py-12">
         <h1 className="text-3xl font-semibold md:text-4xl">{t('title')}</h1>
-        <div className="mt-10 flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          <p className="text-sm text-muted-foreground">Chargement…</p>
+        <div className="mt-8 grid gap-8 lg:grid-cols-3">
+          <div className="space-y-6 lg:col-span-2">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
+              <div className="h-4 w-32 animate-pulse rounded-lg bg-accent" />
+              <div className="h-12 w-full animate-pulse rounded-xl bg-accent" />
+              <div className="h-12 w-full animate-pulse rounded-xl bg-accent" />
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm space-y-4">
+              <div className="h-4 w-32 animate-pulse rounded-lg bg-accent" />
+              <div className="h-12 w-full animate-pulse rounded-xl bg-accent" />
+            </div>
+          </div>
+          <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-sm space-y-3">
+            <div className="h-5 w-24 animate-pulse rounded-xl bg-accent" />
+            <CartItemSkeleton />
+          </aside>
         </div>
       </section>
     );

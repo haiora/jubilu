@@ -2,12 +2,13 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Trash2, ScrollText, Wine, ArrowRight, Loader2 } from 'lucide-react';
+import { Trash2, ScrollText, Wine, ArrowRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useCart } from '@/components/shop/cart-context';
 import { Button } from '@/components/ui/button';
 import { getShopProducts } from '@/lib/api-client';
 import { formatPrice } from '@/lib/catalog';
+import { CartItemSkeleton } from '@/components/site/skeleton';
 import type { Locale } from '@/i18n/routing';
 
 interface ShopProduct {
@@ -53,9 +54,19 @@ export default function CartPage() {
     return (
       <section className="container py-12">
         <h1 className="text-3xl font-semibold md:text-4xl">{t('title')}</h1>
-        <div className="mt-10 flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          <p className="text-sm text-muted-foreground">Chargement…</p>
+        <div className="mt-8 grid gap-8 lg:grid-cols-3">
+          <div className="space-y-4 lg:col-span-2">
+            <CartItemSkeleton />
+            <CartItemSkeleton />
+          </div>
+          <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <div className="h-5 w-24 animate-pulse rounded-xl bg-accent" />
+            <div className="mt-4 space-y-2">
+              <div className="h-4 w-full animate-pulse rounded-lg bg-accent" />
+              <div className="h-4 w-2/3 animate-pulse rounded-lg bg-accent" />
+            </div>
+            <div className="mt-4 h-12 w-full animate-pulse rounded-xl bg-accent" />
+          </aside>
         </div>
       </section>
     );
