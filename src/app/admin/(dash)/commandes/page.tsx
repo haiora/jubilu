@@ -83,50 +83,89 @@ export default function OrdersPage() {
             Aucune commande pour le moment.
           </div>
         ) : (
-          <div className="overflow-x-auto rounded-xl border border-border bg-white">
-            <table className="w-full text-sm">
-              <thead className="bg-accent/40">
-                <tr>
-                  <th className="px-4 py-3 text-left font-medium">N°</th>
-                  <th className="px-4 py-3 text-left font-medium">Client</th>
-                  <th className="px-4 py-3 text-left font-medium">Date</th>
-                  <th className="px-4 py-3 text-left font-medium">Articles</th>
-                  <th className="px-4 py-3 text-right font-medium">Total</th>
-                  <th className="px-4 py-3 text-left font-medium">Statut</th>
-                </tr>
-              </thead>
-              <tbody>
-                {orders.map((order) => (
-                  <tr key={order.id} className="border-t border-border">
-                    <td className="px-4 py-3 font-mono text-xs">{order.number}</td>
-                    <td className="px-4 py-3">
-                      <p className="font-medium">{order.contact?.firstName || order.contact?.lastName ? `${order.contact.firstName ?? ''} ${order.contact.lastName ?? ''}`.trim() : '—'}</p>
-                      <p className="text-xs text-muted-foreground">{order.contact?.email ?? '—'}</p>
-                    </td>
-                    <td className="px-4 py-3 text-muted-foreground">{fmtDate(order.createdAt)}</td>
-                    <td className="px-4 py-3">
-                      {(order.items || []).map((item: OrderItem, i: number) => (
-                        <p key={i} className="text-xs">{item.qty}x {item.nameSnapshot}</p>
-                      ))}
-                    </td>
-                    <td className="px-4 py-3 text-right font-semibold">{formatEUR(order.total)}</td>
-                    <td className="px-4 py-3">
-                      <StatusBadge status={order.status} />
-                      <select
-                        value={order.status}
-                        onChange={(e) => changeStatus(order.id, e.target.value)}
-                        className="mt-1 block w-full rounded-md border border-border bg-white px-2 py-1 text-xs outline-none"
-                      >
-                        {Object.entries(statusConfig).map(([key, cfg]) => (
-                          <option key={key} value={key}>{cfg.label}</option>
-                        ))}
-                      </select>
-                    </td>
+          <>
+            {/* Desktop table */}
+            <div className="hidden overflow-x-auto rounded-xl border border-border bg-white md:block">
+              <table className="w-full text-sm">
+                <thead className="bg-accent/40">
+                  <tr>
+                    <th className="px-4 py-3 text-left font-medium">N°</th>
+                    <th className="px-4 py-3 text-left font-medium">Client</th>
+                    <th className="px-4 py-3 text-left font-medium">Date</th>
+                    <th className="px-4 py-3 text-left font-medium">Articles</th>
+                    <th className="px-4 py-3 text-right font-medium">Total</th>
+                    <th className="px-4 py-3 text-left font-medium">Statut</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {orders.map((order) => (
+                    <tr key={order.id} className="border-t border-border transition-colors hover:bg-accent/20">
+                      <td className="px-4 py-3 font-mono text-xs">{order.number}</td>
+                      <td className="px-4 py-3">
+                        <p className="font-medium">{order.contact?.firstName || order.contact?.lastName ? `${order.contact.firstName ?? ''} ${order.contact.lastName ?? ''}`.trim() : '—'}</p>
+                        <p className="text-xs text-muted-foreground">{order.contact?.email ?? '—'}</p>
+                      </td>
+                      <td className="px-4 py-3 text-muted-foreground">{fmtDate(order.createdAt)}</td>
+                      <td className="px-4 py-3">
+                        {(order.items || []).map((item: OrderItem, i: number) => (
+                          <p key={i} className="text-xs">{item.qty}x {item.nameSnapshot}</p>
+                        ))}
+                      </td>
+                      <td className="px-4 py-3 text-right font-semibold">{formatEUR(order.total)}</td>
+                      <td className="px-4 py-3">
+                        <StatusBadge status={order.status} />
+                        <select
+                          value={order.status}
+                          onChange={(e) => changeStatus(order.id, e.target.value)}
+                          className="mt-1 block w-full rounded-md border border-border bg-white px-2 py-1 text-xs outline-none"
+                        >
+                          {Object.entries(statusConfig).map(([key, cfg]) => (
+                            <option key={key} value={key}>{cfg.label}</option>
+                          ))}
+                        </select>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile cards */}
+            <div className="space-y-3 md:hidden">
+              {orders.map((order) => (
+                <div key={order.id} className="rounded-xl border border-border bg-white p-4">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <p className="font-mono text-xs text-muted-foreground">{order.number}</p>
+                      <p className="mt-1 font-medium">{order.contact?.firstName || order.contact?.lastName ? `${order.contact.firstName ?? ''} ${order.contact.lastName ?? ''}`.trim() : '—'}</p>
+                      <p className="text-xs text-muted-foreground">{order.contact?.email ?? '—'}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="font-semibold">{formatEUR(order.total)}</p>
+                      <p className="text-xs text-muted-foreground">{fmtDate(order.createdAt)}</p>
+                    </div>
+                  </div>
+                  <div className="mt-3 border-t border-border pt-3">
+                    {(order.items || []).map((item: OrderItem, i: number) => (
+                      <p key={i} className="text-xs text-muted-foreground">{item.qty}x {item.nameSnapshot}</p>
+                    ))}
+                  </div>
+                  <div className="mt-3 flex items-center justify-between">
+                    <StatusBadge status={order.status} />
+                    <select
+                      value={order.status}
+                      onChange={(e) => changeStatus(order.id, e.target.value)}
+                      className="rounded-md border border-border bg-white px-2 py-1 text-xs outline-none"
+                    >
+                      {Object.entries(statusConfig).map(([key, cfg]) => (
+                        <option key={key} value={key}>{cfg.label}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         )}
       </main>
     </div>

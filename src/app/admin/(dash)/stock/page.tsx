@@ -58,7 +58,8 @@ export default function StockAdminPage() {
       </header>
 
       <main className="container py-8">
-        <div className="overflow-x-auto rounded-xl border border-border bg-white">
+        {/* Desktop table */}
+        <div className="hidden overflow-x-auto rounded-xl border border-border bg-white md:block">
           <table className="w-full text-sm">
             <thead className="bg-accent/40">
               <tr>
@@ -70,10 +71,10 @@ export default function StockAdminPage() {
             </thead>
             <tbody>
               {products.flatMap((p) =>
-                (p.variants || []).map((v: any) => (
-                  <tr key={v.id} className="border-t border-border">
+                (p.variants || []).map((v: Variant) => (
+                  <tr key={v.id} className="border-t border-border transition-colors hover:bg-accent/20">
                     <td className="px-4 py-3 font-medium">
-                      {p.translations?.find((t: any) => t.locale === 'fr')?.name ?? p.slug}
+                      {p.translations?.find((t) => t.locale === 'fr')?.name ?? p.slug}
                     </td>
                     <td className="px-4 py-3 text-muted-foreground">{v.name ?? v.sku}</td>
                     <td className="px-4 py-3 text-right font-semibold">{v.stock}</td>
@@ -100,6 +101,39 @@ export default function StockAdminPage() {
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile cards */}
+        <div className="space-y-3 md:hidden">
+          {products.flatMap((p) =>
+            (p.variants || []).map((v: Variant) => (
+              <div key={v.id} className="rounded-xl border border-border bg-white p-4">
+                <p className="font-medium">
+                  {p.translations?.find((t) => t.locale === 'fr')?.name ?? p.slug}
+                </p>
+                <p className="text-sm text-muted-foreground">{v.name ?? v.sku}</p>
+                <div className="mt-3 flex items-center justify-between">
+                  <p className="font-semibold">Stock : {v.stock}</p>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => adjust(v.id, -1)}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-white hover:bg-accent"
+                      aria-label="Diminuer"
+                    >
+                      <Minus className="h-3 w-3" />
+                    </button>
+                    <button
+                      onClick={() => adjust(v.id, 1)}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-white hover:bg-accent"
+                      aria-label="Augmenter"
+                    >
+                      <Plus className="h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </main>
     </div>
