@@ -65,17 +65,19 @@ export default function CheckoutPage() {
     }
   }
 
-  const field = 'h-11 w-full rounded-xl border border-input bg-card px-4 text-sm outline-none ring-gold focus:ring-2';
+  const field = 'h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none ring-gold/50 focus:ring-2 focus:border-gold/30 transition-all placeholder:text-muted-foreground/60';
 
   if (orderNumber) {
     return (
       <section className="container py-16">
-        <div className="mx-auto flex max-w-xl flex-col items-center rounded-2xl border border-border bg-card p-10 text-center shadow-sm">
-          <CheckCircle2 className="h-14 w-14 text-secondary" />
+        <div className="mx-auto flex max-w-xl flex-col items-center rounded-2xl border border-border bg-card p-10 text-center shadow-sm animate-fade-up">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gold/10">
+            <CheckCircle2 className="h-8 w-8 text-gold" />
+          </div>
           <h1 className="mt-4 text-2xl font-semibold">{t('success')}</h1>
           <p className="mt-1 font-mono text-sm text-muted-foreground">{orderNumber}</p>
           <p className="mt-4 text-muted-foreground">{t('successText')}</p>
-          <Button asChild variant="gold" className="mt-6">
+          <Button asChild variant="gold" className="mt-6 rounded-xl px-8">
             <Link href="/boutique">{t('backToShop')}</Link>
           </Button>
         </div>
@@ -85,9 +87,12 @@ export default function CheckoutPage() {
 
   if (lines.length === 0) {
     return (
-      <section className="container py-16 text-center">
+      <section className="container py-16 text-center animate-fade-up">
+        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/50 mx-auto">
+          <CreditCard className="h-8 w-8 text-muted-foreground" />
+        </div>
         <p className="text-lg text-muted-foreground">{tcart('empty')}</p>
-        <Button asChild variant="gold" className="mt-6">
+        <Button asChild variant="gold" className="mt-6 rounded-xl px-8">
           <Link href="/boutique">{tcart('emptyCta')}</Link>
         </Button>
       </section>
@@ -99,8 +104,8 @@ export default function CheckoutPage() {
       <h1 className="text-3xl font-semibold md:text-4xl">{t('title')}</h1>
       <form onSubmit={onSubmit} className="mt-8 grid gap-8 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
-          <fieldset className="rounded-2xl border border-border bg-card p-6">
-            <legend className="px-2 font-semibold">{t('contact')}</legend>
+          <fieldset className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <legend className="px-2 text-sm font-semibold uppercase tracking-wide text-gold">{t('contact')}</legend>
             <div className="grid gap-4 sm:grid-cols-2">
               <input required name="firstName" placeholder={tcontact('firstName')} className={field} autoComplete="given-name" />
               <input required name="lastName" placeholder={tcontact('lastName')} className={field} autoComplete="family-name" />
@@ -109,8 +114,8 @@ export default function CheckoutPage() {
             <input name="phone" placeholder={t('phone')} className={`${field} mt-4`} autoComplete="tel" />
           </fieldset>
 
-          <fieldset className="rounded-2xl border border-border bg-card p-6">
-            <legend className="px-2 font-semibold">{t('shipping')}</legend>
+          <fieldset className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <legend className="px-2 text-sm font-semibold uppercase tracking-wide text-gold">{t('shipping')}</legend>
             <input required name="address" placeholder={t('address')} className={field} autoComplete="street-address" />
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
               <input required name="zip" placeholder={t('zip')} className={field} autoComplete="postal-code" />
@@ -119,29 +124,33 @@ export default function CheckoutPage() {
             </div>
           </fieldset>
 
-          <div className="flex items-start gap-3 rounded-2xl border border-gold/40 bg-gold/5 p-4 text-sm text-muted-foreground">
+          <div className="flex items-start gap-3 rounded-2xl border border-gold/30 bg-gold/5 p-4 text-sm text-muted-foreground">
             <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
             <p>{t('ageNotice')}</p>
           </div>
         </div>
 
-        <aside className="h-fit rounded-2xl border border-border bg-card p-6">
+        <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-sm">
           <h2 className="text-lg font-semibold">{t('summary')}</h2>
           <ul className="mt-4 space-y-2 text-sm">
             {lines.map((l, i) => (
               <li key={i} className="flex justify-between gap-2">
                 <span className="text-muted-foreground">{l.product!.translations[locale].name} × {l.item.qty}</span>
-                <span>{formatPrice(l.product!.price * l.item.qty, locale)}</span>
+                <span className="font-medium">{formatPrice(l.product!.price * l.item.qty, locale)}</span>
               </li>
             ))}
           </ul>
           <div className="mt-4 flex justify-between border-t border-border pt-4 text-lg font-semibold">
-            <span>{t('summary')}</span>
+            <span>{t('total')}</span>
             <span className="text-primary">{formatPrice(total, locale)}</span>
           </div>
-          {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
-          <Button type="submit" variant="gold" size="lg" disabled={submitting} className="mt-6 w-full">
-            <CreditCard className="h-4 w-4" /> {t('placeOrder')}
+          {error && (
+            <div className="mt-3 rounded-lg bg-red-50 border border-red-200 px-3 py-2 text-sm text-red-600">
+              {error}
+            </div>
+          )}
+          <Button type="submit" variant="gold" size="lg" disabled={submitting} className="mt-6 w-full rounded-xl shadow-[0_0_20px_-5px_hsl(var(--gold))]">
+            <CreditCard className="h-4 w-4 mr-2" /> {submitting ? '…' : t('placeOrder')}
           </Button>
           <p className="mt-3 text-center text-xs text-muted-foreground">{t('stripeNote')}</p>
         </aside>
