@@ -132,8 +132,10 @@ export default function AdminDashboard() {
         <nav className="mt-8 flex flex-wrap gap-3">
           <a href="/admin/commandes/" className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-primary/90 transition-colors">Commandes</a>
           <a href="/admin/clients/" className="rounded-xl bg-white border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-accent transition-colors">Clients</a>
+          <a href="/admin/dons/" className="rounded-xl bg-white border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-accent transition-colors">Donateurs</a>
           <a href="/admin/produits/" className="rounded-xl bg-white border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-accent transition-colors">Produits</a>
           <a href="/admin/stock/" className="rounded-xl bg-white border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-accent transition-colors">Stock</a>
+          <a href="/admin/campagnes/" className="rounded-xl bg-white border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-accent transition-colors">Campagnes email</a>
         </nav>
       </main>
     </div>

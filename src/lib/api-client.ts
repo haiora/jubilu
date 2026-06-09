@@ -60,15 +60,19 @@ export interface DashboardStats {
   donationsTotal: number;
 }
 
+export async function getAdminDonations(): Promise<any[]> {
+  return fetchJson<any[]>('/api/admin/donations/');
+}
+
 export async function getAdminDashboard(): Promise<{
   stats: DashboardStats;
   recentOrders: any[];
   recentClients: any[];
 }> {
-  // For now compose from individual endpoints until a dedicated dashboard API exists
-  const [orders, contacts] = await Promise.all([
+  const [orders, contacts, donors] = await Promise.all([
     getAdminOrders(),
     getAdminContacts(),
+    getAdminDonations().catch(() => []),
   ]);
   const revenue = orders.reduce((sum: number, o: any) => sum + (o.total || 0), 0);
   return {
@@ -77,8 +81,8 @@ export async function getAdminDashboard(): Promise<{
       clients: contacts.length,
       products: 4,
       revenue,
-      donationsCount: 0,
-      donationsTotal: 0,
+      donationsCount: donors.length,
+      donationsTotal: 0, // No amount stored in DB yet; donations are tracked via contact status
     },
     recentOrders: orders.slice(0, 5),
     recentClients: contacts.slice(0, 5),
