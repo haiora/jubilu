@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Send, Mail, Loader2, Users, CheckCircle, Clock, AlertTriangle } from 'lucide-react';
 import { getAdminCampaigns, createCampaign } from '@/lib/api-client';
+import { AdminLoading } from '@/components/admin/admin-loading';
 
 interface Campaign {
   id: string;
@@ -59,8 +60,8 @@ export default function CampaignsPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-stone-50">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      <div className="min-h-screen bg-stone-50">
+        <AdminLoading />
       </div>
     );
   }

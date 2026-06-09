@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Heart, Mail, Phone, Calendar, Loader2 } from 'lucide-react';
+import { ArrowLeft, Heart, Mail, Phone, Calendar } from 'lucide-react';
+import { AdminLoading } from '@/components/admin/admin-loading';
 
 interface Donor {
   id: string;
@@ -32,11 +33,8 @@ export default function DonationsPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-stone-50">
-        <div className="flex flex-col items-center gap-3">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          <p className="text-sm text-muted-foreground">Chargement des donateurs…</p>
-        </div>
+      <div className="min-h-screen bg-stone-50">
+        <AdminLoading message="Chargement des donateurs…" />
       </div>
     );
   }

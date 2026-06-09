@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Package, Users, ShoppingBag, TrendingUp, LogOut, Heart, Crown } from 'lucide-react';
 import { getAdminDashboard, adminLogout } from '@/lib/api-client';
+import { AdminLoading } from '@/components/admin/admin-loading';
 
 export default function AdminDashboard() {
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
@@ -46,8 +47,8 @@ export default function AdminDashboard() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-stone-50">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      <div className="min-h-screen bg-stone-50">
+        <AdminLoading />
       </div>
     );
   }

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, Wine, Scroll } from 'lucide-react';
 import { getAdminProducts } from '@/lib/api-client';
+import { AdminLoading } from '@/components/admin/admin-loading';
 
 type LocaleKey = 'fr' | 'en' | 'he' | 'es';
 
@@ -52,7 +53,7 @@ export default function ProductsAdminPage() {
   }, []);
 
   const grouped = useMemo(() => {
-    const map: Record<string, any[]> = {};
+    const map: Record<string, AdminProduct[]> = {};
     products.forEach((p) => {
       const cat = catLabels[p.category] ?? p.category;
       if (!map[cat]) map[cat] = [];
@@ -62,14 +63,14 @@ export default function ProductsAdminPage() {
   }, [products]);
 
   const formatEUR = (cents: number) => `${(cents / 100).toFixed(2)} €`;
-  const tr = (p: any, loc: LocaleKey) =>
-    p.translations?.find((t: any) => t.locale === loc) ||
-    p.translations?.find((t: any) => t.locale === 'fr');
+  const tr = (p: AdminProduct, loc: LocaleKey) =>
+    p.translations?.find((t: Translation) => t.locale === loc) ||
+    p.translations?.find((t: Translation) => t.locale === 'fr');
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-stone-50">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      <div className="min-h-screen bg-stone-50">
+        <AdminLoading />
       </div>
     );
   }

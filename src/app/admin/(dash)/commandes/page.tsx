@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Package, Clock, CheckCircle, Truck, XCircle } from 'lucide-react';
 import { getAdminOrders, updateOrderStatus } from '@/lib/api-client';
+import { AdminLoading } from '@/components/admin/admin-loading';
 
 const statusConfig: Record<string, { icon: React.ElementType; className: string; label: string }> = {
   pending: { icon: Clock, className: 'bg-amber-100 text-amber-700', label: 'En attente' },
@@ -13,6 +14,11 @@ const statusConfig: Record<string, { icon: React.ElementType; className: string;
   cancelled: { icon: XCircle, className: 'bg-red-100 text-red-700', label: 'Annulée' }
 };
 
+interface OrderItem {
+  qty: number;
+  nameSnapshot: string;
+}
+
 interface Order {
   id: string;
   number: string;
@@ -20,17 +26,20 @@ interface Order {
   total: number;
   createdAt: string;
   contact?: { email?: string; firstName?: string | null; lastName?: string | null };
-  items?: { qty: number; nameSnapshot: string }[];
+  items?: OrderItem[];
 }
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const load = () => {
+    setLoading(true);
+    setError('');
     getAdminOrders()
       .then(setOrders)
-      .catch(() => {})
+      .catch((e) => setError(e.message || 'Erreur de chargement.'))
       .finally(() => setLoading(false));
   };
 
@@ -46,8 +55,8 @@ export default function OrdersPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-stone-50">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      <div className="min-h-screen bg-stone-50">
+        <AdminLoading />
       </div>
     );
   }
@@ -64,6 +73,11 @@ export default function OrdersPage() {
       </header>
 
       <main className="container py-8">
+        {error && (
+          <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {error}
+          </div>
+        )}
         {orders.length === 0 ? (
           <div className="rounded-xl border border-border bg-white p-12 text-center text-muted-foreground">
             Aucune commande pour le moment.
@@ -91,7 +105,7 @@ export default function OrdersPage() {
                     </td>
                     <td className="px-4 py-3 text-muted-foreground">{fmtDate(order.createdAt)}</td>
                     <td className="px-4 py-3">
-                      {(order.items || []).map((item: any, i: number) => (
+                      {(order.items || []).map((item: OrderItem, i: number) => (
                         <p key={i} className="text-xs">{item.qty}x {item.nameSnapshot}</p>
                       ))}
                     </td>

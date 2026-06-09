@@ -69,20 +69,21 @@ export async function getAdminDashboard(): Promise<{
   recentOrders: any[];
   recentClients: any[];
 }> {
-  const [orders, contacts, donors] = await Promise.all([
+  const [orders, contacts, donors, productsList] = await Promise.all([
     getAdminOrders(),
     getAdminContacts(),
     getAdminDonations().catch(() => []),
+    getAdminProducts().catch(() => []),
   ]);
-  const revenue = orders.reduce((sum: number, o: any) => sum + (o.total || 0), 0);
+  const revenue = orders.reduce((sum: number, o: { total?: number }) => sum + (o.total || 0), 0);
   return {
     stats: {
       orders: orders.length,
       clients: contacts.length,
-      products: 4,
+      products: productsList.length,
       revenue,
       donationsCount: donors.length,
-      donationsTotal: 0, // No amount stored in DB yet; donations are tracked via contact status
+      donationsTotal: 0,
     },
     recentOrders: orders.slice(0, 5),
     recentClients: contacts.slice(0, 5),
