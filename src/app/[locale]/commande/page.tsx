@@ -8,6 +8,7 @@ import { useCart } from '@/components/shop/cart-context';
 import { Button } from '@/components/ui/button';
 import { getProduct, formatPrice } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
+import { addOrder } from '@/lib/admin-store';
 
 export default function CheckoutPage() {
   const locale = useLocale() as Locale;
@@ -49,6 +50,7 @@ export default function CheckoutPage() {
     try {
       const orderNumber = `JBL-${Date.now().toString(36).toUpperCase()}`;
       const order = {
+        id: orderNumber,
         number: orderNumber,
         items: lines.map((l) => ({
           name: l.product!.translations[locale].name,
@@ -58,12 +60,11 @@ export default function CheckoutPage() {
         })),
         contact: data,
         total,
+        status: 'paid' as const,
         locale,
         date: new Date().toISOString()
       };
-      const existing = JSON.parse(localStorage.getItem('jubilee_orders') || '[]');
-      existing.unshift(order);
-      localStorage.setItem('jubilee_orders', JSON.stringify(existing));
+      addOrder(order);
       clear();
       window.location.href = `/${locale}/commande/success?order=${orderNumber}`;
     } catch (err) {

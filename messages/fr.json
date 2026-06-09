@@ -15,7 +15,8 @@
     "contact": "Contact",
     "faq": "FAQ",
     "cart": "Panier",
-    "account": "Mon compte"
+    "account": "Mon compte",
+    "donate": "Faire un don"
   },
   "common": {
     "discover": "Découvrir la mission",
@@ -269,6 +270,31 @@
     "orderLabel": "Commande",
     "viewInvoice": "Voir la facture",
     "totalIncl": "Total TTC"
+  },
+  "donation": {
+    "title": "Faire un don",
+    "subtitle": "Soutenez la mission de Jubilé en Terre Sainte.",
+    "chooseAmount": "Choisissez un montant",
+    "customAmount": "Montant libre",
+    "nameLabel": "Votre nom",
+    "emailLabel": "Votre email",
+    "messageLabel": "Message (facultatif)",
+    "messagePlaceholder": "Un mot pour l'équipe…",
+    "recurring": "Faire un don mensuel",
+    "recurringLabel": "Don mensuel activé",
+    "donateButton": "Donner maintenant",
+    "secureNote": "Paiement sécurisé via Stripe. Aucune donnée bancaire n'est stockée sur nos serveurs.",
+    "confirmTitle": "Confirmer votre don",
+    "amount": "Montant",
+    "name": "Nom",
+    "email": "Email",
+    "stripeNote": "Vous serez redirigé vers Stripe pour finaliser le paiement.",
+    "confirmButton": "Confirmer et payer",
+    "backButton": "Modifier",
+    "successTitle": "Merci pour votre générosité !",
+    "successText": "Votre don de {amount} a bien été enregistré. Vous recevrez une confirmation par email.",
+    "backHome": "Retour à l'accueil",
+    "visitShop": "Visiter la boutique"
   },
   "unsubscribe": {
     "title": "Désabonnement",

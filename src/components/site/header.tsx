@@ -17,7 +17,8 @@ const NAV = [
   { key: 'parchments', href: '/boutique/parchemins' },
   { key: 'testimonials', href: '/temoignages' },
   { key: 'news', href: '/actualites' },
-  { key: 'contact', href: '/contact' }
+  { key: 'contact', href: '/contact' },
+  { key: 'donate', href: '/don' }
 ] as const;
 
 export function Header() {

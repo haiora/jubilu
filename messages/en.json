@@ -15,7 +15,8 @@
     "contact": "Contact",
     "faq": "FAQ",
     "cart": "Cart",
-    "account": "My account"
+    "account": "My account",
+    "donate": "Donate"
   },
   "common": {
     "discover": "Discover the mission",
@@ -269,6 +270,31 @@
     "orderLabel": "Order",
     "viewInvoice": "View invoice",
     "totalIncl": "Total incl. tax"
+  },
+  "donation": {
+    "title": "Make a donation",
+    "subtitle": "Support Jubilee's mission in the Holy Land.",
+    "chooseAmount": "Choose an amount",
+    "customAmount": "Custom amount",
+    "nameLabel": "Your name",
+    "emailLabel": "Your email",
+    "messageLabel": "Message (optional)",
+    "messagePlaceholder": "A word for the team…",
+    "recurring": "Make it a monthly donation",
+    "recurringLabel": "Monthly donation enabled",
+    "donateButton": "Donate now",
+    "secureNote": "Secure payment via Stripe. No banking data is stored on our servers.",
+    "confirmTitle": "Confirm your donation",
+    "amount": "Amount",
+    "name": "Name",
+    "email": "Email",
+    "stripeNote": "You will be redirected to Stripe to complete the payment.",
+    "confirmButton": "Confirm and pay",
+    "backButton": "Back",
+    "successTitle": "Thank you for your generosity!",
+    "successText": "Your donation of {amount} has been registered. You will receive a confirmation by email.",
+    "backHome": "Back to home",
+    "visitShop": "Visit the shop"
   },
   "unsubscribe": {
     "title": "Unsubscribe",

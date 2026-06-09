@@ -29,6 +29,7 @@ export function Footer() {
             <li><Link href="/temoignages" className="hover:text-gold">{nav('testimonials')}</Link></li>
             <li><Link href="/actualites" className="hover:text-gold">{nav('news')}</Link></li>
             <li><Link href="/contact" className="hover:text-gold">{nav('contact')}</Link></li>
+            <li><Link href="/don" className="hover:text-gold">{nav('donate')}</Link></li>
           </ul>
         </div>
 

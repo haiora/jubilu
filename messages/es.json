@@ -15,7 +15,8 @@
     "contact": "Contacto",
     "faq": "Preguntas frecuentes",
     "cart": "Carrito",
-    "account": "Mi cuenta"
+    "account": "Mi cuenta",
+    "donate": "Donar"
   },
   "common": {
     "discover": "Descubrir la misión",
@@ -269,6 +270,31 @@
     "orderLabel": "Pedido",
     "viewInvoice": "Ver factura",
     "totalIncl": "Total con IVA"
+  },
+  "donation": {
+    "title": "Hacer un donativo",
+    "subtitle": "Apoye la misión de Jubileo en Tierra Santa.",
+    "chooseAmount": "Elija un importe",
+    "customAmount": "Importe libre",
+    "nameLabel": "Su nombre",
+    "emailLabel": "Su correo",
+    "messageLabel": "Mensaje (opcional)",
+    "messagePlaceholder": "Una palabra para el equipo…",
+    "recurring": "Hacer una donación mensual",
+    "recurringLabel": "Donación mensual activada",
+    "donateButton": "Donar ahora",
+    "secureNote": "Pago seguro vía Stripe. Ningún dato bancario se almacena en nuestros servidores.",
+    "confirmTitle": "Confirme su donativo",
+    "amount": "Importe",
+    "name": "Nombre",
+    "email": "Correo",
+    "stripeNote": "Será redirigido a Stripe para completar el pago.",
+    "confirmButton": "Confirmar y pagar",
+    "backButton": "Volver",
+    "successTitle": "¡Gracias por su generosidad!",
+    "successText": "Su donativo de {amount} ha sido registrado. Recibirá una confirmación por correo.",
+    "backHome": "Volver al inicio",
+    "visitShop": "Visitar la tienda"
   },
   "unsubscribe": {
     "title": "Baja de suscripción",

@@ -15,7 +15,8 @@
     "contact": "צור קשר",
     "faq": "שאלות נפוצות",
     "cart": "סל קניות",
-    "account": "החשבון שלי"
+    "account": "החשבון שלי",
+    "donate": "תרומה"
   },
   "common": {
     "discover": "גלו את השליחות",
@@ -269,6 +270,31 @@
     "orderLabel": "הזמנה",
     "viewInvoice": "צפייה בחשבונית",
     "totalIncl": "סה\"כ כולל מע\"מ"
+  },
+  "donation": {
+    "title": "תרומה",
+    "subtitle": "תמכו בשליחות יוּבּל בארץ הקדושה.",
+    "chooseAmount": "בחרו סכום",
+    "customAmount": "סכום חופשי",
+    "nameLabel": "שמכם",
+    "emailLabel": "כתובת הדוא\"ל שלכם",
+    "messageLabel": "הודעה (אופציונלי)",
+    "messagePlaceholder": "מילה לצוות…",
+    "recurring": "תרומה חודשית",
+    "recurringLabel": "תרומה חודשית הופעלה",
+    "donateButton": "לתרום עכשיו",
+    "secureNote": "תשלום מאובטח דרך Stripe. אף נתון בנקאי אינו נשמר אצלנו.",
+    "confirmTitle": "אשרו את תרומתכם",
+    "amount": "סכום",
+    "name": "שם",
+    "email": "דוא\"ל",
+    "stripeNote": "תופנו ל-Stripe כדי להשלים את התשלום.",
+    "confirmButton": "אישור ותשלום",
+    "backButton": "חזרה",
+    "successTitle": "תודה על נדיבותכם!",
+    "successText": "תרומתכם בסך {amount} נרשמה בהצלחה. תקבלו אישור בדוא\"ל.",
+    "backHome": "חזרה לדף הבית",
+    "visitShop": "לחנות"
   },
   "unsubscribe": {
     "title": "הסרה מרשימת התפוצה",
