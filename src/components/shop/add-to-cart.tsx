@@ -64,13 +64,13 @@ export function AddToCart({
             <p className="text-sm font-medium text-amber-600">{t('lowStock', { n: stock })}</p>
           )}
           <div className="flex items-center gap-3">
-            <div className="flex items-center rounded-full border border-input">
-              <button type="button" aria-label="-" onClick={() => setQty((q) => Math.max(1, q - 1))} className="h-10 w-10 text-lg">−</button>
-              <span className="w-8 text-center">{qty}</span>
-              <button type="button" aria-label="+" onClick={() => setQty((q) => Math.min(maxQty, q + 1))} disabled={qty >= maxQty} className="h-10 w-10 text-lg disabled:opacity-40">+</button>
+            <div className="flex items-center rounded-full border border-input bg-background">
+              <button type="button" aria-label="-" onClick={() => setQty((q) => Math.max(1, q - 1))} className="h-10 w-10 rounded-full text-lg hover:bg-accent transition-colors">−</button>
+              <span className="w-8 text-center font-medium">{qty}</span>
+              <button type="button" aria-label="+" onClick={() => setQty((q) => Math.min(maxQty, q + 1))} disabled={qty >= maxQty} className="h-10 w-10 rounded-full text-lg disabled:opacity-40 hover:bg-accent transition-colors">+</button>
             </div>
-            <Button onClick={onAdd} variant="gold" size="lg" className="flex-1">
-              {done ? <Check className="h-4 w-4" /> : <ShoppingCart className="h-4 w-4" />}
+            <Button onClick={onAdd} variant="gold" size="lg" className={`flex-1 rounded-xl transition-all ${done ? 'bg-green-600 hover:bg-green-700 shadow-[0_0_20px_-5px_rgba(22,163,74,0.4)]' : 'shadow-[0_0_20px_-5px_hsl(var(--gold))]'}`}>
+              {done ? <Check className="h-4 w-4 animate-scale-in" /> : <ShoppingCart className="h-4 w-4" />}
               {done ? t('addedToCart') : tc('addToCart')}
             </Button>
           </div>
