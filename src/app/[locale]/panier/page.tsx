@@ -24,9 +24,12 @@ export default function CartPage() {
       <h1 className="text-3xl font-semibold md:text-4xl">{t('title')}</h1>
 
       {lines.length === 0 ? (
-        <div className="mt-10 flex flex-col items-center rounded-2xl border border-border bg-card p-12 text-center">
+        <div className="mt-10 flex flex-col items-center rounded-2xl border border-border bg-card p-12 text-center animate-fade-up">
+          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent/50">
+            <Wine className="h-8 w-8 text-muted-foreground" />
+          </div>
           <p className="text-lg text-muted-foreground">{t('empty')}</p>
-          <Button asChild variant="gold" className="mt-6">
+          <Button asChild variant="gold" className="mt-6 rounded-xl px-8">
             <Link href="/boutique">{t('emptyCta')}</Link>
           </Button>
         </div>
@@ -37,25 +40,28 @@ export default function CartPage() {
               const tr = product!.translations[locale];
               const Icon = product!.icon === 'scroll' ? ScrollText : Wine;
               return (
-                <div key={index} className="flex gap-4 rounded-2xl border border-border bg-card p-4">
+                <div key={index} className="flex gap-4 rounded-2xl border border-border bg-card p-4 shadow-sm transition-all hover:shadow-md">
                   <div className={`flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${product!.gradient}`}>
                     <Icon className="h-8 w-8 text-primary" />
                   </div>
                   <div className="flex flex-1 flex-col">
                     <div className="flex items-start justify-between gap-2">
                       <h3 className="font-semibold">{tr.name}</h3>
-                      <button onClick={() => remove(index)} aria-label={t('remove')} className="text-muted-foreground hover:text-red-600">
+                      <button onClick={() => remove(index)} aria-label={t('remove')} className="rounded-md p-1 text-muted-foreground hover:bg-red-50 hover:text-red-600 transition-colors">
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
                     {item.customText && (
-                      <p className="mt-1 text-sm italic text-muted-foreground">“{item.customText}”</p>
+                      <p className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted-foreground bg-accent/40 px-2.5 py-1 rounded-md w-fit">
+                        <ScrollText className="h-3.5 w-3.5 text-gold" />
+                        <span className="italic">« {item.customText} »</span>
+                      </p>
                     )}
                     <div className="mt-auto flex items-center justify-between pt-2">
-                      <div className="flex items-center rounded-full border border-input">
-                        <button onClick={() => setQty(index, item.qty - 1)} className="h-9 w-9" aria-label="-">−</button>
-                        <span className="w-8 text-center text-sm">{item.qty}</span>
-                        <button onClick={() => setQty(index, item.qty + 1)} className="h-9 w-9" aria-label="+">+</button>
+                      <div className="flex items-center rounded-full border border-input bg-background">
+                        <button onClick={() => setQty(index, item.qty - 1)} className="h-9 w-9 rounded-full hover:bg-accent transition-colors" aria-label="-">−</button>
+                        <span className="w-8 text-center text-sm font-medium">{item.qty}</span>
+                        <button onClick={() => setQty(index, item.qty + 1)} className="h-9 w-9 rounded-full hover:bg-accent transition-colors" aria-label="+">+</button>
                       </div>
                       <span className="font-semibold text-primary">{formatPrice(product!.price * item.qty, locale)}</span>
                     </div>
@@ -65,16 +71,24 @@ export default function CartPage() {
             })}
           </div>
 
-          <aside className="h-fit rounded-2xl border border-border bg-card p-6">
-            <h2 className="text-lg font-semibold">{t('total')}</h2>
+          <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="text-lg font-semibold">{t('summary')}</h2>
+            <ul className="mt-4 space-y-2 text-sm">
+              {lines.map(({ item, product }) => (
+                <li key={item.slug} className="flex justify-between text-muted-foreground">
+                  <span>{product!.translations[locale].name} × {item.qty}</span>
+                  <span className="font-medium text-foreground">{formatPrice(product!.price * item.qty, locale)}</span>
+                </li>
+              ))}
+            </ul>
             <div className="mt-4 flex items-center justify-between border-t border-border pt-4 text-lg font-semibold">
               <span>{t('total')}</span>
               <span className="text-primary">{formatPrice(total, locale)}</span>
             </div>
-            <Button asChild variant="gold" size="lg" className="mt-6 w-full">
+            <Button asChild variant="gold" size="lg" className="mt-6 w-full rounded-xl shadow-[0_0_20px_-5px_hsl(var(--gold))]">
               <Link href="/commande">{t('checkout')} <ArrowRight className="h-4 w-4 rtl:rotate-180" /></Link>
             </Button>
-            <Button asChild variant="ghost" className="mt-2 w-full">
+            <Button asChild variant="ghost" className="mt-2 w-full rounded-xl">
               <Link href="/boutique">{t('continue')}</Link>
             </Button>
           </aside>
