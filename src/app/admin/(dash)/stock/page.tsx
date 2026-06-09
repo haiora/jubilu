@@ -1,50 +1,35 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Package, Minus, Plus } from 'lucide-react';
-import { PRODUCTS } from '@/lib/catalog';
-
-const STOCK_KEY = 'jubilee_stock';
-
-function getStockOverrides(): Record<string, number> {
-  if (typeof window === 'undefined') return {};
-  try {
-    return JSON.parse(localStorage.getItem(STOCK_KEY) || '{}');
-  } catch {
-    return {};
-  }
-}
-
-function setStockOverride(sku: string, value: number) {
-  const overrides = getStockOverrides();
-  overrides[sku] = value;
-  localStorage.setItem(STOCK_KEY, JSON.stringify(overrides));
-}
+import { ArrowLeft, Minus, Plus } from 'lucide-react';
+import { getAdminProducts, updateAdminStock } from '@/lib/api-client';
 
 export default function StockAdminPage() {
-  const [overrides, setOverrides] = useState<Record<string, number>>({});
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setOverrides(getStockOverrides());
-  }, []);
-
-  const getEffectiveStock = (sku: string, defaultStock: number) => {
-    if (overrides[sku] !== undefined) return overrides[sku];
-    return defaultStock;
+  const load = () => {
+    setLoading(true);
+    getAdminProducts()
+      .then(setProducts)
+      .catch(() => {})
+      .finally(() => setLoading(false));
   };
 
-  const adjust = (sku: string, defaultStock: number, delta: number) => {
-    const current = getEffectiveStock(sku, defaultStock);
-    const next = Math.max(0, current + delta);
-    setStockOverride(sku, next);
-    setOverrides(getStockOverrides());
+  useEffect(() => { load(); }, []);
+
+  const adjust = async (variantId: string, delta: number) => {
+    await updateAdminStock(variantId, delta);
+    load();
   };
 
-  const setValue = (sku: string, value: number) => {
-    const next = Math.max(0, value);
-    setStockOverride(sku, next);
-    setOverrides(getStockOverrides());
-  };
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-stone-50">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -63,39 +48,31 @@ export default function StockAdminPage() {
             <thead className="bg-accent/40">
               <tr>
                 <th className="px-4 py-3 text-left font-medium">Produit</th>
-                <th className="px-4 py-3 text-left font-medium">SKU</th>
-                <th className="px-4 py-3 text-right font-medium">Stock catalogue</th>
-                <th className="px-4 py-3 text-right font-medium">Stock ajusté</th>
+                <th className="px-4 py-3 text-left font-medium">Variante</th>
+                <th className="px-4 py-3 text-right font-medium">Stock</th>
                 <th className="px-4 py-3 text-left font-medium">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {PRODUCTS.map((p) => {
-                const effective = getEffectiveStock(p.sku || p.slug, p.stock);
-                return (
-                  <tr key={p.slug} className="border-t border-border">
-                    <td className="px-4 py-3 font-medium">{p.translations.fr.name}</td>
-                    <td className="px-4 py-3 text-muted-foreground">{p.sku || p.slug}</td>
-                    <td className="px-4 py-3 text-right">{p.stock}</td>
-                    <td className="px-4 py-3 text-right font-semibold">{effective}</td>
+              {products.flatMap((p) =>
+                (p.variants || []).map((v: any) => (
+                  <tr key={v.id} className="border-t border-border">
+                    <td className="px-4 py-3 font-medium">
+                      {p.translations?.find((t: any) => t.locale === 'fr')?.name ?? p.slug}
+                    </td>
+                    <td className="px-4 py-3 text-muted-foreground">{v.name ?? v.sku}</td>
+                    <td className="px-4 py-3 text-right font-semibold">{v.stock}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => adjust(p.sku || p.slug, p.stock, -1)}
+                          onClick={() => adjust(v.id, -1)}
                           className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-border bg-white hover:bg-accent"
                           aria-label="Diminuer"
                         >
                           <Minus className="h-3 w-3" />
                         </button>
-                        <input
-                          type="number"
-                          min={0}
-                          value={effective}
-                          onChange={(e) => setValue(p.sku || p.slug, Number(e.target.value))}
-                          className="h-7 w-16 rounded-md border border-border bg-white px-2 text-right text-xs outline-none"
-                        />
                         <button
-                          onClick={() => adjust(p.sku || p.slug, p.stock, 1)}
+                          onClick={() => adjust(v.id, 1)}
                           className="inline-flex h-7 w-7 items-center justify-center rounded-md border border-border bg-white hover:bg-accent"
                           aria-label="Augmenter"
                         >
@@ -104,8 +81,8 @@ export default function StockAdminPage() {
                       </div>
                     </td>
                   </tr>
-                );
-              })}
+                ))
+              )}
             </tbody>
           </table>
         </div>

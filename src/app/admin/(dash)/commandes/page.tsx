@@ -1,10 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ArrowLeft, Package, Clock, CheckCircle, Truck, XCircle, RefreshCw } from 'lucide-react';
-import { getOrders, updateOrderStatus } from '@/lib/admin-store';
-import type { AdminOrder } from '@/lib/admin-store';
-type OrderStatus = AdminOrder['status'];
+import { ArrowLeft, Package, Clock, CheckCircle, Truck, XCircle } from 'lucide-react';
+import { getAdminOrders, updateOrderStatus } from '@/lib/api-client';
 
 const statusConfig: Record<string, { icon: React.ElementType; className: string; label: string }> = {
   pending: { icon: Clock, className: 'bg-amber-100 text-amber-700', label: 'En attente' },
@@ -16,19 +14,33 @@ const statusConfig: Record<string, { icon: React.ElementType; className: string;
 };
 
 export default function OrdersPage() {
-  const [orders, setOrders] = useState<AdminOrder[]>([]);
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setOrders(getOrders().reverse());
-  }, []);
+  const load = () => {
+    getAdminOrders()
+      .then(setOrders)
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => { load(); }, []);
 
   const formatEUR = (cents: number) => `${(cents / 100).toFixed(2)} €`;
   const fmtDate = (d: string) => new Date(d).toLocaleDateString();
 
-  const changeStatus = (id: string, status: string) => {
-    updateOrderStatus(id, status as OrderStatus);
-    setOrders(getOrders().reverse());
+  const changeStatus = async (id: string, status: string) => {
+    await updateOrderStatus(id, status);
+    load();
   };
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-stone-50">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -67,10 +79,10 @@ export default function OrdersPage() {
                       <p className="font-medium">{order.contact?.firstName || order.contact?.lastName ? `${order.contact.firstName ?? ''} ${order.contact.lastName ?? ''}`.trim() : '—'}</p>
                       <p className="text-xs text-muted-foreground">{order.contact?.email ?? '—'}</p>
                     </td>
-                    <td className="px-4 py-3 text-muted-foreground">{fmtDate(order.date)}</td>
+                    <td className="px-4 py-3 text-muted-foreground">{fmtDate(order.createdAt)}</td>
                     <td className="px-4 py-3">
-                      {order.items.map((item, i) => (
-                        <p key={i} className="text-xs">{item.qty}x {item.name}</p>
+                      {(order.items || []).map((item: any, i: number) => (
+                        <p key={i} className="text-xs">{item.qty}x {item.nameSnapshot}</p>
                       ))}
                     </td>
                     <td className="px-4 py-3 text-right font-semibold">{formatEUR(order.total)}</td>

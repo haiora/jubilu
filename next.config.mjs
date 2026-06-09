@@ -4,12 +4,9 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  distDir: 'dist',
   trailingSlash: true,
   reactStrictMode: true,
   images: {
-    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'static.wixstatic.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' }

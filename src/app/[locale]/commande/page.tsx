@@ -8,7 +8,7 @@ import { useCart } from '@/components/shop/cart-context';
 import { Button } from '@/components/ui/button';
 import { getProduct, formatPrice } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
-import { addOrder } from '@/lib/admin-store';
+import { createOrder } from '@/lib/api-client';
 
 export default function CheckoutPage() {
   const locale = useLocale() as Locale;
@@ -48,27 +48,19 @@ export default function CheckoutPage() {
     }
 
     try {
-      const orderNumber = `JBL-${Date.now().toString(36).toUpperCase()}`;
-      const order = {
-        id: orderNumber,
-        number: orderNumber,
-        items: lines.map((l) => ({
-          name: l.product!.translations[locale].name,
-          qty: l.item.qty,
-          price: l.product!.price,
-          customText: l.item.customText || null
-        })),
+      const res = await createOrder({
+        items: lines.map((l) => ({ slug: l.item.slug, qty: l.item.qty, customText: l.item.customText })),
         contact: data,
-        total,
-        status: 'paid' as const,
         locale,
-        date: new Date().toISOString()
-      };
-      addOrder(order);
+      });
       clear();
-      window.location.href = `/${locale}/commande/success?order=${orderNumber}`;
-    } catch (err) {
-      setError(String(err));
+      if (res.url) {
+        window.location.href = res.url;
+      } else {
+        window.location.href = `/${locale}/commande/success?order=${res.orderNumber}`;
+      }
+    } catch (err: any) {
+      setError(err.message || String(err));
       setSubmitting(false);
     }
   }

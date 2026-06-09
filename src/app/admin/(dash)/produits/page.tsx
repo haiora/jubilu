@@ -1,33 +1,50 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { ArrowLeft, Package, Wine, Scroll } from 'lucide-react';
-import { PRODUCTS, formatPrice } from '@/lib/catalog';
-import type { Product } from '@/lib/catalog';
+import { useEffect, useMemo, useState } from 'react';
+import { ArrowLeft, Wine, Scroll } from 'lucide-react';
+import { getAdminProducts } from '@/lib/api-client';
 
 type LocaleKey = 'fr' | 'en' | 'he' | 'es';
 
-const categories: Record<string, string> = {
-  'vin-rouge': 'Vins rouges',
-  'vin-blanc': 'Vins blancs',
-  'vin-rose': 'Vins rosés',
-  parchemins: 'Parchemins'
+const catLabels: Record<string, string> = {
+  wine: 'Vins',
+  parchment: 'Parchemins'
 };
 
 export default function ProductsAdminPage() {
   const [locale, setLocale] = useState<LocaleKey>('fr');
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAdminProducts()
+      .then(setProducts)
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
 
   const grouped = useMemo(() => {
-    const map: Record<string, Product[]> = {};
-    PRODUCTS.forEach((p) => {
-      const cat = categories[p.category] ?? p.category;
+    const map: Record<string, any[]> = {};
+    products.forEach((p) => {
+      const cat = catLabels[p.category] ?? p.category;
       if (!map[cat]) map[cat] = [];
       map[cat].push(p);
     });
     return map;
-  }, []);
+  }, [products]);
 
-  const formatEUR = (cents: number) => formatPrice(cents, 'fr', 'EUR');
+  const formatEUR = (cents: number) => `${(cents / 100).toFixed(2)} €`;
+  const tr = (p: any, loc: LocaleKey) =>
+    p.translations?.find((t: any) => t.locale === loc) ||
+    p.translations?.find((t: any) => t.locale === 'fr');
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-stone-50">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -36,7 +53,7 @@ export default function ProductsAdminPage() {
           <a href="/admin/" className="flex items-center gap-1 text-sm text-muted-foreground hover:text-primary">
             <ArrowLeft className="h-4 w-4" /> Retour
           </a>
-          <h1 className="text-lg font-semibold">Produits ({PRODUCTS.length})</h1>
+          <h1 className="text-lg font-semibold">Produits ({products.length})</h1>
         </div>
       </header>
 
@@ -58,29 +75,33 @@ export default function ProductsAdminPage() {
             <section key={cat}>
               <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted-foreground">{cat}</h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {items.map((p) => (
-                  <div key={p.slug} className="rounded-xl border border-border bg-white p-5">
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h3 className="font-semibold">{p.translations[locale].name}</h3>
-                        <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{p.translations[locale].short}</p>
+                {items.map((p) => {
+                  const t = tr(p, locale);
+                  const stock = p.variants?.[0]?.stock ?? 0;
+                  return (
+                    <div key={p.id} className="rounded-xl border border-border bg-white p-5">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="font-semibold">{t?.name ?? p.slug}</h3>
+                          <p className="mt-1 text-xs text-muted-foreground line-clamp-2">{t?.shortDesc ?? ''}</p>
+                        </div>
+                        {p.category === 'wine' ? (
+                          <Wine className="h-5 w-5 text-muted-foreground" />
+                        ) : (
+                          <Scroll className="h-5 w-5 text-muted-foreground" />
+                        )}
                       </div>
-                      {p.icon === 'wine' ? (
-                        <Wine className="h-5 w-5 text-muted-foreground" />
-                      ) : (
-                        <Scroll className="h-5 w-5 text-muted-foreground" />
+                      <div className="mt-4 flex items-center justify-between text-sm">
+                        <span className="font-medium text-primary">{formatEUR(p.basePrice)}</span>
+                        <span className="text-xs text-muted-foreground">Stock: {stock}</span>
+                      </div>
+                      {p.variants?.[0]?.sku && <p className="mt-2 text-[10px] text-muted-foreground">SKU: {p.variants[0].sku}</p>}
+                      {p.customizable && (
+                        <span className="mt-2 inline-block rounded bg-amber-100 px-2 py-0.5 text-[10px] text-amber-700">Personnalisable</span>
                       )}
                     </div>
-                    <div className="mt-4 flex items-center justify-between text-sm">
-                      <span className="font-medium text-primary">{formatEUR(p.price)}</span>
-                      <span className="text-xs text-muted-foreground">Stock: {p.stock}</span>
-                    </div>
-                    {p.sku && <p className="mt-2 text-[10px] text-muted-foreground">SKU: {p.sku}</p>}
-                    {p.customizable && (
-                      <span className="mt-2 inline-block rounded bg-amber-100 px-2 py-0.5 text-[10px] text-amber-700">Personnalisable</span>
-                    )}
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
           ))}

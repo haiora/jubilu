@@ -1,5 +1,5 @@
 import { db } from './db';
-import { productVariants } from '../../db/schema';
+import { productVariants } from '@db/schema';
 import { getProduct, type Product } from './catalog';
 
 /**

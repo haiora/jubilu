@@ -2,23 +2,35 @@
 
 import { useEffect, useState } from 'react';
 import { ArrowLeft, Mail, Phone, ShoppingBag, Search } from 'lucide-react';
-import { getContacts } from '@/lib/admin-store';
-import type { AdminContact } from '@/lib/admin-store';
+import { getAdminContacts } from '@/lib/api-client';
 
 export default function ClientsPage() {
-  const [clients, setClients] = useState<AdminContact[]>([]);
+  const [clients, setClients] = useState<any[]>([]);
   const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setClients(getContacts());
+    getAdminContacts()
+      .then(setClients)
+      .catch(() => {})
+      .finally(() => setLoading(false));
   }, []);
 
-  const filtered = clients.filter((c) =>
-    c.name.toLowerCase().includes(search.toLowerCase()) ||
-    c.email.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = clients.filter((c) => {
+    const name = `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim().toLowerCase();
+    const q = search.toLowerCase();
+    return name.includes(q) || c.email.toLowerCase().includes(q);
+  });
 
   const formatEUR = (cents: number) => `${(cents / 100).toFixed(2)} €`;
+
+  if (loading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-stone-50">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-stone-50">
@@ -56,7 +68,7 @@ export default function ClientsPage() {
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div>
                     <div className="flex items-center gap-2">
-                      <h3 className="font-semibold">{client.name}</h3>
+                      <h3 className="font-semibold">{client.firstName} {client.lastName}</h3>
                       <span className={`rounded px-2 py-0.5 text-xs capitalize ${client.status === 'donateur' ? 'bg-purple-100 text-purple-700' : client.status === 'client' ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>{client.status}</span>
                     </div>
                     <div className="mt-2 space-y-1">
@@ -68,7 +80,7 @@ export default function ClientsPage() {
                           <Phone className="h-4 w-4" /> {client.phone}
                         </p>
                       )}
-                      {client.address && <p className="text-sm text-muted-foreground">{client.address}</p>}
+                      {client.country && <p className="text-sm text-muted-foreground">{client.country}</p>}
                     </div>
                   </div>
                   <div className="text-right">

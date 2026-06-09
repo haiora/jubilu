@@ -51,49 +51,28 @@ export default function AccountPage() {
 
   const field = 'h-12 w-full rounded-xl border border-white/20 bg-background/50 px-4 text-sm outline-none ring-gold focus:ring-2 focus:bg-background/80 transition-all backdrop-blur-sm';
 
-  function handleSignIn(e: React.FormEvent) {
+  async function handleSignIn(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Read orders from localStorage (set by checkout page)
-    const raw = typeof window !== 'undefined' ? localStorage.getItem('jubilee_orders') : '[]';
-    const allOrders: any[] = JSON.parse(raw || '[]');
-    const userOrders = allOrders.filter((o: any) => o.contact?.email?.toLowerCase() === email.toLowerCase());
+    try {
+      const res = await fetch(`/api/client/account/?email=${encodeURIComponent(email)}`);
+      const data = await res.json();
 
-    if (userOrders.length === 0) {
+      if (!res.ok) {
+        setError(data.error || t('notFound'));
+        setLoading(false);
+        return;
+      }
+
+      setContact(data.contact);
+      setOrders(data.orders);
+    } catch {
       setError(t('notFound'));
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const first = userOrders[0];
-    const contact: ClientContact = {
-      firstName: first.contact.firstName || null,
-      lastName: first.contact.lastName || null,
-      email: first.contact.email,
-      status: 'client',
-      ordersCount: userOrders.length,
-      totalSpent: userOrders.reduce((sum: number, o: any) => sum + (o.total || 0), 0),
-      createdAt: first.date || new Date().toISOString(),
-    };
-
-    const orders: ClientOrder[] = userOrders.map((o: any) => ({
-      id: o.number,
-      number: o.number,
-      status: 'paid' as OrderStatus,
-      total: o.total || 0,
-      createdAt: o.date || new Date().toISOString(),
-      items: (o.items || []).map((it: any) => ({
-        name: it.name || 'Produit',
-        qty: it.qty || 1,
-        customText: it.customText || null
-      }))
-    }));
-
-    setContact(contact);
-    setOrders(orders);
-    setLoading(false);
   }
 
   function handleSignOut() {
