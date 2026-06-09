@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Wine,
   ScrollText,
-  HeartHandshake,
   Quote,
   Sparkles,
   ChevronRight
@@ -113,6 +112,8 @@ export default async function HomePage({
                 src="/images/parchment-1.png" 
                 alt="Parchemin" 
                 fill 
+                sizes="400px"
+                loading="lazy"
                 className="object-cover opacity-90 scale-105 hover:scale-110 transition-transform duration-1000" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-8">
@@ -236,7 +237,7 @@ export default async function HomePage({
 
       {/* CTA FINAL PARALLAX */}
       <section className="relative py-40 overflow-hidden text-center text-primary-foreground">
-        <Image src="/images/mission-planting.png" alt="Mission" fill className="object-cover opacity-40 mix-blend-multiply" />
+        <Image src="/images/mission-planting.png" alt="Mission" fill sizes="100vw" loading="lazy" className="object-cover opacity-40 mix-blend-multiply" />
         <div className="absolute inset-0 bg-foreground/80 backdrop-blur-sm" />
 
         <div className="container relative z-10">
@@ -283,6 +284,8 @@ function ProductBlock({
             src={imageSrc} 
             alt={title} 
             fill 
+            sizes="(max-width: 768px) 100vw, 50vw"
+            loading="lazy"
             className="object-cover transition-transform duration-700 group-hover:scale-110" 
           />
         ) : null}

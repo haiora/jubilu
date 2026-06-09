@@ -5,7 +5,9 @@ import { PRODUCTS } from '@/lib/catalog';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.jubilee-israel.org';
 
-const PATHS = [
+type ChangeFreq = 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never';
+
+const PATHS: { path: string; priority: number; freq: ChangeFreq }[] = [
   { path: '', priority: 1.0, freq: 'weekly' },
   { path: '/a-propos', priority: 0.8, freq: 'monthly' },
   { path: '/mission', priority: 0.9, freq: 'monthly' },
@@ -37,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       entries.push({
         url: `${BASE_URL}/${locale}${path}`,
         lastModified: new Date(),
-        changeFrequency: freq as any,
+        changeFrequency: freq,
         priority,
         alternates: { languages }
       });

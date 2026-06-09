@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Wine, ScrollText, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { AddToCart } from '@/components/shop/add-to-cart';
-import { PRODUCTS, getProduct, formatPrice } from '@/lib/catalog';
+import { PRODUCTS, formatPrice } from '@/lib/catalog';
 import { getShopProduct } from '@/lib/shop';
 import { type Locale } from '@/i18n/routing';
 
@@ -24,7 +24,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
-  const product = getProduct(slug);
+  const product = await getShopProduct(slug);
   if (!product) return {};
   const tr = product.translations[locale as Locale];
   return { title: tr.name, description: tr.short };
@@ -58,7 +58,7 @@ export default async function ProductPage({
       <div className="grid gap-10 lg:grid-cols-2">
         <div className={`relative flex aspect-square items-center justify-center overflow-hidden rounded-3xl border border-border bg-gradient-to-br ${product.gradient}`}>
           {product.image ? (
-            <Image src={product.image} alt={tr.name} fill className="object-cover" />
+            <Image src={product.image} alt={tr.name} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
           ) : (
             <div className="flex h-28 w-28 items-center justify-center rounded-3xl bg-background/80 text-primary shadow-sm">
               <Icon className="h-14 w-14" />

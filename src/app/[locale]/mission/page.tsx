@@ -32,7 +32,7 @@ export default async function MissionPage({
         <p className="container-prose text-center text-lg text-muted-foreground">{t('intro')}</p>
 
         <div className="relative mt-12 aspect-[21/9] overflow-hidden rounded-3xl border border-border">
-          <Image src="/images/mission-planting.png" alt={t('title')} fill className="object-cover" />
+          <Image src="/images/mission-planting.png" alt={t('title')} fill sizes="100vw" loading="lazy" className="object-cover" />
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">

@@ -38,7 +38,7 @@ export default async function AboutPage({
         </div>
         
         <div className="relative mx-auto mt-16 aspect-[21/9] max-w-5xl overflow-hidden rounded-3xl border border-border">
-          <Image src="/images/mission-planting.png" alt={t('title')} fill className="object-cover" />
+          <Image src="/images/mission-planting.png" alt={t('title')} fill sizes="(max-width: 1280px) 100vw, 1280px" loading="lazy" className="object-cover" />
         </div>
       </section>
 
