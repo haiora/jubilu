@@ -7,8 +7,8 @@ import { getAdminDashboard, adminLogout } from '@/lib/api-client';
 export default function AdminDashboard() {
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
   const [stats, setStats] = useState({ orders: 0, clients: 0, products: 4, revenue: 0, donationsCount: 0, donationsTotal: 0 });
-  const [recentOrders, setRecentOrders] = useState<any[]>([]);
-  const [recentClients, setRecentClients] = useState<any[]>([]);
+  const [recentOrders, setRecentOrders] = useState<{ id: string; number: string; status: string; total: number; contactId?: string; contact?: { email?: string } }[]>([]);
+  const [recentClients, setRecentClients] = useState<{ id: string; firstName: string | null; lastName: string | null; email: string; ordersCount: number }[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

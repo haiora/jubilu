@@ -3,6 +3,11 @@ import { db } from '@/lib/db';
 import { products, productTranslations, productVariants, auditLogs } from "@db/schema";
 import { eq } from 'drizzle-orm';
 import { getSession, can } from '@/lib/auth';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type DbProduct = InferSelectModel<typeof products>;
+type DbTranslation = InferSelectModel<typeof productTranslations>;
+type DbVariant = InferSelectModel<typeof productVariants>;
 
 const VALID_CATEGORIES = ['wine', 'parchment'];
 const VALID_STATUS = ['active', 'draft'];
@@ -18,10 +23,10 @@ export async function GET(req: NextRequest) {
     const translations = await db.select().from(productTranslations);
     const variants = await db.select().from(productVariants);
 
-    const enriched = allProducts.map((p: any) => ({
+    const enriched = allProducts.map((p: DbProduct) => ({
       ...p,
-      translations: translations.filter((t: any) => t.productId === p.id),
-      variants: variants.filter((v: any) => v.productId === p.id),
+      translations: translations.filter((t: DbTranslation) => t.productId === p.id),
+      variants: variants.filter((v: DbVariant) => v.productId === p.id),
     }));
 
     return NextResponse.json(enriched);

@@ -4,8 +4,22 @@ import { useEffect, useState } from 'react';
 import { ArrowLeft, Minus, Plus } from 'lucide-react';
 import { getAdminProducts, updateAdminStock } from '@/lib/api-client';
 
+interface Variant {
+  id: string;
+  sku: string;
+  name: string | null;
+  stock: number;
+}
+
+interface AdminProduct {
+  id: string;
+  slug: string;
+  translations: { locale: string; name: string }[];
+  variants: Variant[];
+}
+
 export default function StockAdminPage() {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<AdminProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
   const load = () => {

@@ -6,6 +6,34 @@ import { getAdminProducts } from '@/lib/api-client';
 
 type LocaleKey = 'fr' | 'en' | 'he' | 'es';
 
+interface Translation {
+  locale: string;
+  name: string;
+  shortDesc: string | null;
+  longDesc: string | null;
+}
+
+interface Variant {
+  id: string;
+  sku: string;
+  name: string | null;
+  price: number;
+  stock: number;
+  active: boolean;
+}
+
+interface AdminProduct {
+  id: string;
+  slug: string;
+  category: string;
+  status: string;
+  featured: boolean;
+  customizable: boolean;
+  basePrice: number;
+  translations: Translation[];
+  variants: Variant[];
+}
+
 const catLabels: Record<string, string> = {
   wine: 'Vins',
   parchment: 'Parchemins'
@@ -13,7 +41,7 @@ const catLabels: Record<string, string> = {
 
 export default function ProductsAdminPage() {
   const [locale, setLocale] = useState<LocaleKey>('fr');
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<AdminProduct[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

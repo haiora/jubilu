@@ -13,8 +13,18 @@ const statusConfig: Record<string, { icon: React.ElementType; className: string;
   cancelled: { icon: XCircle, className: 'bg-red-100 text-red-700', label: 'Annulée' }
 };
 
+interface Order {
+  id: string;
+  number: string;
+  status: string;
+  total: number;
+  createdAt: string;
+  contact?: { email?: string; firstName?: string | null; lastName?: string | null };
+  items?: { qty: number; nameSnapshot: string }[];
+}
+
 export default function OrdersPage() {
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
   const load = () => {

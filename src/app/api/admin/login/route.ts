@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { encodeSession, SESSION_COOKIE } from '@/lib/auth';
+import { encodeSession, SESSION_COOKIE, type Role } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { users, roles } from "@db/schema";
 import { eq } from 'drizzle-orm';
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'invalid_credentials' }, { status: 401 });
   }
 
-  const role = (user.roleKey || 'admin') as any;
+  const role = (user.roleKey || 'admin') as Role;
 
   const token = encodeSession({ email: user.email, name: user.name, role });
   const res = NextResponse.json({ ok: true, role });

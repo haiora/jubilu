@@ -5,7 +5,19 @@ import { ArrowLeft, Mail, Phone, ShoppingBag, Search } from 'lucide-react';
 import { getAdminContacts } from '@/lib/api-client';
 
 export default function ClientsPage() {
-  const [clients, setClients] = useState<any[]>([]);
+  interface Client {
+    id: string;
+    firstName: string | null;
+    lastName: string | null;
+    email: string;
+    phone: string | null;
+    country: string | null;
+    status: string;
+    ordersCount: number;
+    totalSpent: number;
+    createdAt: string;
+  }
+  const [clients, setClients] = useState<Client[]>([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
