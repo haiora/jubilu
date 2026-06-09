@@ -27,6 +27,7 @@ export function Header() {
   const { count } = useCart();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -35,15 +36,31 @@ export function Header() {
         setOpen(false);
       }
     }
+    function handleScroll() {
+      setScrolled(window.scrollY > 20);
+    }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const isActive = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-40 border-b border-border/80 bg-background/95 backdrop-blur-xl shadow-sm transition-all duration-300">
+    <header
+      ref={headerRef}
+      className={cn(
+        'sticky top-0 z-40 border-b backdrop-blur-xl transition-all duration-300',
+        scrolled
+          ? 'border-border/80 bg-background/95 shadow-md'
+          : 'border-transparent bg-background/60 shadow-none'
+      )}
+    >
       <div className="container flex h-[72px] items-center justify-between gap-3">
         <Logo className="shrink-0" />
 
@@ -78,7 +95,7 @@ export function Header() {
           >
             <ShoppingCart className="h-[18px] w-[18px]" />
             {count > 0 && (
-              <span className="absolute -end-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-bold text-gold-foreground">
+              <span className="absolute -end-0.5 -top-0.5 flex h-4 min-w-4 animate-scale-in items-center justify-center rounded-full bg-gold px-1 text-[10px] font-bold text-gold-foreground shadow-sm">
                 {count}
               </span>
             )}

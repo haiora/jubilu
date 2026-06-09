@@ -6,6 +6,7 @@ import { Wine, ScrollText, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { AddToCart } from '@/components/shop/add-to-cart';
 import { PRODUCTS, getProduct, formatPrice } from '@/lib/catalog';
+import { getShopProduct } from '@/lib/shop';
 import { getStockForSlug } from '@/lib/stock';
 import { type Locale } from '@/i18n/routing';
 
@@ -36,7 +37,7 @@ export default async function ProductPage({
   params: { locale: string; category: string; slug: string };
 }) {
   setRequestLocale(locale);
-  const product = getProduct(slug);
+  const product = await getShopProduct(slug);
   if (!product) notFound();
 
   const tr = product.translations[locale as Locale];

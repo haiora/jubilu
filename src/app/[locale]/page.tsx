@@ -11,6 +11,7 @@ import {
 import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { AnimatedSection, AnimatedStagger, AnimatedItem } from '@/components/site/animated-section';
 
 export default async function HomePage({
   params: { locale }
@@ -128,7 +129,7 @@ export default async function HomePage({
       <section className="relative py-32 bg-background overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gold/5 blur-[100px] rounded-full" />
         <div className="container relative">
-          <div className="mx-auto max-w-4xl text-center">
+          <AnimatedSection className="mx-auto max-w-4xl text-center">
             <div className="ornament mb-10" aria-hidden>✦</div>
             <h2 className="text-4xl font-semibold md:text-5xl lg:text-6xl text-foreground leading-tight">
               {t('intro.title')}
@@ -137,38 +138,42 @@ export default async function HomePage({
               {t('intro.text')}
             </p>
             <p className="verse mt-12 text-2xl text-gold">{t('intro.verse')}</p>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
       {/* BOUTIQUE DE LUXE */}
       <section className="py-24 bg-foreground text-primary-foreground relative">
         <div className="container">
-          <div className="text-center mb-16">
+          <AnimatedSection className="text-center mb-16">
             <p className="eyebrow mb-4">L&apos;Excellence d&apos;Israël</p>
             <h2 className="text-4xl md:text-5xl font-semibold">Nos Collections</h2>
-          </div>
-          
-          <div className="grid gap-8 md:grid-cols-2">
-            <ProductBlock
-              imageSrc="/images/wine-red-1.png"
-              icon={<Wine className="h-8 w-8" />}
-              title={t('wines.title')}
-              text={t('wines.text')}
-              cta={t('wines.cta')}
-              href="/boutique/vin-rouge"
-              gradient="from-red-900/30 to-black/40"
-            />
-            <ProductBlock
-              imageSrc="/images/parchment-2.png"
-              icon={<ScrollText className="h-8 w-8" />}
-              title={t('parchments.title')}
-              text={t('parchments.text')}
-              cta={t('parchments.cta')}
-              href="/boutique/parchemins"
-              gradient="from-gold/20 to-black/40"
-            />
-          </div>
+          </AnimatedSection>
+
+          <AnimatedStagger className="grid gap-8 md:grid-cols-2" staggerDelay={0.15}>
+            <AnimatedItem>
+              <ProductBlock
+                imageSrc="/images/wine-red-1.png"
+                icon={<Wine className="h-8 w-8" />}
+                title={t('wines.title')}
+                text={t('wines.text')}
+                cta={t('wines.cta')}
+                href="/boutique/vin-rouge"
+                gradient="from-red-900/30 to-black/40"
+              />
+            </AnimatedItem>
+            <AnimatedItem>
+              <ProductBlock
+                imageSrc="/images/parchment-2.png"
+                icon={<ScrollText className="h-8 w-8" />}
+                title={t('parchments.title')}
+                text={t('parchments.text')}
+                cta={t('parchments.cta')}
+                href="/boutique/parchemins"
+                gradient="from-gold/20 to-black/40"
+              />
+            </AnimatedItem>
+          </AnimatedStagger>
         </div>
       </section>
 
@@ -176,7 +181,7 @@ export default async function HomePage({
       <section className="py-32 bg-background relative">
         <div className="container">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
-            <div className="space-y-8">
+            <AnimatedSection className="space-y-8" direction="left">
               <p className="eyebrow">Notre Mission</p>
               <h2 className="text-4xl md:text-5xl font-semibold leading-tight">
                 {t('mission.title')}
@@ -187,18 +192,20 @@ export default async function HomePage({
               <Button asChild variant="outline" size="lg" className="h-12 px-6 rounded-full border-gold text-gold hover:bg-gold hover:text-gold-foreground transition-all">
                 <Link href="/mission">{t('mission.cta')} <ChevronRight className="ml-2 h-4 w-4" /></Link>
               </Button>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-6">
+            </AnimatedSection>
+
+            <AnimatedStagger className="grid grid-cols-2 gap-6" staggerDelay={0.12}>
               {stats.map((s, i) => (
-                <div key={s.key} className={`card-elevated p-8 text-center ${i % 2 === 1 ? 'lg:translate-y-8' : ''}`}>
-                  <div className="font-serif text-5xl font-semibold text-gold mb-2">{s.value}</div>
-                  <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                    {t(`impact.stats.${s.key}`)}
+                <AnimatedItem key={s.key}>
+                  <div className={`card-elevated p-8 text-center ${i % 2 === 1 ? 'lg:translate-y-8' : ''}`}>
+                    <div className="font-serif text-5xl font-semibold text-gold mb-2">{s.value}</div>
+                    <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+                      {t(`impact.stats.${s.key}`)}
+                    </div>
                   </div>
-                </div>
+                </AnimatedItem>
               ))}
-            </div>
+            </AnimatedStagger>
           </div>
         </div>
       </section>
@@ -206,22 +213,24 @@ export default async function HomePage({
       {/* TEMOIGNAGES */}
       <section className="py-32 bg-accent/30">
         <div className="container">
-          <div className="mx-auto max-w-2xl text-center mb-16">
+          <AnimatedSection className="mx-auto max-w-2xl text-center mb-16">
             <h2 className="text-4xl font-semibold md:text-5xl">{t('testimonials.title')}</h2>
             <p className="mt-6 text-lg text-muted-foreground">{t('testimonials.text')}</p>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          </AnimatedSection>
+          <AnimatedStagger className="grid gap-8 md:grid-cols-3" staggerDelay={0.15}>
             {testimonials.map((item) => (
-              <figure key={item.name} className="card-elevated bg-card/60 p-8">
-                <Quote className="h-8 w-8 text-gold/50 mb-6" />
-                <blockquote className="text-lg text-foreground/90 italic leading-relaxed">&ldquo;{item.translations[activeLocale]}&rdquo;</blockquote>
-                <figcaption className="mt-8 flex items-center gap-3">
-                  <span className="text-2xl">{item.country}</span>
-                  <span className="font-semibold text-foreground">{item.name}</span>
-                </figcaption>
-              </figure>
+              <AnimatedItem key={item.name}>
+                <figure className="card-elevated bg-card/60 p-8 h-full">
+                  <Quote className="h-8 w-8 text-gold/50 mb-6" />
+                  <blockquote className="text-lg text-foreground/90 italic leading-relaxed">&ldquo;{item.translations[activeLocale]}&rdquo;</blockquote>
+                  <figcaption className="mt-8 flex items-center gap-3">
+                    <span className="text-2xl">{item.country}</span>
+                    <span className="font-semibold text-foreground">{item.name}</span>
+                  </figcaption>
+                </figure>
+              </AnimatedItem>
             ))}
-          </div>
+          </AnimatedStagger>
         </div>
       </section>
 
@@ -229,9 +238,9 @@ export default async function HomePage({
       <section className="relative py-40 overflow-hidden text-center text-primary-foreground">
         <Image src="/images/mission-planting.png" alt="Mission" fill className="object-cover opacity-40 mix-blend-multiply" />
         <div className="absolute inset-0 bg-foreground/80 backdrop-blur-sm" />
-        
+
         <div className="container relative z-10">
-          <div className="mx-auto max-w-3xl glass rounded-3xl p-12 lg:p-20 border-white/10">
+          <AnimatedSection className="mx-auto max-w-3xl glass rounded-3xl p-12 lg:p-20 border-white/10" direction="none">
             <h2 className="text-4xl font-semibold md:text-5xl lg:text-6xl mb-6">{t('finalCta.title')}</h2>
             <p className="text-xl text-primary-foreground/80 font-light mb-10">
               {t('finalCta.text')}
@@ -241,7 +250,7 @@ export default async function HomePage({
                 <Link href="/mission">{t('finalCta.ctaPrimary')}</Link>
               </Button>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
     </>

@@ -4,6 +4,7 @@ import { PageHero } from '@/components/site/page-hero';
 import { ProductCard } from '@/components/shop/product-card';
 import { getProductsByCategory, type ProductCategory } from '@/lib/catalog';
 import { getStockBySku, effectiveStock } from '@/lib/stock';
+import { getShopProducts } from '@/lib/shop';
 import { type Locale } from '@/i18n/routing';
 
 const CATEGORY_KEY: Record<ProductCategory, 'wines' | 'parchments'> = {
@@ -33,7 +34,7 @@ export default async function CategoryPage({
 
   const home = await getTranslations('home');
   const shop = await getTranslations('pages.shop');
-  const products = getProductsByCategory(category as ProductCategory);
+  const dbProducts = await getShopProducts(category as ProductCategory);
   const stockBySku = await getStockBySku();
 
   return (
@@ -41,7 +42,7 @@ export default async function CategoryPage({
       <PageHero badge={shop('badge')} title={home(`${key}.title`)} subtitle={home(`${key}.text`)} />
       <section className="container py-16">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => (
+          {dbProducts.map((p) => (
             <ProductCard key={p.slug} product={p} locale={locale as Locale} stock={effectiveStock(p, stockBySku)} />
           ))}
         </div>
