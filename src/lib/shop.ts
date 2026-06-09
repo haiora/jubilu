@@ -2,6 +2,11 @@ import { db } from './db';
 import { products, productTranslations, productVariants } from '@db/schema';
 import { eq } from 'drizzle-orm';
 import { PRODUCTS, type Product, type ProductCategory } from './catalog';
+import type { InferSelectModel } from 'drizzle-orm';
+
+type DbProduct = InferSelectModel<typeof products>;
+type DbTranslation = InferSelectModel<typeof productTranslations>;
+type DbVariant = InferSelectModel<typeof productVariants>;
 
 /**
  * Hybrid shop helper:
@@ -17,12 +22,12 @@ export async function getShopProducts(category?: ProductCategory): Promise<Produ
     const variants = await db.select().from(productVariants);
 
     return base.map((p) => {
-      const dbP = dbProducts.find((d: any) => d.slug === p.slug);
+      const dbP = dbProducts.find((d: DbProduct) => d.slug === p.slug);
       if (!dbP) return p;
 
-      const tr = translations.filter((t: any) => t.productId === dbP.id);
-      const vs = variants.filter((v: any) => v.productId === dbP.id);
-      const totalStock = vs.reduce((sum: number, v: any) => sum + v.stock, 0);
+      const tr = translations.filter((t: DbTranslation) => t.productId === dbP.id);
+      const vs = variants.filter((v: DbVariant) => v.productId === dbP.id);
+      const totalStock = vs.reduce((sum: number, v: DbVariant) => sum + v.stock, 0);
 
       return {
         ...p,
@@ -47,7 +52,7 @@ export async function getShopProduct(slug: string): Promise<Product | null> {
     if (!dbP) return base;
 
     const vs = await db.select().from(productVariants).where(eq(productVariants.productId, dbP.id));
-    const totalStock = vs.reduce((sum: number, v: any) => sum + v.stock, 0);
+    const totalStock = vs.reduce((sum: number, v: DbVariant) => sum + v.stock, 0);
 
     return {
       ...base,

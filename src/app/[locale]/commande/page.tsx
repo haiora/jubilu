@@ -1,14 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { CheckCircle2, ShieldCheck, CreditCard } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, CreditCard, Loader2 } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useCart } from '@/components/shop/cart-context';
 import { Button } from '@/components/ui/button';
-import { getProduct, formatPrice } from '@/lib/catalog';
+import { formatPrice } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
-import { createOrder } from '@/lib/api-client';
+import { createOrder, getShopProducts } from '@/lib/api-client';
+
+interface ShopProduct {
+  slug: string;
+  price: number;
+  icon: string;
+  gradient: string;
+  customizable: boolean;
+  translations: Record<string, { name: string; shortDesc: string; longDesc: string }>;
+}
 
 export default function CheckoutPage() {
   const locale = useLocale() as Locale;
@@ -18,11 +27,31 @@ export default function CheckoutPage() {
   const tcommon = useTranslations('common');
   const { items, clear } = useCart();
 
+  const [products, setProducts] = useState<ShopProduct[] | null>(null);
+  const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
   const [error, setError] = useState('');
 
-  const lines = items.map((item) => ({ item, product: getProduct(item.slug) })).filter((l) => l.product);
+  useEffect(() => {
+    getShopProducts()
+      .then((data) => setProducts(data))
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const productMap = useMemo(() => {
+    const map: Record<string, ShopProduct> = {};
+    if (products) {
+      for (const p of products) map[p.slug] = p;
+    }
+    return map;
+  }, [products]);
+
+  const lines = useMemo(() => {
+    return items.map((item) => ({ item, product: productMap[item.slug] })).filter((l) => l.product);
+  }, [items, productMap]);
+
   const total = lines.reduce((sum, l) => sum + l.product!.price * l.item.qty, 0);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -66,6 +95,18 @@ export default function CheckoutPage() {
   }
 
   const field = 'h-12 w-full rounded-xl border border-border bg-background px-4 text-sm outline-none ring-gold/50 focus:ring-2 focus:border-gold/30 transition-all placeholder:text-muted-foreground/60';
+
+  if (loading) {
+    return (
+      <section className="container py-12">
+        <h1 className="text-3xl font-semibold md:text-4xl">{t('title')}</h1>
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <p className="text-sm text-muted-foreground">Chargement…</p>
+        </div>
+      </section>
+    );
+  }
 
   if (orderNumber) {
     return (

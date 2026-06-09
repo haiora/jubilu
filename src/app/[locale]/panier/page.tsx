@@ -1,23 +1,65 @@
 'use client';
 
+import { useEffect, useMemo, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { Trash2, ScrollText, Wine, ArrowRight } from 'lucide-react';
+import { Trash2, ScrollText, Wine, ArrowRight, Loader2 } from 'lucide-react';
 import { Link } from '@/i18n/navigation';
 import { useCart } from '@/components/shop/cart-context';
 import { Button } from '@/components/ui/button';
-import { getProduct, formatPrice } from '@/lib/catalog';
+import { getShopProducts } from '@/lib/api-client';
+import { formatPrice } from '@/lib/catalog';
 import type { Locale } from '@/i18n/routing';
+
+interface ShopProduct {
+  slug: string;
+  price: number;
+  icon: string;
+  gradient: string;
+  customizable: boolean;
+  translations: Record<string, { name: string; shortDesc: string; longDesc: string }>;
+}
 
 export default function CartPage() {
   const locale = useLocale() as Locale;
   const t = useTranslations('cart');
   const { items, setQty, remove } = useCart();
+  const [products, setProducts] = useState<ShopProduct[] | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const lines = items
-    .map((item, index) => ({ item, index, product: getProduct(item.slug) }))
-    .filter((l) => l.product);
+  useEffect(() => {
+    getShopProducts()
+      .then((data) => setProducts(data))
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const productMap = useMemo(() => {
+    const map: Record<string, ShopProduct> = {};
+    if (products) {
+      for (const p of products) map[p.slug] = p;
+    }
+    return map;
+  }, [products]);
+
+  const lines = useMemo(() => {
+    return items
+      .map((item, index) => ({ item, index, product: productMap[item.slug] }))
+      .filter((l) => l.product);
+  }, [items, productMap]);
 
   const total = lines.reduce((sum, l) => sum + (l.product!.price * l.item.qty), 0);
+
+  if (loading) {
+    return (
+      <section className="container py-12">
+        <h1 className="text-3xl font-semibold md:text-4xl">{t('title')}</h1>
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <p className="text-sm text-muted-foreground">Chargement…</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="container py-12">

@@ -7,7 +7,6 @@ import { Link } from '@/i18n/navigation';
 import { AddToCart } from '@/components/shop/add-to-cart';
 import { PRODUCTS, getProduct, formatPrice } from '@/lib/catalog';
 import { getShopProduct } from '@/lib/shop';
-import { getStockForSlug } from '@/lib/stock';
 import { type Locale } from '@/i18n/routing';
 
 export function generateStaticParams() {
@@ -43,7 +42,6 @@ export default async function ProductPage({
   const tr = product.translations[locale as Locale];
   const nav = await getTranslations('nav');
   const Icon = product.icon === 'scroll' ? ScrollText : Wine;
-  const stock = await getStockForSlug(slug);
 
   return (
     <section className="container py-12">
@@ -74,7 +72,7 @@ export default async function ProductPage({
           <p className="mt-6 leading-relaxed text-foreground/90">{tr.long}</p>
 
           <div className="mt-8">
-            <AddToCart slug={product.slug} customizable={product.customizable} stock={stock ?? undefined} />
+            <AddToCart slug={product.slug} customizable={product.customizable} stock={product.stock} />
           </div>
         </div>
       </div>

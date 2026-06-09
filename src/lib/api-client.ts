@@ -165,3 +165,7 @@ export async function getClientAccount(email: string): Promise<any[]> {
   url.searchParams.set('email', email);
   return fetchJson<any[]>(url.pathname + url.search);
 }
+
+export async function getShopProducts(): Promise<any[]> {
+  return fetchJson<any[]>('/api/shop/products/');
+}
