@@ -1,7 +1,7 @@
 import { drizzle as drizzleLibsql } from 'drizzle-orm/libsql';
 import { drizzle as drizzleD1 } from 'drizzle-orm/d1';
 import { createClient } from '@libsql/client';
-import * as schema from '../../db/schema';
+import * as schema from '@db/schema';
 
 function createDb() {
   // Cloudflare D1 binding (available at runtime on Pages/Workers)
